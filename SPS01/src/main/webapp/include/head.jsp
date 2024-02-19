@@ -99,6 +99,27 @@ function carSearch() {
 function doSearch() 
 {
 }
+function EnterList()
+{
+	$.ajax({
+		type : "get",
+		url: "table03.jsp,
+		dataType: "html",
+		success : function(data) 
+		{	
+			// 통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
+			$("#table03").html(data);
+		},
+		complete : function(data) 
+		{	
+			// 통신이 성공하거나 실패했어도 이 함수를 타게된다.
+		},
+		error : function(xhr, status, error) 
+		{
+			// 통신 오류 발생시	
+		}
+	});			
+}
 </script>
 </head>
 	<body>
@@ -118,7 +139,9 @@ function doSearch()
 				<td><input type="text" id="datepicker"></td>
 				<td width="200px"></td>
 				<td align="center"><button class=btn onclick="location.href='camera.jsp'">입출차 카메라</button></td>
-				<td align="center"><button class=btn>입차 현황</button></td>
+				<td align="center"><a href="javascript:EnterList();">입차 현황</a></td>
+				<!-- <td align="center"><div class=btn onclick="EnterList();">입차 현황</div></td> -->
+				<!-- <td align="center"><button class=btn onclick="EnterList();">입차 현황</button></td> -->
 				<td align="center"><button class=btn>출차 현황</button></td>
 				<td align="center"><button class=btn>결제 내역</button></td>
 				<td align="center"><button class=btn>주차장 맵</button></td>
@@ -129,5 +152,3 @@ function doSearch()
 	     		</div>
 			</tr>
 		</table>
-	</body>
-</html>
