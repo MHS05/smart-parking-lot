@@ -33,9 +33,9 @@
 				<td width="80px" height="65px">
 					<img style="width:80px; height:60px;" src="image/logo.png">
 				</td>
-				<td width="400px"><font size="5"><b>스마트 주차 관리 시스템</b></font></td>
+				<td width="400px" style="text-align:left"><font size="5"><b>스마트 주차 관리 시스템</b></font></td>
 				<td width="200px"></td>
-				<td colspan="6" align="right"><button class=btn_logout>로그아웃</button></td>
+				<td colspan="6" align="right" style="text-align:right"><button class=btn_logout>로그아웃</button></td>
 			</tr>
 		</table>
 		<table border="0" width="1500px" height="75px" align="center" style="background-color:3498db">
