@@ -1,0 +1,77 @@
+@charset "EUC-KR";
+.btn
+{
+	width:150px;
+	height:45px;
+	font-size:1.2em;
+	font-weight:bold;
+	background-color:skyblue;
+	border-radius: 15px;
+	border: none;
+	cursor:pointer;
+}
+.btn_logout
+{
+	width:120px;
+	height:30px;
+	font-size:1.1em;
+	font-weight:bold;
+	border-radius: 15px;
+	margin-right: 10px;
+}
+#datepicker
+{
+	width:160px;
+	height:80px;
+	font-size:30;
+	font-weight:bold;
+	border:none;
+	background:transparent;
+	cursor:pointer;
+}
+#searchinput 
+{
+    display: none;
+}
+#key
+{
+	width:170px;
+	height: 30px;
+	font-size:1.1em;
+}
+a
+{
+	text-decoration-line: none;
+	color : black;
+}
+td
+{
+	text-align:center;
+}
+th
+{	
+	height:30px;
+	background-color:#3498db;
+}
+.td1
+{	
+	height:30px;
+	font-weight:bold;
+	background-color:#eaeaea;
+}
+.table012
+{
+	width:500px;
+	height:700px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:240px;
+	position:absolute;
+}
+.table02
+{
+	width:800px;
+	height:700px;
+	margin-top:15px;
+	margin-right:250px;
+}
