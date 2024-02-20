@@ -22,14 +22,17 @@
 	width:100px;
 	padding: 0px 0px;
 }
-table
+.table05
 {
 	border-collapse: collapse;
+	width:1200px;
+	height:800px;
+	margin-top:50px;
 }
 </style>
 <html>
 <body>
-	<table border="0" width="1200px" height="800px" align="center" style="margin-top:50px">
+	<table class="table05" border="0"  align="center">
 		<tr>
 			<td>
 				<table border="1" width="500px" height="400px" align="center">

@@ -48,30 +48,53 @@ td
 {
 	text-align:center;
 }
-th
+.th1, .th4
 {	
 	height:30px;
 	background-color:#3498db;
 }
-.td1
+.th3
+{	
+	height:20px;
+	background-color:#3498db;
+}
+.td1, .td3, .td4
 {	
 	height:30px;
 	font-weight:bold;
 	background-color:#eaeaea;
 }
-.table012
+.table01, .table02, .table03, .table04
 {
 	width:500px;
 	height:700px;
 	border-collapse:collapse;
 	margin-top:15px;
-	margin-left:240px;
-	position:absolute;
 }
-.table02
+.table05
 {
+	border-collapse: collapse;
 	width:800px;
 	height:700px;
 	margin-top:15px;
-	margin-right:250px;
+}
+#span1
+{	
+	padding: 7px 30px;
+	background-color : red;
+	border-radius: 5px;
+	text-align: center;
+	display:inline-block;
+	width:100px;
+	padding: 0px 0px;
+}
+#span2
+{
+	padding: 7px 30px;
+	background-color : #2ecc71;
+	border-radius: 5px;
+	text-align: center;
+	display:inline-block;
+	width:100px;
+	padding: 0px 0px;
 }
