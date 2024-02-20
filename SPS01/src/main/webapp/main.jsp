@@ -43,10 +43,10 @@
 				<td align="center"><a href="javascript:ExitList();"><button class=btn>출차 현황</button></a></td>
 				<td align="center"><a href="javascript:PayList();"><button class=btn>결제 내역</button></a></td>
 				<td align="center"><a href="javascript:ParkingMap();"><button class=btn>주차장 맵</button></a></td>
-				<td align="center"><a href="javascript:SearchCar();"><button class="btn" id="carsearch" onclick="carSearch();">차량 검색</button></a>
+				<td align="center"><button class="btn" id="carsearch" onclick="carSearch();">차량 검색</button>
 				<div id="searchinput" align="right" style="position:absolute; margin-top:20px;">
 		        	<input type="text" id="key" name="key" value="" placeholder="차량 번호 입력">
-			        <button onclick="doSearch();">검색</button>
+			        <a href="javascript:SearchCar();"><button onclick="doSearch();">검색</button></a>
 	     		</div>
 			</tr>
 		</table>
@@ -56,18 +56,16 @@
 				<td width="500px" align="center" id="leftside">
 					<table class="table01" border="1">
 						<tr>
-							<th class="th1" colspan="4">출차</th>
+							<th class="th1" colspan="3">출차</th>
 						</tr>
 						<tr>
 							<td class="td1">일반</td>
 							<td class="td1">회차</td>
-							<td class="td1">사전정산</td>
 							<td class="td1">합계</td>
 						</tr>
 						<tr>
 							<td height="30px">10</td>
 							<td>10</td>
-							<td>5</td>
 							<td>25</td>
 						</tr>
 						<tr style="border:none">
@@ -123,26 +121,24 @@
 				<td width="800px" align="center" id="rightside">
 					<table border="0" align="center" width="800px">
 						<tr>
-							<td height="40px">현재 주차 중인 차량 수</td>
+							<td width="100px" height="30px"><font size="4"><b>총 주차 자리 수</b></font></td>
 							<td width="20px"></td>
-							<td height="40px">주차 가능한 자리 수</td>
+							<td width="100px" height="30px"><font size="4"><b>현재 주차 중인 차량 수</b></font></td>
+							<td width="20px"></td>
+							<td width="100px" height="30px"><font size="4"><b>주차 가능한 자리 수</b></font></td>
 						</tr>
 						<tr>
-							<td height="80px" style="background-color:#e0e0e0">10대</td>
+							<td height="80px" style="background-color:#e0e0e0"><font size="5"><b>30대</b></font></td>
 							<td></td>
-							<td height="80px" style="background-color:#e0e0e0">20자리</td>
+							<td height="80px" style="background-color:#e0e0e0"><font size="5" color="red"><b>10대</b></font></td>
+							<td></td>
+							<td height="80px" style="background-color:#e0e0e0"><font size="5" color="green"><b>20자리</b></font></td>
 						</tr>
 						<tr>
 							<td height="10px"></td>
 						</tr>
 						<tr>
-							<td colspan="3" height="250px" style="background-color:#e0e0e0">주차장 맵</td>
-						</tr>
-						<tr>
-							<td colspan="3"><hr></td>
-						</tr>
-						<tr>
-							<td colspan="3" height="250px" style="background-color:#e0e0e0">주차장 CCTV</td>
+							<td colspan="5" height="550px" style="background-color:#e0e0e0">주차장 CCTV</td>
 						</tr>
 					</table>
 				</td>
@@ -298,6 +294,17 @@ function SearchCar()
 			// 통신 오류 발생시	
 		}
 	});			
+}
+function openinfo() 
+{	
+	var _width = '1200';
+	var _height = '800';
+		
+	var _left = Math.ceil((window.screen.width - _width )/2);
+	var _top = Math.ceil((window.screen.height - _height )/2);
+	
+	window.open('info.jsp', '', 'width=1200, height=800, left=' + _left +', top=' + (_top - 250)); return false;
+	
 }
 </script>
 	</body>
