@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<div style="height:700px; overflow: scroll;">
+<div style="height:735px; overflow: scroll;">
 <table class="table02" border="1" align="center">
 	<tr>
 		<th class="th3" colspan="4">입차 리스트</th>

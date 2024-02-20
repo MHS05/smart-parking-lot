@@ -68,14 +68,14 @@ td
 }
 .th3
 {	
-	height:60px;
+	height:55px;
 	background-color:#3498db;
 	font-size:20;
 }
 .td1
 {	
 	width:60px;
-	height:30px;
+	height:20px;
 	font-weight:bold;
 	background-color:#eaeaea;
 	font-size:20;
@@ -124,6 +124,7 @@ td
 	height:700px;
 	border-collapse:collapse;
 	margin-top:15px;
+	margin-left:15px;
 }
 .table03
 {
@@ -144,6 +145,7 @@ td
 	width:500px;
 	border-collapse:collapse;
 	margin-top:15px;
+	margin-left:15px;
 }
 .table04_1
 {
@@ -151,6 +153,7 @@ td
 	height:700px;
 	border-collapse:collapse;
 	margin-top:15px;
+	margin-left:15px;
 }
 .table05
 {

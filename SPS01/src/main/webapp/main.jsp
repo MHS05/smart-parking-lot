@@ -51,9 +51,9 @@
 			</tr>
 		</table>
 		<!-- 헤더 영역 끝 -->
-		<table border="0" width="1400px" height="720px" align="center">
+		<table border="1" align="center" style="width:1400px; height:600px;">
 			<tr>
-				<td width="500px" align="center" id="leftside">
+				<td width="550px" height="700px;" align="center" id="leftside">
 					<table class="table01" border="1">
 						<tr>
 							<th class="th1" colspan="3">출차</th>
@@ -129,7 +129,7 @@
 					</div>
 				</td>
 				<td width="800px" align="center" id="rightside">
-					<table border="0" align="center" width="800px">
+					<table border="0" align="center" width=800px;>
 						<tr>
 							<td width="100px" height="30px"><font size="4"><b>총 주차 자리 수</b></font></td>
 							<td width="20px"></td>

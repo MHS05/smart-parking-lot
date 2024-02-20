@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <table class="table04" border="1" align="center">
 	<tr>
-		<th class="th4" colspan="4">결제내역</th>
+		<th class="th4" colspan="4">결제 내역 총계</th>
 	<tr>
 	</tr>
 		<td class="td4">현금</td>
@@ -28,7 +28,7 @@
 		<td colspan="4" style="height:20px"></td>
 	</tr>
 </table>
-	<div style="height:500px; overflow: scroll;">
+	<div style="height:509px; overflow: scroll;">
 		<table class="table04_1" border="1" align="center">
 			<tr>
 				<th class="th4" colspan="4">결제 내역 리스트</th>
