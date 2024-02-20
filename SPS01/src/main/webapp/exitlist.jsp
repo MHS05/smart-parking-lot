@@ -18,7 +18,7 @@
 		<td colspan="4" style="height:20px"></td>
 	</tr>
 </table>
-<div style="height:500px; overflow: scroll;">
+<div style="height:554px; overflow: scroll;">
 	<table class="table03_1" border="1" align="center">
 		<tr>
 			<th class="th3" colspan="4">입출차 리스트</th>
