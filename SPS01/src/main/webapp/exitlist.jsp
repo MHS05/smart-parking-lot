@@ -2,18 +2,16 @@
     pageEncoding="EUC-KR"%>
 <table class="table03" border="1" align="center">
 	<tr>
-		<th class="th3" colspan="4">출차</th>
+		<th class="th3" colspan="3">출차</th>
 	</tr>
 	<tr>
 		<td class="td3">일반</td>
 		<td class="td3">회차</td>
-		<td class="td3">사전정산</td>
 		<td class="td3">합계</td>
 	</tr>
 	<tr>
 		<td height="30px">10</td>
 		<td>10</td>
-		<td>5</td>
 		<td>25</td>
 	</tr>
 	<tr style="border:none">

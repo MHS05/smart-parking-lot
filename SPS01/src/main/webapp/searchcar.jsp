@@ -7,12 +7,12 @@
 			<table border="1" width="390px" height="300px" align="center">
 				<tr style="background-color:#3498db">
 					<td align="center" height="100px">
-						<span id="span1">차량정보</span>
-						<font size="6" color="red"><b>16저 1234</b></font>
+						<span id="span1"><font size="4">차량정보</font></span>
+						<a href="javascript:openinfo();"><font size="6" color="red"><b>16저 1234</b></font></a>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align:left">&emsp;출차시간 : <br><br>&emsp;입차시간 : <br><br>
+					<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <br><br>&emsp;입차시간 :</font><br><br>
 						<font size="6">&emsp;&emsp;00일 00시간 00분</font>
 					</td>
 				</tr>
@@ -23,12 +23,12 @@
 			<table border="1" width="390px" height="300px" align="center">
 				<tr style="background-color:#3498db">
 					<td align="center" height="100px">
-						<span id="span2">주차요금</span>
+						<span id="span2"><font size="4">주차요금</font></span>
 						<font size="6" color="#2ecc71"><b>14,000원</b></font>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align:left">&emsp;주차요금 : <br><br><br>&emsp;결제요금 :</td>
+					<td colspan="2" style="text-align:left">&emsp;<font size="4">주차요금 : <br><br><br>&emsp;결제요금 :</font></td>
 				</tr>
 			</table>
 		</td>
@@ -40,7 +40,7 @@
 		<td>
 			<table border="1" width="390px" height="300px" align="center">
 				<tr style="background-color:#3498db">
-					<td height="100px" align="center">입차시 사진</td>
+					<td height="100px" align="center"><font size="5">입차시 사진</font></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">사진</td>
@@ -51,7 +51,7 @@
 		<td>
 			<table border="1" width="390px" height="300px" align="center">
 				<tr style="background-color:#3498db">
-					<td height="100px" align="center">출차시 사진</td>
+					<td height="100px" align="center"><font size="5">출차시 사진</font></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">사진</td>

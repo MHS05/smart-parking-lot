@@ -52,19 +52,38 @@ td
 {	
 	height:30px;
 	background-color:#3498db;
+	font-size:20;
 }
 .th3
 {	
 	height:20px;
 	background-color:#3498db;
+	font-size:20;
 }
-.td1, .td3, .td4
+.td1, .td4
 {	
+	width:60px;
 	height:30px;
 	font-weight:bold;
 	background-color:#eaeaea;
+	font-size:20;
 }
-.table01, .table02, .table03, .table04
+.td3
+{
+	height:30px;
+	font-weight:bold;
+	background-color:#eaeaea;
+	font-size:20;
+}
+.table01
+{
+	width:500px;
+	height:700px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:15px;
+}
+.table02, .table03, .table04
 {
 	width:500px;
 	height:700px;
