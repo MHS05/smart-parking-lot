@@ -46,7 +46,7 @@
 				<td align="center"><button class="btn" id="carsearch" onclick="carSearch();">차량 검색</button>
 				<div id="searchinput" align="right" style="position:absolute; margin-top:20px;">
 		        	<input type="text" id="key" name="key" value="" placeholder="차량 번호 입력">
-			        <a href="javascript:SearchCar();"><button onclick="doSearch();">검색</button></a>
+			        <a href="javascript:SearchCar();"><button onclick="doSearch();"><font size="3">검색</font></button></a>
 	     		</div>
 			</tr>
 		</table>
@@ -97,26 +97,36 @@
 						<tr style="border:none">
 							<td colspan="4" style="height:20px"></td>
 						</tr>
-						<tr>
-							<th class="th1" colspan="4">입출차 리스트</th>
-						</tr>
-			
-						<tr>
-							<td class="td1">차량번호</td>
-							<td class="td1">시각</td>
-							<td class="td1" colspan="2">차량구분</td>
-						</tr>
-						<tr>
-							<td height="30px">61아 1234</td>
-							<td>2019-01-01 00:00</td>
-							<td colspan="2">입차</td>
-						</tr>
-						<tr>
-							<td height="30px">61아 1234</td>
-							<td>2019-01-01 00:00</td>
-							<td colspan="2">출차</td>
-						</tr>
 					</table>
+					<div style="height:220px; overflow: scroll;">
+						<table class="table01_1" border="1">
+							<tr>
+								<th class="th1_1" colspan="4">입출차 리스트</th>
+							</tr>
+				
+							<tr>
+								<td class="td1_1" width="70px">차량번호</td>
+								<td class="td1_1" width="300px">시각</td>
+								<td class="td1_1" width="70px" colspan="2">차량구분</td>
+							</tr>
+							<%for(int i=1; i<10; i++)
+							{
+							%>
+							<tr>
+								<td height="40px">61아 1234</td>
+								<td>2019-01-01 00:00</td>
+								<td colspan="2">입차</td>
+							</tr>
+							<tr>
+								<td height="40px">61아 1234</td>
+								<td>2019-01-01 00:00</td>
+								<td colspan="2">출차</td>
+							</tr>
+							<%
+							}
+							%>
+						</table>
+					</div>
 				</td>
 				<td width="800px" align="center" id="rightside">
 					<table border="0" align="center" width="800px">
@@ -211,6 +221,7 @@ function EnterList()
 		}
 	});			
 }
+
 function ExitList()
 {
 	$.ajax({
@@ -232,6 +243,7 @@ function ExitList()
 		}
 	});			
 }
+
 function PayList()
 {
 	$.ajax({
@@ -253,6 +265,7 @@ function PayList()
 		}
 	});			
 }
+
 function ParkingMap()
 {
 	$.ajax({
@@ -274,6 +287,7 @@ function ParkingMap()
 		}
 	});			
 }
+
 function SearchCar()
 {
 	$.ajax({
@@ -295,16 +309,16 @@ function SearchCar()
 		}
 	});			
 }
+
 function openinfo() 
 {	
-	var _width = '1200';
-	var _height = '800';
+	var _width = '1100';
+	var _height = '700';
 		
 	var _left = Math.ceil((window.screen.width - _width )/2);
-	var _top = Math.ceil((window.screen.height - _height )/2);
+	var _top = '400';
 	
-	window.open('info.jsp', '', 'width=1200, height=800, left=' + _left +', top=' + (_top - 250)); return false;
-	
+	window.open('info.jsp', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
 }
 </script>
 	</body>
