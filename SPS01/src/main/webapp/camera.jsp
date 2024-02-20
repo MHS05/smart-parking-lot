@@ -5,7 +5,7 @@
 	<head>
 	<meta charset="EUC-KR">
 	<title>스마트 주차 관리 시스템</title>
-	<link rel="stylesheet" type="text/css" href="background.css">
+	<link rel="stylesheet" type="text/css" href="../css/background.css">
 <script>
 window.onload=function()
 {
