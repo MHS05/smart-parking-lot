@@ -83,18 +83,24 @@ a
 			</tr>
 			<tr>
 				<td align="center" width="135px">
-					<label for="enter_image">
-					  <span class="btn-upload" style="padding: 0px 0px">업로드</span>
-					</label>
-					<input type="file" name="enter_image" id="enter_image" accept="image/*">
+					<form id="enter" name="enter" method="post" action="imgdown.jsp" enctype="multipart/form-data">
+						<label for="enter_image">
+							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
+						</label>
+						<input type="file" name="enter_image" id="enter_image" accept="image/*">
+							<span style="display:none;" class="btn-upload" id="enterok" style="padding: 0px 0px"><input type="submit" value="확인"></span>
+					</form>
 				</td>
 				<td>
 				</td>
 				<td align="center" width="135px">
-					<label for="exit_image">
-					  <span class="btn-upload" style="padding: 0px 0px">업로드</span>
-					</label>
-					<input type="file" name="exit_image" id="exit_image" accept="image/*">
+					<form id="exit" name="exit" method="post" action="exitok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
+						<label for="exit_image">
+							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
+						</label>
+						<input type="file" name="exit_image" id="exit_image" accept="image/*">
+							<span style="display:none;" class="btn-upload" id="exitok" style="padding: 0px 0px"><input type="submit" value="확인"></span>
+					</form>
 				</td>
 			</tr>
 		</table>
@@ -108,7 +114,10 @@ a
 					$('#enter_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
 				}
 				reader.readAsDataURL(file);
+				$('#enterok').css('display','')
 			});
+			
+			
 			
 			$('#exit_image').on('change', function(e) {
 				var file = e.target.files[0];
@@ -117,6 +126,7 @@ a
 					$('#exit_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
 				}
 				reader.readAsDataURL(file);
+				$('#exitok').css('display','')
 			});
 		});
 	</script>

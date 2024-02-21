@@ -11,18 +11,16 @@ public class TestDTO extends DBManager
 		
 		String sql = "";
 
-		sql += "insert into test (no, image, phyimage) ";
+		sql += "insert into carinfo (enterpic) ";
 		sql += "values (";
-		sql += "'" + _R(vo.getNo())          + "',";
-		sql += "'" + _R(vo.getImage())       + "',";
-		sql += "'" + _R(vo.getPhyimage())    + "'";
+		sql += "'" + _R(vo.getEnterpic())       + "'";
 		sql += ")";
 		this.RunCommand(sql);
 		
-		sql = "select last_insert_id() as no ";
+		sql = "select last_insert_id() as cmno ";
 		this.RunSelect(sql);
 		this.GetNext();
-		vo.setNo(this.GetValue("no"));
+		vo.setNo(this.GetValue("cmno"));
 		
 		this.DBClose();
 		return true;
@@ -34,10 +32,9 @@ public class TestDTO extends DBManager
 		
 		String sql = "";
 		sql  = "update test set ";
-		if(!vo.getImage().equals(""))
+		if(!vo.getEnterpic().equals(""))
 		{
-			sql += "image='" + _R(vo.getImage()) + "',";
-			sql += "phyimage='" + _R(vo.getPhyimage()) + "'";
+			sql += "enterpic='" + _R(vo.getEnterpic()) + "'";
 		}
 		sql += "where no = " + vo.getNo();
 		this.RunCommand(sql);
@@ -67,8 +64,8 @@ public class TestDTO extends DBManager
 		
 		this.DBOpen();
 
-		sql  = "select * from test ";
-		sql += "where no = " + no;
+		sql  = "select * from carinfo ";
+		sql += "where cmno = " + no;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
@@ -77,8 +74,7 @@ public class TestDTO extends DBManager
 		}
 		TestVO vo = new TestVO();
 		vo.setNo(no);
-		vo.setImage(this.GetValue("image"));
-		vo.setPhyimage(this.GetValue("phyimage"));
+		vo.setEnterpic(this.GetValue("enterpic"));
 		vo.setId(this.GetValue("id"));
 	
 		this.DBClose();

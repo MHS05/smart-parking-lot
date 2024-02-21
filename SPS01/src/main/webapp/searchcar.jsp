@@ -4,15 +4,11 @@
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
 <%
-String no = request.getParameter("no");
-if( no == null || no.equals("") )
-{
-	response.sendRedirect("./login/login.jsp");
-	return;
-}
+
+String cmno = "1";
 
 TestDTO dto = new TestDTO();
-TestVO  vo  = dto.Read(no);
+TestVO vo  = dto.Read(cmno);
 if( vo == null )
 {
 	response.sendRedirect("main.jsp");
@@ -64,10 +60,10 @@ if( vo == null )
 				<tr>
 					<td colspan="2" align="center" id="imgList">업로드한 입차 사진
 					<%
-					if( vo.getImage() != null && !vo.getImage().equals("") )
+					if( vo.getEnterpic() != null)
 					{
 						%>
-							<img style="width:40%;height:40%;" src="imagedown.jsp"><br>
+							<img style="width:40%;height:40%;" src="enterok.jsp?cmno=<%= cmno %>"><br>
 						<%
 					}else
 					{

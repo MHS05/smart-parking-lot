@@ -1,48 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ include file="./common/common.jsp" %>
+<%@ page import="java.util.*" %>    
 <%@ page import="java.io.*" %>
-<%@ page import="java.net.*" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ include file="./common/common.jsp" %> 
 <%@ page import="sps.vo.*" %>
 <%@ page import="sps.dto.*" %>   
 <%
-String no = request.getParameter("no");
-if( no == null || no.equals("") )
+
+//업로드가 가능한 최대 파일 크기를 지정한다.
+int size = 10 * 1024 * 1024;
+
+MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
+		"euc-kr",new DefaultFileRenamePolicy());
+
+String enterpic = (String)multi.getFilesystemName("enter_image"); //논리명
+
+if (enterpic != null)
 {
-	response.sendRedirect("main.jsp");
-	return;
+	//논리명을 물리명 이름으로 변경한다.
+	
+	//파일 이름 변경
+	String orgImage = uploadPath + "\\" + enterpic;
+	
+	File srcFile    = new File(orgImage);
+	
+	out.println("원래 파일명 : " + orgImage + "<br>");
 }
+
+
+TestVO vo = new TestVO();
+vo.setEnterpic(enterpic);
 
 TestDTO dto = new TestDTO();
-TestVO  vo  = dto.Read(no);
-if( vo == null )
-{
-	response.sendRedirect("main.jsp");
-	return;	
-}
+dto.Insert(vo);
 
-//이미지
-String image    = vo.getImage();
-String phyimage = vo.getPhyimage();
+response.sendRedirect("main.jsp");
 
-String imageName = uploadPath + "\\" + phyimage;
-
-image = URLEncoder.encode(image,"utf-8");	//
-response.setContentType("application/octet-stream");   //
-response.setHeader("Content-Disposition","attachment; filename=" + image);	//
-
-File file = new File(imageName);
-FileInputStream fileIn = new FileInputStream(file);
-ServletOutputStream ostream = response.getOutputStream();
-
-byte[] outputByte = new byte[4096];
-//copy binary contect to output stream
-while(fileIn.read(outputByte, 0, 4096) != -1)
-{
-	ostream.write(outputByte, 0, 4096);
-}
-
-fileIn.close();
-ostream.flush();
-ostream.close();
 %>
