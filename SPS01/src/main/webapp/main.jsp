@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import="sps.vo.*" %>
+<%@ page import="sps.dto.*" %>
 <style>
 #datepicker
 {
@@ -19,7 +21,6 @@
 	<title>스마트 주차장 관리 시스템</title>
 	<link rel="stylesheet" type="text/css" href="css/sps.css">
 	<link rel="stylesheet" href="css/jquery-ui.css">
-
 </head>
 	<body>
 		<!-- 헤더 영역 시작 -->
@@ -30,7 +31,8 @@
 				</td>
 				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp">스마트 주차장 관리 시스템</a></b></font></td>
 				<td width="200px"></td>
-				<td colspan="6" align="right" style="text-align:right"><button class=btn_logout>로그아웃</button></td>
+				<td colspan="6" align="right" style="text-align:right">
+				<button class=btn_logout onclick="document.location.href='./login/login.jsp'">로그아웃</button></td>
 			</tr>
 		</table>
 		<table border="0" width="1500px" height="75px" align="center" style="background-color:3498db">
@@ -51,7 +53,7 @@
 			</tr>
 		</table>
 		<!-- 헤더 영역 끝 -->
-		<table border="1" align="center" style="width:1400px; height:600px;">
+		<table border="0" align="center" style="width:1400px; height:600px;">
 			<tr>
 				<td width="550px" height="700px;" align="center" id="leftside">
 					<table class="table01" border="1">
@@ -169,6 +171,11 @@ window.onload = function()
 		});
 }
 
+function doSearch() 
+{
+	$("#imgList").html("");
+}
+
 $(function() {
     $("#datepicker").datepicker({
         dateFormat: 'yy-mm-dd',
@@ -184,13 +191,16 @@ $(function() {
         dayNamesMin: ['일','월','화','수','목','금','토'],
         dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
         minDate: "-5Y",
-        maxDate: "+today"               
+        maxDate: "+today",
+        onSelect: function(dateText, inst) {
+            alert("선택하신 날짜는 " +dateText+ " 입니다.");
+        }
     });    
-    
     // 초기값을 오늘 날짜로 설정
     $('#datepicker').datepicker('setDate', 'today');
 });
 
+    
 function carSearch() {
     var searchinput = document.getElementById('searchinput');
     if (searchinput.style.display == 'none') {

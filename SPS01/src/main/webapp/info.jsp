@@ -24,7 +24,7 @@ th
 </style>
 <div style="height:600px; overflow: scroll;">
 	<table border="1" width="1000px" align="center" style="border-collapse: collapse; overflow: scroll;">
-		<div class="carnumber">차량번호 : <b>16저1234</b></div>
+		<div class="carnumber"><b>차량번호 : 16저1234</b></div>
 		<div align="center"><h1>통합정보</h1></div>
 		<tr style="background-color:#eaeaea;">
 			<th width="200px">날짜</th>
