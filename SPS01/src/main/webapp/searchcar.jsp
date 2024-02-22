@@ -66,14 +66,15 @@ if( vo == null )
 					<%
 					if( vo.getEnterpic() != null)
 					{
-						%>
-							<img style="width:400px;height:240px;" src="enter_imagedown.jsp?cmno=<%= cmno %>"><br>
-						<%
-					}else
+					%>
+						<img style="width:400px;height:240px;" src="enter_imagedown.jsp?cmno=20"><br>
+					<%
+					}
+					else
 					{
-						%>
-							<div>입차 사진 X</div>
-						<%
+					%>
+						<div>출차 사진 X</div>
+					<%
 					}
 					%>
 					</td>
@@ -91,14 +92,15 @@ if( vo == null )
 					<%
 					if( vo.getExitpic() != null)
 					{
-						%>
-							<img style="width:400px;height:240px;" src="exit_imagedown.jsp?cmno=<%= cmno %>"><br>
-						<%
-					}else
+					%>
+						<img style="width:400px; height:240px;" src="exit_imagedown.jsp?cmno=<%= cmno %>"><br>
+					<%
+					}
+					else
 					{
-						%>
-							<div>출차 사진 X</div>
-						<%
+					%>
+						<div>출차 사진 X</div>
+					<%
 					}
 					%>
 					</td>
