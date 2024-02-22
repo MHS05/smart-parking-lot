@@ -15,27 +15,26 @@ int size = 10 * 1024 * 1024;
 MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 		"euc-kr",new DefaultFileRenamePolicy());
 
-String enterpic = (String)multi.getFilesystemName("enter_image"); //논리명
+String exitpic = (String)multi.getFilesystemName("exit_image");
 
-if (enterpic != null)
+if (exitpic != null)
 {
 	//논리명을 물리명 이름으로 변경한다.
 	
 	//파일 이름 변경
-	String orgImage = uploadPath + "\\" + enterpic;
+	String orgImage = uploadPath + "\\" + exitpic;
 	
 	File srcFile    = new File(orgImage);
 	
 	out.println("원래 파일명 : " + orgImage + "<br>");
 }
 
+CarinfoVO vo = new CarinfoVO();
+vo.setExitpic(exitpic);
 
-TestVO vo = new TestVO();
-vo.setEnterpic(enterpic);
-
-TestDTO dto = new TestDTO();
+CarinfoDTO dto = new CarinfoDTO();
 dto.Insert(vo);
 
-response.sendRedirect("main.jsp");
+response.sendRedirect("main.jsp?cmno="+vo.getCmno());
 
 %>

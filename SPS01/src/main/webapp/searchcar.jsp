@@ -4,11 +4,15 @@
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
 <%
+String cmno = request.getParameter("cmno");
+if( cmno == null || cmno.equals("") )
+{
+	response.sendRedirect("main.jsp");
+	return;
+}
 
-String cmno = "1";
-
-TestDTO dto = new TestDTO();
-TestVO vo  = dto.Read(cmno);
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
 if( vo == null )
 {
 	response.sendRedirect("main.jsp");
@@ -58,17 +62,17 @@ if( vo == null )
 					<td height="100px" align="center"><font size="5"><b>입차시 사진</b></font></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center" id="imgList">업로드한 입차 사진
+					<td colspan="2" align="center" id="imgList">
 					<%
 					if( vo.getEnterpic() != null)
 					{
 						%>
-							<img style="width:40%;height:40%;" src="enterok.jsp?cmno=<%= cmno %>"><br>
+							<img style="width:400px;height:240px;" src="enter_imagedown.jsp?cmno=<%= cmno %>"><br>
 						<%
 					}else
 					{
 						%>
-							<div>오류 발생</div>
+							<div>입차 사진 X</div>
 						<%
 					}
 					%>
@@ -83,7 +87,21 @@ if( vo == null )
 					<td height="100px" align="center"><font size="5"><b>출차시 사진</b></font></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">업로드한 출차 사진</td>
+					<td colspan="2" align="center" id="imgList">
+					<%
+					if( vo.getExitpic() != null)
+					{
+						%>
+							<img style="width:400px;height:240px;" src="exit_imagedown.jsp?cmno=<%= cmno %>"><br>
+						<%
+					}else
+					{
+						%>
+							<div>출차 사진 X</div>
+						<%
+					}
+					%>
+					</td>
 				</tr>
 			</table>
 		</td>
