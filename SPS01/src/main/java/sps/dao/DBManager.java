@@ -21,7 +21,7 @@ public class DBManager
 		conn   = null;
 		userid = "root";
 		userpw = "ezen";
-		host   = "jdbc:mysql://127.0.0.1:3306/test";
+		host   = "jdbc:mysql://192.168.0.101:3306/sps";
 		host  += "?useUnicode=true&characterEncoding=utf-8";
 		host  += "&serverTimezone=UTC";		
 	}

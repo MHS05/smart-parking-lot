@@ -1,6 +1,6 @@
-create database test;
+create database sps;
 
-use test;
+use sps;
 
 create table admin
 (
