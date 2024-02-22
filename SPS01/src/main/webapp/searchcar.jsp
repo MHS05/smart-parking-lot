@@ -27,12 +27,23 @@ if( vo == null )
 				<tr style="background-color:#3498db">
 					<td align="center" height="100px">
 						<span id="span1"><font size="4"><b>차량정보</b></font></span>
-						<a href="javascript:openinfo();"><font size="6" color="red"><b>16저 1234</b></font></a>
+						<a href="javascript:openinfo();"><font size="6" color="red"><b><%= vo.getCarnum() %></b></font></a>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <br><br>&emsp;입차시간 :</font><br><br>
-						<font size="6">&emsp;&emsp;00일 00시간 00분</font>
+					<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <br><br>&emsp;입차시간 : <%= vo.getEntertime() %></font><br><br>
+					<% 
+						int time = Integer.parseInt(dto.timeDiff(cmno));
+						if(time < 60)
+						{
+							%><font size="6">&emsp;&emsp;00일 00시간 <%= dto.timeDiff(cmno) %>분</font><%
+						} else
+						{
+							int hour = time / 60;
+							int min  = time - (hour * 60);
+							%><font size="6">&emsp;&emsp;00일 <%= hour %>시간 <%= min %>분</font><%
+						}
+					%>
 					</td>
 				</tr>
 			</table>
@@ -43,7 +54,17 @@ if( vo == null )
 				<tr style="background-color:#3498db">
 					<td align="center" height="100px">
 						<span id="span2"><font size="4"><b>주차요금</b></font></span>
-						<font size="6" color="#2ecc71"><b>14,000원</b></font>
+						<%
+							if(time < 30)
+							{
+								%><font size="6" color="#2ecc71"><b>600원</b></font><%
+							} else
+							{
+							 	int timecal = time / 30;
+								timecal = timecal * 600;
+								%><font size="6" color="#2ecc71"><b><%= timecal %>원</b></font><%
+							}
+						%>
 					</td>
 				</tr>
 				<tr>

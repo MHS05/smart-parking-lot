@@ -22,3 +22,8 @@ create table carinfo
 	payamount int comment '결제금액',
 	payclassifi varchar(10) comment '결제구분'
 ) comment '차량관리정보';
+
+create table exitpic
+(
+	exitpic varchar(100) comment '임시출차사진'
+) comment '출차사진';

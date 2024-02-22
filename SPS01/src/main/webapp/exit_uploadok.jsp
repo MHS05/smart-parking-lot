@@ -29,12 +29,12 @@ if (exitpic != null)
 	out.println("원래 파일명 : " + orgImage + "<br>");
 }
 
-CarinfoVO vo = new CarinfoVO();
+ExitVO vo = new ExitVO();
 vo.setExitpic(exitpic);
 
-CarinfoDTO dto = new CarinfoDTO();
+ExitpicDTO dto = new ExitpicDTO();
 dto.Insert(vo);
 
-response.sendRedirect("main.jsp?cmno="+vo.getCmno());
+response.sendRedirect("main.jsp");
 
 %>
