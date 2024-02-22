@@ -13,23 +13,22 @@ if( cmno == null || cmno.equals(""))
 	return;
 }
 
-
-TestDTO dto = new TestDTO();
-TestVO vo  = dto.Read(cmno);
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
 if( vo == null )
 {
 	response.sendRedirect("main.jsp");
 	return;	
 }
 
-String enterpic = vo.getEnterpic();
+String exitpic = vo.getExitpic();
 
 //¿ÃπÃ¡ˆ
-String imageName = uploadPath + "\\" + enterpic;
+String imageName = uploadPath + "\\" + exitpic;
 
-enterpic = URLEncoder.encode(enterpic,"utf-8");	//
+exitpic = URLEncoder.encode(exitpic,"utf-8");	//
 response.setContentType("application/octet-stream");   //
-response.setHeader("Content-Disposition","attachment; filename=" + enterpic);	//
+response.setHeader("Content-Disposition","attachment; filename=" + exitpic);	//
 
 File file = new File(imageName);
 FileInputStream fileIn = new FileInputStream(file);

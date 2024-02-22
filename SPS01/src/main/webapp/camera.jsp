@@ -41,17 +41,16 @@ table
 	background-color:#fff2a5;
 	border: none;
 }	
-.btn-uploadok 
+.btn_enterok, .btn_exitok
 {	
-	width: 130px;
+	margint-top:150px;
+	width: 50px;
 	height: 40px;
 	background: #fff;
 	border: 1px solid rgb(77,77,77);
 	border-radius: 10px;
 	font-weight: 400;
 	cursor: pointer;
-	align-items: center;
-	justify-content: center;
 	background-color:#fff2a5;
 	border: none;
 }	
@@ -63,6 +62,10 @@ table
 #enter_image, #exit_image
 {
   	display: none;
+}
+#enter_imageok
+{	
+	align:center;
 }
 a
 {
@@ -85,6 +88,7 @@ a
 				<td align="center" height="300px">
 					<div id="enter_image_preview">
 						<img src="image/icon_enter_car.png" style="width:600px; height:600px">
+					</td>
 					</div>
 				</td>
 				<td>
@@ -97,23 +101,23 @@ a
 			</tr>
 			<tr>
 				<td align="center" width="135px">
-					<form id="enter" name="enter" method="post" action="imgdown.jsp" enctype="multipart/form-data">
+					<form id="enter" name="enter" method="post" action="enter_uploadok.jsp" enctype="multipart/form-data">
 						<label for="enter_image">
 							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
 						</label>
 						<input type="file" name="enter_image" id="enter_image" accept="image/*">
-							<span style="display:none;" id="enter_imageok"><input type="submit" value="확인" class="btn-uploadok"></span>
+							<span style="display:none;" id="enter_imageok"><input type="submit" value="확인" class="btn_enterok"></span>
 					</form>
 				</td>
 				<td>
 				</td>
 				<td align="center" width="135px">
-					<form id="exit" name="exit" method="post" action="exitok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
+					<form id="exit" name="exit" method="post" action="exit_uploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 						<label for="exit_image">
 							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
 						</label>
 						<input type="file" name="exit_image" id="exit_image" accept="image/*">
-							<span style="display:none;" class="btn-uploadok" id="exit_imageok"><input type="submit" value="확인"></span>
+							<span style="display:none;" id="exit_imageok"><input type="submit" value="확인" class="btn_exitok"></span>
 					</form>
 				</td>
 			</tr>

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import="sps.vo.*" %>
-<%@ page import="sps.dto.*" %>
 <style>
 #datepicker
 {
@@ -40,15 +38,15 @@
 				<td align="center"><img src="image/calender.png" style="width:60px; height:60px"></td>
 				<td><input type="text" id="datepicker"></td>
 				<td width="200px"></td>
-				<td align="center"><button class=btn onclick="location.href='camera.jsp'">입출차 카메라</button></td>
+				<td align="center"><a href="camera.jsp?cmno="><button class=btn>입출차 카메라</button></a></td>
 				<td align="center"><a href="javascript:EnterList();"><button class=btn>입차 현황</button></a></td>
 				<td align="center"><a href="javascript:ExitList();"><button class=btn>출차 현황</button></a></td>
 				<td align="center"><a href="javascript:PayList();"><button class=btn>결제 내역</button></a></td>
 				<td align="center"><a href="javascript:ParkingMap();"><button class=btn>주차장 맵</button></a></td>
 				<td align="center"><button class="btn" id="carsearch" onclick="carSearch();">차량 검색</button>
 				<div id="searchinput" align="right" style="position:absolute; margin-top:20px;">
-		        	<input type="text" id="key" name="key" value="" placeholder="차량 번호 입력">
-			        <a href="javascript:SearchCar();"><button onclick="doSearch();"><font size="3">검색</font></button></a>
+		        	<input type="text" id="carnumber" name="carnumber" value="" placeholder="차량 번호 입력">
+			        <button onclick="SearchCar()"><font size="3">검색</font></button></a>
 	     		</div>
 			</tr>
 		</table>
@@ -161,46 +159,16 @@
 <script>
 window.onload = function()
 {
-	$("#key").keyup(function (event)
+	$("#carnumber").keyup(function (event)
 		{	
 			if (event.keyCode == 13)
 			{
-				doSearch();
+				SearchCar();
 			}
 			
 		});
 }
 
-function doSearch() 
-{
-	$("#imgList").html("");
-}
-
-$(function() {
-    $("#datepicker").datepicker({
-        dateFormat: 'yy-mm-dd',
-        showOtherMonths: true,
-        showMonthAfterYear: true,
-        changeYear: true,
-        changeMonth: true,
-        showOn: "both",
-        buttonImageOnly: true,
-        buttonText: "",
-        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNamesMin: ['일','월','화','수','목','금','토'],
-        dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
-        minDate: "-5Y",
-        maxDate: "+today",
-        onSelect: function(dateText, inst) {
-            alert("선택하신 날짜는 " +dateText+ " 입니다.");
-        }
-    });    
-    // 초기값을 오늘 날짜로 설정
-    $('#datepicker').datepicker('setDate', 'today');
-});
-
-    
 function carSearch() {
     var searchinput = document.getElementById('searchinput');
     if (searchinput.style.display == 'none') {
@@ -208,6 +176,30 @@ function carSearch() {
     } else {
         searchinput.style.display = 'none';
     }
+}
+
+function SearchCar()
+{
+	carnumber = $("#carnumber").val();
+	$.ajax({
+		type : "get",
+		data : { cmno : carnumber },
+ 		url: "searchcar.jsp",
+		dataType: "html",
+		success : function(data) 
+		{	
+			// 통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
+			$("#rightside").html(data);
+		},
+		complete : function(data) 
+		{	
+			// 통신이 성공하거나 실패했어도 이 함수를 타게된다.
+		},
+		error : function(xhr, status, error) 
+		{
+			// 통신 오류 발생시	
+		}
+	});			
 }
 
 function EnterList()
@@ -298,27 +290,30 @@ function ParkingMap()
 	});			
 }
 
-function SearchCar()
-{
-	$.ajax({
-		type : "get",
-		url: "searchcar.jsp",
-		dataType: "html",
-		success : function(data) 
-		{	
-			// 통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
-			$("#rightside").html(data);
-		},
-		complete : function(data) 
-		{	
-			// 통신이 성공하거나 실패했어도 이 함수를 타게된다.
-		},
-		error : function(xhr, status, error) 
-		{
-			// 통신 오류 발생시	
-		}
-	});			
-}
+$(function() {
+    $("#datepicker").datepicker({
+        dateFormat: 'yy-mm-dd',
+        showOtherMonths: true,
+        showMonthAfterYear: true,
+        changeYear: true,
+        changeMonth: true,
+        showOn: "both",
+        buttonImageOnly: true,
+        buttonText: "",
+        monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        dayNamesMin: ['일','월','화','수','목','금','토'],
+        dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'],
+        minDate: "-5Y",
+        maxDate: "+today",
+        onSelect: function(dateText, inst) {
+            alert("선택하신 날짜는 " +dateText+ " 입니다.");
+        }
+    });    
+    // 초기값을 오늘 날짜로 설정
+    $('#datepicker').datepicker('setDate', 'today');
+});
+
 
 function openinfo() 
 {	

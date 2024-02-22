@@ -11,18 +11,10 @@ public class CarinfoDTO extends DBManager
 		
 		String sql = "";
 
-		sql += "insert into carinfo (carnum,entertime,exittime,timecal, ";
-		sql += "enterpic,exitpic,paymethod,payamount,payclassifi) ";
+		sql += "insert into carinfo (enterpic, exitpic)";
 		sql += "values (";
-		sql += "'" + vo.getCarnum()      	  + "',";
-		sql += "'" + vo.getEntertime()     	  + "',";
-		sql += "'" + vo.getExittime()     	  + "',";
-		sql += "'" + vo.getTimecal()     	  + "',";
-		sql += "'" + vo.getEnterpic()   	  + "',";
-		sql += "'" + vo.getExitpic()       	  + "',";
-		sql += "'" + vo.getPaymethod()        + "',";
-		sql += "'" + vo.getPayamount()    	  + "',";
-		sql += "'" + vo.getPayclassifi()      + "' ";
+		sql += "'" + vo.getEnterpic() + "', ";
+		sql += "'" + vo.getExitpic() + "'";
 		sql += ")";
 		this.RunCommand(sql);
 		
@@ -81,7 +73,6 @@ public class CarinfoDTO extends DBManager
 
 		sql  = "select carnum,entertime,exittime,timecal, ";
 		sql	+= "enterpic,exitpic,paymethod,payamount,payclassifi from carinfo ";
-		sql += "from sps ";
 		sql += "where cmno = " + cmno;
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
