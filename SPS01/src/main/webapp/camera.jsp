@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
+<%@ page import = "java.util.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -33,6 +36,7 @@ table
 	background: #fff;
 	border: 1px solid rgb(77,77,77);
 	border-radius: 10px;
+	font-size:17px;
 	font-weight: 400;
 	cursor: pointer;
 	display: flex;
@@ -43,12 +47,12 @@ table
 }	
 .btn_enterok, .btn_exitok
 {	
-	margint-top:150px;
-	width: 50px;
+	width: 130px;
 	height: 40px;
 	background: #fff;
 	border: 1px solid rgb(77,77,77);
 	border-radius: 10px;
+	font-size:17px;
 	font-weight: 400;
 	cursor: pointer;
 	background-color:#fff2a5;
@@ -80,15 +84,14 @@ a
 				<td align="center" height="80px" width="600px"><h2>입차시 카메라</h2></td>
 				<td width="100px"></td>
 				<td align="center" width="600px"><h2>출차시 카메라</h2></td>
-				<div class="admin" align="right" onclick="document.location.href='main.jsp'">
-					<img src="image/admin.png" style="width:100px; height:80px;"><br><font color="white">관리자 페이지</font>
+				<div class="admin" align="right">
+					<a href="main.jsp"><img src="image/admin.png" style="width:100px; height:80px;"><br><font color="white">관리자 페이지</font></a>
 				</div>
 			</tr>
 			<tr>
 				<td align="center" height="300px">
 					<div id="enter_image_preview">
 						<img src="image/icon_enter_car.png" style="width:600px; height:600px">
-					</td>
 					</div>
 				</td>
 				<td>
@@ -103,7 +106,7 @@ a
 				<td align="center" width="135px">
 					<form id="enter" name="enter" method="post" action="enter_uploadok.jsp" enctype="multipart/form-data">
 						<label for="enter_image">
-							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
+							<span class="btn-upload" id="btn-enterupload" style="padding: 0px 0px">업로드</span>
 						</label>
 						<input type="file" name="enter_image" id="enter_image" accept="image/*">
 							<span style="display:none;" id="enter_imageok"><input type="submit" value="확인" class="btn_enterok"></span>
@@ -114,7 +117,7 @@ a
 				<td align="center" width="135px">
 					<form id="exit" name="exit" method="post" action="exit_uploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
 						<label for="exit_image">
-							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
+							<span class="btn-upload" id="btn-exitupload" style="padding: 0px 0px">업로드</span>
 						</label>
 						<input type="file" name="exit_image" id="exit_image" accept="image/*">
 							<span style="display:none;" id="exit_imageok"><input type="submit" value="확인" class="btn_exitok"></span>
@@ -132,6 +135,7 @@ a
 					$('#enter_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
 				}
 				reader.readAsDataURL(file);
+				$('#btn-enterupload').css('display','none')
 				$('#enter_imageok').css('display','')
 			});
 			
@@ -144,6 +148,7 @@ a
 					$('#exit_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
 				}
 				reader.readAsDataURL(file);
+				$('#btn-exitupload').css('display','none')
 				$('#exit_imageok').css('display','')
 			});
 		});
