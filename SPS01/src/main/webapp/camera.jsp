@@ -41,6 +41,20 @@ table
 	background-color:#fff2a5;
 	border: none;
 }	
+.btn-uploadok 
+{	
+	width: 130px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid rgb(77,77,77);
+	border-radius: 10px;
+	font-weight: 400;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	background-color:#fff2a5;
+	border: none;
+}	
 .btn-upload:hover 
 {
 	background: rgb(77,77,77);
@@ -88,7 +102,7 @@ a
 							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
 						</label>
 						<input type="file" name="enter_image" id="enter_image" accept="image/*">
-							<span style="display:none;" class="btn-upload" id="enterok" style="padding: 0px 0px"><input type="submit" value="확인"></span>
+							<span style="display:none;" id="enter_imageok"><input type="submit" value="확인" class="btn-uploadok"></span>
 					</form>
 				</td>
 				<td>
@@ -99,7 +113,7 @@ a
 							<span class="btn-upload" style="padding: 0px 0px">업로드</span>
 						</label>
 						<input type="file" name="exit_image" id="exit_image" accept="image/*">
-							<span style="display:none;" class="btn-upload" id="exitok" style="padding: 0px 0px"><input type="submit" value="확인"></span>
+							<span style="display:none;" class="btn-uploadok" id="exit_imageok"><input type="submit" value="확인"></span>
 					</form>
 				</td>
 			</tr>
@@ -114,7 +128,7 @@ a
 					$('#enter_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
 				}
 				reader.readAsDataURL(file);
-				$('#enterok').css('display','')
+				$('#enter_imageok').css('display','')
 			});
 			
 			
@@ -126,7 +140,7 @@ a
 					$('#exit_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
 				}
 				reader.readAsDataURL(file);
-				$('#exitok').css('display','')
+				$('#exit_imageok').css('display','')
 			});
 		});
 	</script>
