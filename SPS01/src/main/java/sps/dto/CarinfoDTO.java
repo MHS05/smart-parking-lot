@@ -91,9 +91,6 @@ public class CarinfoDTO extends DBManager
 		vo.setPaymethod(this.GetValue("paymethod"));
 		vo.setPayamount(this.GetValue("payamount"));
 		vo.setPayclassifi(this.GetValue("payclassifi"));
-		vo.setEnterpic(this.GetValue("enterpic"));
-		vo.setEnterpic(this.GetValue("enterpic"));
-		vo.setEnterpic(this.GetValue("enterpic"));
 	
 		this.DBClose();
 		return vo;
