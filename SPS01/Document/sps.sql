@@ -12,7 +12,7 @@ create table admin
 create table carinfo
 (
 	cmno int auto_increment primary key comment '차량관리번호',
-	carnum varchar(10) comment '차량번호',
+	carnum varchar(10) default 'N' comment '차량번호',
 	entertime datetime default now() comment '입차시간',
 	exittime datetime default now() comment '출차시간',
 	timecal int comment '계산시간',
@@ -25,5 +25,7 @@ create table carinfo
 
 create table exitpic
 (
-	exitpic varchar(100) comment '임시출차사진'
+	cmno int auto_increment primary key comment '차량관리번호',
+	carnum varchar(10) default 'N' comment '차량번호',
+	exitpic varchar(100) default 'N' comment '임시출차사진'
 ) comment '출차사진';
