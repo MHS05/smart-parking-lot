@@ -14,7 +14,7 @@ create table carinfo
 	cmno int auto_increment primary key comment '차량관리번호',
 	carnum varchar(10) default 'N' comment '차량번호',
 	entertime datetime default now() comment '입차시간',
-	exittime datetime default now() comment '출차시간',
+	exittime datetime comment '출차시간',
 	timecal int comment '계산시간',
 	enterpic varchar(100) comment '입차사진',
 	exitpic varchar(100) comment '출차사진',

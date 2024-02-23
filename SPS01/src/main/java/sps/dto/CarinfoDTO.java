@@ -102,6 +102,25 @@ public class CarinfoDTO extends DBManager
 		
 		this.DBOpen();
 		
+		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), NOW()) AS time_diff;";
+		this.RunSelect(sql);
+		if( this.GetNext() == false)
+		{
+			this.DBClose();
+			return null;
+		}
+		String time_diff = this.GetValue("time_diff");
+		
+		this.DBClose();
+		return time_diff;
+	}	
+	
+	public String exittimeDiff(String cmno)
+	{
+		String sql = "";
+		
+		this.DBOpen();
+		
 		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), (select exittime from carinfo where cmno =" + cmno + ")) AS time_diff;";
 		this.RunSelect(sql);
 		if( this.GetNext() == false)

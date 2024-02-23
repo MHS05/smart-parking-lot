@@ -31,8 +31,18 @@ if( vo == null )
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <%= vo.getExittime() %><br><br>&emsp;입차시간 : <%= vo.getEntertime() %></font><br><br>
-					<% 
+					<%
+						if( vo.getExittime() != null )
+						{
+							%>
+								<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <%= vo.getExittime() %><br><br>&emsp;입차시간 : <%= vo.getEntertime() %></font><br><br>
+							<%
+						} else {
+							
+							%>
+								<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <br><br>&emsp;입차시간 : <%= vo.getEntertime() %></font><br><br>
+							<%
+						}
 						int time = Integer.parseInt(dto.timeDiff(cmno));
 						if(time < 60)
 						{
@@ -55,21 +65,58 @@ if( vo == null )
 					<td align="center" height="100px">
 						<span id="span2"><font size="4"><b>주차요금</b></font></span>
 						<%
-							if(time < 30)
+						
+						
+							if(vo.getExittime() != null)
 							{
-								%><font size="6" color="#2ecc71"><b>600원</b></font><%
-							} else
+									int exittime = Integer.parseInt(dto.exittimeDiff(cmno));
+									if(exittime < 30)
+									{
+										%><font size="6" color="#2ecc71"><b>600원</b></font>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align:left">&emsp;<font size="4">주차요금 : 600원<br><br><br>&emsp;결제요금 : 600원</font></td>
+									</tr>
+										<%
+									} else
+									{
+									 	int timecal = exittime / 30;
+										timecal = timecal * 600;
+										%><font size="6" color="#2ecc71"><b><%= timecal %>원</b></font>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align:left">&emsp;<font size="4">주차요금 : <%= timecal %>원<br><br><br>&emsp;결제요금 : <%= timecal %>원</font></td>
+									</tr>
+										<%
+									}
+							} else 
 							{
-							 	int timecal = time / 30;
-								timecal = timecal * 600;
-								%><font size="6" color="#2ecc71"><b><%= timecal %>원</b></font><%
+								if(time < 30)
+								{
+									%><font size="6" color="#2ecc71"><b>600원</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align:left">&emsp;<font size="4">주차요금 : 600원<br><br><br>&emsp;결제요금 : </font></td>
+								</tr>
+									<%
+								} else
+								{
+								 	int timecal = time / 30;
+									timecal = timecal * 600;
+									%><font size="6" color="#2ecc71"><b><%= timecal %>원</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align:left">&emsp;<font size="4">주차요금 : <%= timecal %>원<br><br><br>&emsp;결제요금 : </font></td>
+								</tr>
+									
+									<%
+								}
 							}
 						%>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align:left">&emsp;<font size="4">주차요금 : <br><br><br>&emsp;결제요금 :</font></td>
-				</tr>
 			</table>
 		</td>
 	</tr>
