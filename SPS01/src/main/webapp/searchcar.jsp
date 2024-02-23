@@ -31,7 +31,7 @@ if( vo == null )
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <br><br>&emsp;입차시간 : <%= vo.getEntertime() %></font><br><br>
+					<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <%= vo.getExittime() %><br><br>&emsp;입차시간 : <%= vo.getEntertime() %></font><br><br>
 					<% 
 						int time = Integer.parseInt(dto.timeDiff(cmno));
 						if(time < 60)
