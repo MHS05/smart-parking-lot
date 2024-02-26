@@ -11,7 +11,7 @@ public class ExitpicDTO  extends DBManager
 		
 		String sql = "";
 
-		sql += "insert into exitpic (exitpic)";
+		sql += "insert into exitpic (exitpic) ";
 		sql += "values (";
 		sql += "'" + vo.getExitpic() + "'";
 		sql += ")";
