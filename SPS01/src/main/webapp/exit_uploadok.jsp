@@ -35,6 +35,6 @@ vo.setExitpic(exitpic);
 ExitpicDTO dto = new ExitpicDTO();
 dto.Insert(vo);
 
-response.sendRedirect("main.jsp");
+response.sendRedirect("camera01.jsp");
 
 %>

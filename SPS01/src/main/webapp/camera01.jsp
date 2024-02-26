@@ -25,8 +25,15 @@ table
 }
 .admin
 {	
-	margin-top:10px;
+	margin-top:20px;
 	margin-right:60px;
+	cursor:pointer;
+}
+.money
+{	
+	position:fixed;
+	margin-top:10px;
+	margin-left:1760px;
 	cursor:pointer;
 }
 .btn-upload 
@@ -79,14 +86,17 @@ a
 </style>
 	</head>
 	<body>
-		<table border="0" align="center" style="opacity: 0.93;">
+		<div class="admin" align="right">
+			<a href="main.jsp"><img src="image/admin.png" style="width:100px; height:80px;"><br><font color="white">관리자 페이지</font></a>
+		</div>
+		<span class="money">
+			<a href="user/parkingfee01.jsp"><img src="image/money.png" style="width:100px; height:80px;"><br><font color="white">&emsp;정산하기</font></a>
+		</span>
+		<table border="0" align="center" style="opacity: 0.93;" >
 			<tr>
 				<td align="center" height="80px" width="600px"><h2>입차시 카메라</h2></td>
 				<td width="100px"></td>
 				<td align="center" width="600px"><h2>출차시 카메라</h2></td>
-				<div class="admin" align="right">
-					<a href="main.jsp"><img src="image/admin.png" style="width:100px; height:80px;"><br><font color="white">관리자 페이지</font></a>
-				</div>
 			</tr>
 			<tr>
 				<td align="center" height="300px">
@@ -115,7 +125,7 @@ a
 				<td>
 				</td>
 				<td align="center" width="135px">
-					<form id="exit" name="exit" method="post" action="exit_uploadok.jsp" enctype="multipart/form-data" onsubmit="return DoWrite();">
+					<form id="exit" name="exit" method="post" action="exit_uploadok.jsp" enctype="multipart/form-data">
 						<label for="exit_image">
 							<span class="btn-upload" id="btn-exitupload" style="padding: 0px 0px">업로드</span>
 						</label>
