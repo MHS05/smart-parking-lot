@@ -95,6 +95,36 @@ public class CarinfoDTO extends DBManager
 		this.DBClose();
 		return vo;
 	}	
+	public CarinfoVO exitpicread(String exitpic)
+	{
+		String sql = "";
+		
+		this.DBOpen();
+		
+		sql  = "select * ";
+		sql	+= "from carinfo ";
+		sql += "where exitpic = " + exitpic;
+		this.RunSelect(sql);
+		if( this.GetNext() == false)
+		{
+			this.DBClose();
+			return null;
+		}
+		CarinfoVO vo = new CarinfoVO();
+		vo.setExitpic(exitpic);
+		vo.setCmno(this.GetValue("cmno"));
+		vo.setCarnum(this.GetValue("carnum"));
+		vo.setEntertime(this.GetValue("entertime"));
+		vo.setExittime(this.GetValue("exittime"));
+		vo.setTimecal(this.GetValue("timecal"));
+		vo.setEnterpic(this.GetValue("enterpic"));
+		vo.setPaymethod(this.GetValue("paymethod"));
+		vo.setPayamount(this.GetValue("payamount"));
+		vo.setPayclassifi(this.GetValue("payclassifi"));
+		
+		this.DBClose();
+		return vo;
+	}	
 	
 	public String timeDiff(String cmno)
 	{

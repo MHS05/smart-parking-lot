@@ -34,7 +34,14 @@ vo.setExitpic(exitpic);
 
 ExitpicDTO dto = new ExitpicDTO();
 dto.Insert(vo);
+Thread.sleep(40000);
+%>
+alert("잠시만 기다려주십시오.");
+<%
+CarinfoDTO dto2 = new CarinfoDTO();
+CarinfoVO vo2  = dto2.exitpicread("'"+exitpic+"'");
+String cmno = vo2.getCmno();
 
-response.sendRedirect("camera01.jsp");
+response.sendRedirect("camera01.jsp?cmno="+cmno);
 
 %>
