@@ -8,7 +8,6 @@
 <%@ page import="sps.vo.*" %>
 <%@ page import="sps.dto.*" %>   
 <%
-
 //업로드가 가능한 최대 파일 크기를 지정한다.
 int size = 10 * 1024 * 1024;
 
@@ -34,14 +33,13 @@ vo.setExitpic(exitpic);
 
 ExitpicDTO dto = new ExitpicDTO();
 dto.Insert(vo);
+
 Thread.sleep(40000);
-%>
-alert("잠시만 기다려주십시오.");
-<%
+
 CarinfoDTO dto2 = new CarinfoDTO();
 CarinfoVO vo2  = dto2.exitpicread("'"+exitpic+"'");
 String cmno = vo2.getCmno();
 
-response.sendRedirect("camera01.jsp?cmno="+cmno);
+response.sendRedirect("camera.jsp?cmno="+cmno);
 
 %>

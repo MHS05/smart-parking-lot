@@ -33,7 +33,7 @@ if( vo == null) //UserVO 값이 널이라면
 	session.setAttribute("login", vo);
 	%>
 	<script>
-		document.location = "../camera01.jsp";
+		document.location = "../camera.jsp";
 	</script>
 	<%
 }

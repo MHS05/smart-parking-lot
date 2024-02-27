@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
+<%
+String cmno = request.getParameter("cmno");
+if( cmno == null || cmno.equals("") )
+{
+	response.sendRedirect("main.jsp");
+	return;
+}
+
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
+if( vo == null )
+{
+	response.sendRedirect("main.jsp");
+	return;	
+}
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,7 +43,7 @@
 		<div align="center"><h1>정산하실 금액을 넣어주세요</h1></div>
 		<div align="center"><img src="../image/cashinsert.png" style="width:400px; height:300px;"></div>
 		<div align="center"><hr style="width:300px"></div><br>
-		<div align="center"><h2>주차 요금 : 14,000원<br><br>투입한 금액 : 20,000원</h2></div>
+		<div align="center"><h2>주차 요금 : <%= vo.getPayamount() %><br><br>투입한 금액 : 20,000원</h2></div>
 		<div align="center"><a href="pay_cashok.jsp"><input type="button" value="다음" class="next_btn"></a></div>
 	</body>
 </html>

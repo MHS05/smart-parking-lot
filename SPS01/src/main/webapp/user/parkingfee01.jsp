@@ -24,7 +24,7 @@ if( vo == null )
 		<meta charset="EUC-KR">
 		<title>스마트 주차장 관리 시스템</title>
 		<link rel="stylesheet" type="text/css" href="../css/sps.css">
-		<link rel="stylesheet" type="text/css" href="../css/background01.css">
+		<link rel="stylesheet" type="text/css" href="../css/background.css">
 <style>
 .fee_table
 {
@@ -125,7 +125,7 @@ if( vo == null )
 			</tr>
 			<tr>
 				<td colspan="3">
-					<a href="parkingfee02.jsp"><input type="button" value="결제하기" class="pay_btn"></a>
+					<a href="parkingfee02.jsp?cmno=<%= cmno %>"><input type="button" value="결제하기" class="pay_btn"></a>
 				</td>
 			</tr>
 		</table>

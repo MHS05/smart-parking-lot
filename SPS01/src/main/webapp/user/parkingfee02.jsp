@@ -1,12 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
+<%
+String cmno = request.getParameter("cmno");
+if( cmno == null || cmno.equals("") )
+{
+	response.sendRedirect("main.jsp");
+	return;
+}
+
+%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="EUC-KR">
 		<title>스마트 주차장 관리 시스템</title>
 		<link rel="stylesheet" type="text/css" href="../css/sps.css">
-		<link rel="stylesheet" type="text/css" href="../css/background01.css">
+		<link rel="stylesheet" type="text/css" href="../css/background.css">
 <style>
 .fee_table
 {
@@ -64,7 +75,7 @@ function openCash()
 	var _left = Math.ceil((window.screen.width - _width )/2);
 	var _top = '400';
 	
-	window.open('pay_cash.jsp', '', 'width=700, height=800, left=' + _left +', top=' + (_top - 250)); return false;
+	window.open('pay_cash.jsp?cmno=<%= cmno %>', '', 'width=700, height=800, left=' + _left +', top=' + (_top - 250)); return false;
 }
 
 function openCard() 
@@ -75,7 +86,7 @@ function openCard()
 	var _left = Math.ceil((window.screen.width - _width )/2);
 	var _top = '400';
 	
-	window.open('pay_card.jsp', '', 'width=700, height=800, left=' + _left +', top=' + (_top - 250)); return false;
+	window.open('pay_card.jsp?cmno=<%= cmno %>', '', 'width=700, height=800, left=' + _left +', top=' + (_top - 250)); return false;
 }
 </script>
 </html>

@@ -6,9 +6,8 @@
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ include file="./common/common.jsp" %> 
 <%@ page import="sps.vo.*" %>
-<%@ page import="sps.dto.*" %>   
+<%@ page import="sps.dto.*" %>
 <%
-
 //업로드가 가능한 최대 파일 크기를 지정한다.
 int size = 10 * 1024 * 1024;
 
