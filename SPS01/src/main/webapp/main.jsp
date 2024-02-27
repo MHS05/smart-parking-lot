@@ -41,7 +41,7 @@
 				<td align="center"><img src="image/calender.png" style="width:60px; height:60px"></td>
 				<td><input type="text" id="datepicker"></td>
 				<td width="200px"></td>
-				<td align="center"><a href="camera01.jsp"><button class=btn>입출차 카메라</button></a></td>
+				<td align="center"><a href="camera.jsp"><button class=btn>입출차 카메라</button></a></td>
 				<td align="center"><a href="javascript:EnterList();"><button class=btn>입차 현황</button></a></td>
 				<td align="center"><a href="javascript:ExitList();"><button class=btn>출차 현황</button></a></td>
 				<td align="center"><a href="javascript:PayList();"><button class=btn>결제 내역</button></a></td>
