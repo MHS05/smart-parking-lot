@@ -43,6 +43,7 @@ if( vo == null )
 								<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 : <br><br>&emsp;입차시간 : <%= vo.getEntertime() %></font><br><br>
 							<%
 						}
+						//출차안했을때 '입차시간 ~ 현재시간' 계산
 						int time = Integer.parseInt(dto.timeDiff(cmno));
 						if(time < 60)
 						{
@@ -53,6 +54,7 @@ if( vo == null )
 							int min  = time - (hour * 60);
 							%><font size="6">&emsp;&emsp;00일 <%= hour %>시간 <%= min %>분</font><%
 						}
+						//출차 했을때 '입차시간 ~ 출차시간' 구해야함
 					%>
 					</td>
 				</tr>
@@ -68,7 +70,7 @@ if( vo == null )
 						
 						
 							if(vo.getExittime() != null)
-							{
+							{ //출차 했을때 요금
 									int exittime = Integer.parseInt(dto.exittimeDiff(cmno));
 									if(exittime < 30)
 									{
@@ -92,7 +94,7 @@ if( vo == null )
 										<%
 									}
 							} else 
-							{
+							{ //출차 안했을때 요금
 								if(time < 30)
 								{
 									%><font size="6" color="#2ecc71"><b>600원</b></font>
@@ -135,7 +137,7 @@ if( vo == null )
 					if( vo.getEnterpic() != null)
 					{
 					%>
-						<img style="width:400px;height:240px;" src="enter_imagedown.jsp?cmno=20"><br>
+						<img style="width:400px;height:240px;" src="enter_imagedown.jsp?cmno=<%= cmno %>"><br>
 					<%
 					}
 					else
