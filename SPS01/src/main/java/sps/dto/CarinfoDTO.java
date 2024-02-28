@@ -125,43 +125,44 @@ public class CarinfoDTO extends DBManager
 		this.DBClose();
 		return vo;
 	}	
-	
-	public String timeDiff(String cmno)
+	//현재시간 - 입차시간 ( 분으로 출력 )
+	public String Now_Enter(String cmno)
 	{
 		String sql = "";
 		
 		this.DBOpen();
 		
-		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), NOW()) AS time_diff;";
+		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), NOW()) AS now_enter;";
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
 			this.DBClose();
 			return null;
 		}
-		String time_diff = this.GetValue("time_diff");
+		String now_enter = this.GetValue("now_enter");
 		
 		this.DBClose();
-		return time_diff;
+		return now_enter;
 	}	
 	
-	public String exittimeDiff(String cmno)
+	// 출차시간 - 입차시간 ( 분으로 출력 )
+	public String Exit_Enter(String cmno)
 	{
 		String sql = "";
 		
 		this.DBOpen();
 		
-		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), (select exittime from carinfo where cmno =" + cmno + ")) AS time_diff;";
+		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), (select exittime from carinfo where cmno =" + cmno + ")) AS exit_enter;";
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
 			this.DBClose();
 			return null;
 		}
-		String time_diff = this.GetValue("time_diff");
+		String exit_enter = this.GetValue("exit_enter");
 		
 		this.DBClose();
-		return time_diff;
+		return exit_enter;
 	}	
 	
 }
