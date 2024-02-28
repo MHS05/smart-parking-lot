@@ -1,0 +1,79 @@
+@charset "EUC-KR";
+.btn
+{
+	width:150px;
+	height:60px;
+	font-size:1.2em;
+}
+table
+{	
+	width:1500px;
+	height:780px;
+	background-color:white;
+	border-radius:15px;
+}
+.admin
+{	
+	margin-top:20px;
+	margin-right:60px;
+	cursor:pointer;
+}
+.money
+{	
+	position:fixed;
+	margin-top:10px;
+	margin-left:1760px;
+	cursor:pointer;
+}
+.btn_upload 
+{	
+	width: 130px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid rgb(77,77,77);
+	border-radius: 10px;
+	font-size:17px;
+	font-weight: 400;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color:#fff2a5;
+	border: none;
+}	
+.btn_enterok, .btn_exitok
+{	
+	width: 130px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid rgb(77,77,77);
+	border-radius: 10px;
+	font-size:17px;
+	font-weight: 400;
+	cursor: pointer;
+	background-color:#fff2a5;
+	border: none;
+}	
+.btn_upload:hover 
+{
+	background: rgb(77,77,77);
+	color: #fff;
+}
+#enter_image, #exit_image
+{
+  	display: none;
+}
+#enter_imageok
+{	
+	align:center;
+}
+a
+{
+	text-decoration-line: none;
+	color : black;
+}
+#admin_img
+{
+	width:100px;
+	height:80px;
+}

@@ -25,108 +25,136 @@ if( vo == null )
 		<title>스마트 주차장 관리 시스템</title>
 		<link rel="stylesheet" type="text/css" href="../css/sps.css">
 		<link rel="stylesheet" type="text/css" href="../css/background.css">
+	</head>
 <style>
-.fee_table
-{
-	width:1000px;
-	height:800px;
-	background-color:white;
-	opacity:0.9;
-	border-radius:15px;
-	margin: 0 auto;
-	margin-top:30px;
-	text-align:center;
-}
-.fee_table01
-{
-	width:400px;
-	height:350px;
-	border-collapse:collapse;
-	margin: 0 auto;
-}
-.pay_btn
-{
-	width:150px;
-	height:80px;
-	font-size:1.3em;
-	font-weight:bold;
-	border-radius: 15px;
-	border: none;
-	cursor:pointer;
-	background-color:#fff2a5;
-}
-.marquee
+#call
 {	
-	height:50px;
-	font-size:1.4em;
-	font-weight:bold;
+	margin-left:900px;
 }
 </style>
-	</head>
 	<body>
 		<table class="fee_table" border="0">
+			<tr height="20px"></tr>
 			<tr>
-				<td colspan="3"><h1>무인 정산기</h1></td>
+				<td colspan="3" height="100px">
+					<font size="7"><b>무인 정산기</b></font>
+					<a href="tel:010-1234-5678">
+					<img id="call" src="../image/call.png" title="관리자 문의하기" style="width:100px; height:100px" onclick="document.location.href='tel:010-1234-5678'">
+					</a>
+				</td>
+			<tr>
+				<td class="marquee" colspan="3">
+					<MARQUEE><%= vo.getCarnum() %> 고객님, 저희 주차장을 이용해주셔서 감사합니다. 안녕히 가십시오.</MARQUEE>
+				</td>
 			</tr>
 			<tr>
-				<td class="marquee" colspan="3"><MARQUEE><%= vo.getCarnum() %> 고객님 저희 주차장을 이용해주셔서 감사합니다.</MARQUEE></td>
-			</tr>
-			<tr>
-				<td>
+				<td height="400px">
 					<table class="fee_table01" border="1">
 						<tr style="background-color:#fff2a5">
 							<td align="center" height="100px">
 								<span id="span2"><font size="4"><b>차량정보</b></font></span>
-								<a href="javascript:openinfo();"><font size="6" color="#2ecc71"><b><%= vo.getCarnum() %></b></font></a>
+								<font size="6" color="#2ecc71"><b><%= vo.getCarnum() %></b></font>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" style="text-align:left">&emsp;<font size="4">출차시간 :<%= vo.getExittime() %> <br><br>&emsp;입차시간 :<%= vo.getEntertime() %> </font><br><br>
-							 <% 
-								int time = Integer.parseInt(dto.timeDiff(cmno));
-								if(time < 60)
+							<td colspan="2">
+							<font size="5">입차시간 : <%= vo.getEntertime() %><br><br>
+							출차시간 : <%= vo.getExittime() %></font><br><br>
+							<% 
+							//출차 O 했을 경우 '출차시간 - 입차시간 = 주차시간'
+							int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+								
+							if( vo.getExittime() != null )
+							{	//60분 미만일 경우 분만 표현 
+								if(exit_enter < 60)
 								{
-									%><font size="6">&emsp;&emsp;00일 00시간 <%= dto.timeDiff(cmno) %>분</font><%
-								} else
-								{
-									int hour = time / 60;
-									int min  = time - (hour * 60);
-									%><font size="6">&emsp;&emsp;00일 <%= hour %>시간 <%= min %>분</font><%
+								%>
+									<font size="6">0일 0시간 <%= dto.Exit_Enter(cmno) %>분</font>
+								<%
 								}
+								//60분 이상일 경우 날짜, 시간, 분 표현
+								else
+								{
+									int hour = exit_enter / 60;
+									int min  = exit_enter - (hour * 60);
+									int day  = hour / 24;
+								%>
+									<font size="6"><%= day %>일 <%= hour %>시간 <%= min %>분</font>
+								<%
+								}
+							}
 							%>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td width="50px"></td>
+				<td width="10px"></td>
 				<td>
 					<table class="fee_table01" border="1">
 						<tr style="background-color:#fff2a5">
 							<td align="center" height="100px">
-								<span id="span2"><font size="4"><b>주차요금</b></font></span>
-								<%
-									if(time < 30)
-									{
-										%><font size="6" color="#2ecc71"><b>600원</b></font><%
-									} else
-									{
-									 	int timecal = time / 30;
-										timecal = timecal * 600;
-										%><font size="6" color="#2ecc71"><b><%= timecal %>원</b></font><%
-									}
+							<span id="span2"><font size="4"><b>주차요금</b></font></span>
+							<%
+							//출차 O 했을때 요금
+							if(vo.getExittime() != null)
+							{ 	//주차시간 10분 미만일 경우
+								if(exit_enter < 10)
+								{
 								%>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2" style="text-align:left">&emsp;<font size="4">주차요금 :<%= vo.getPayamount() %> <br><br><br>&emsp;결제요금 : <%= vo.getPayamount() %></font></td>
-						</tr>
+									<font size="6" color="#2ecc71"><b>0원(회차)</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+									<font size="5">주차요금 : 0원<br><br>결제요금 : 0원</font></td>
+								</tr>
+								<%
+								}
+								//주차시간 10분 이상 30분 미만일 경우
+								else if(10 <= exit_enter && exit_enter < 30)
+								{
+								%>
+									<font size="6" color="#2ecc71"><b>600원</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+									<font size="5">주차요금 : 600원<br><br>결제요금 : 600원</font></td>
+								</tr>
+								<%
+								}
+								//주차시간 30분 이상일 경우
+								else
+								{
+								 	int timecal = exit_enter / 30;
+									timecal = timecal * 600;
+								%>
+									<font size="6" color="#2ecc71"><b><%= timecal %>원</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+									<font size="5">주차요금 : <%= timecal %>원<br><br>결제요금 : <%= timecal %>원</font></td>
+								</tr>
+								<%
+								}
+							} 
+							%>
 					</table>
 				</td>
 			</tr>
 			<tr>
+			<% 
+			//주차시간 10분 이상일 경우에만 결제하기 버튼 표시
+			if(exit_enter > 10)
+			{ 
+			%>
 				<td colspan="3">
 					<a href="parkingfee02.jsp?cmno=<%= cmno %>"><input type="button" value="결제하기" class="pay_btn"></a>
 				</td>
+			<%
+			}
+			%>
 			</tr>
 		</table>
 	</body>

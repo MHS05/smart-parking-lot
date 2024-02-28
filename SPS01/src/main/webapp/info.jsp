@@ -45,7 +45,6 @@ th
 		<div class="carnumber"><b>차량번호 : <%= vo.getCarnum() %></b></div>
 		<div align="center"><h1>통합정보</h1></div>
 		<tr style="background-color:#eaeaea;">
-			<th width="200px">날짜</th>
 			<th>입차시간</th>
 			<th>출차시간</th>
 			<th>주차요금</th>
@@ -57,7 +56,6 @@ th
 		{ 
 		%>
 		<tr>
-			<td class="td5">2024-01-01</td>
 			<td class="td5"><%= vo.getEntertime() %></td>
 			<td class="td5"><%= vo.getExittime()  %></td>
 			<td class="td5">1000원</td>

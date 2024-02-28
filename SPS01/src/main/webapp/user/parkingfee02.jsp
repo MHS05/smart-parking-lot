@@ -70,23 +70,23 @@ if( cmno == null || cmno.equals("") )
 function openCash() 
 {	
 	var _width = '700';
-	var _height = '800';
+	var _height = '740';
 		
 	var _left = Math.ceil((window.screen.width - _width )/2);
 	var _top = '400';
 	
-	window.open('pay_cash.jsp?cmno=<%= cmno %>', '', 'width=700, height=800, left=' + _left +', top=' + (_top - 250)); return false;
+	window.open('pay_cash.jsp?cmno=<%= cmno %>', '', 'width=700, height=740, left=' + _left +', top=' + (_top - 250)); return false;
 }
 
 function openCard() 
 {	
 	var _width = '700';
-	var _height = '800';
+	var _height = '740';
 		
 	var _left = Math.ceil((window.screen.width - _width )/2);
 	var _top = '400';
 	
-	window.open('pay_card.jsp?cmno=<%= cmno %>', '', 'width=700, height=800, left=' + _left +', top=' + (_top - 250)); return false;
+	window.open('pay_card.jsp?cmno=<%= cmno %>', '', 'width=700, height=740, left=' + _left +', top=' + (_top - 250)); return false;
 }
 </script>
 </html>
