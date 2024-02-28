@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
+<%
+String cmno = request.getParameter("cmno");
+if( cmno == null || cmno.equals("") )
+{
+	response.sendRedirect("main.jsp");
+	return;
+}
+
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
+if( vo == null )
+{
+	response.sendRedirect("main.jsp");
+	return;	
+}
+%>
 <style>
 .td5
 {
@@ -24,7 +42,7 @@ th
 </style>
 <div style="height:600px; overflow: scroll;">
 	<table border="1" width="1000px" align="center" style="border-collapse: collapse; overflow: scroll;">
-		<div class="carnumber"><b>차량번호 : 16저1234</b></div>
+		<div class="carnumber"><b>차량번호 : <%= vo.getCarnum() %></b></div>
 		<div align="center"><h1>통합정보</h1></div>
 		<tr style="background-color:#eaeaea;">
 			<th width="200px">날짜</th>
@@ -40,8 +58,8 @@ th
 		%>
 		<tr>
 			<td class="td5">2024-01-01</td>
-			<td class="td5">15:30</td>
-			<td class="td5">16:00</td>
+			<td class="td5"><%= vo.getEntertime() %></td>
+			<td class="td5"><%= vo.getExittime()  %></td>
 			<td class="td5">1000원</td>
 			<td class="td5">1000원</td>
 			<td class="td5">카드</td>

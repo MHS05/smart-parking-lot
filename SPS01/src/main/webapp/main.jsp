@@ -3,6 +3,22 @@
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
+<%
+String cmno = request.getParameter("cmno");
+if( cmno == null || cmno.equals("") )
+{
+	response.sendRedirect("main.jsp");
+	return;
+}
+
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
+if( vo == null )
+{
+	response.sendRedirect("main.jsp");
+	return;	
+}
+%>
 <style>
 #datepicker
 {
@@ -327,7 +343,7 @@ function openinfo()
 	var _left = Math.ceil((window.screen.width - _width )/2);
 	var _top = '400';
 	
-	window.open('info.jsp', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
+	window.open('info.jsp?cmno=<%= cmno %>', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
 }
 </script>
 	</body>
