@@ -1,0 +1,36 @@
+.ldBar {
+  top:0;
+  left: 48%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align:center;
+  position: fixed;
+  z-index: 9999;
+  display: block;
+}
+.ldBar-label {
+   color: #09f;
+   font-family: 'varela round';
+   font-size: 2.5em;	
+   font-weight: 900;
+   z-index:999;
+ }
+.ldBar.label-center > .ldBar-label {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 3px #fff;
+}
+.ldBar-label:after {
+  content: "%\A번호판 식별 중..";
+  white-space: pre;
+  display: inline;
+}
+.ldBar.no-percent .ldBar-label:after {
+  content: "";
+}

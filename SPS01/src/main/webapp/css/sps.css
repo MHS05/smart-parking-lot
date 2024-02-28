@@ -1,0 +1,183 @@
+@charset "EUC-KR";
+.btn
+{
+	width:150px;
+	height:45px;
+	font-size:1.2em;
+	font-weight:bold;
+	background-color:skyblue;
+	border-radius: 15px;
+	border: none;
+	cursor:pointer;
+}
+.btn_logout
+{
+	width:120px;
+	height:30px;
+	font-size:1.1em;
+	font-weight:bold;
+	border-radius: 15px;
+	margin-right: 10px;
+	cursor:pointer;
+}
+#searchinput 
+{
+    display: none;
+}
+#carnumber
+{
+	width:170px;
+	height: 30px;
+	font-size:1.1em;
+}
+a
+{
+	text-decoration-line: none;
+	color : black;
+}
+.th1
+{	
+	height:30px;
+	background-color:#3498db;
+	font-size:20;
+}
+.th1_1
+{	
+	height:60px;
+	background-color:#3498db;
+	font-size:20;
+}
+.th3
+{	
+	height:55px;
+	background-color:#3498db;
+	font-size:20;
+}
+.th4
+{	
+	height:60px;
+	background-color:#3498db;
+	font-size:20;
+}
+td
+{
+	text-align:center;
+}
+.td1
+{	
+	width:60px;
+	height:20px;
+	font-weight:bold;
+	background-color:#eaeaea;
+	font-size:20;
+}
+.td1_1
+{	
+	width:150px;
+	height:50px;
+	font-weight:bold;
+	background-color:#eaeaea;
+	font-size:20;
+}
+.td3
+{
+	height:50px;
+	font-weight:bold;
+	background-color:#eaeaea;
+	font-size:20;
+}
+.td4
+{	
+	width:60px;
+	height:40px;
+	font-weight:bold;
+	background-color:#eaeaea;
+	font-size:20;
+}
+.table01
+{
+	width:500px;
+	height:500px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:15px;
+}
+.table01_1
+{
+	width:500px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:15px;
+}
+.table02
+{
+	width:500px;
+	height:700px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:15px;
+}
+.table03
+{
+	width:500px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:15px;
+}
+.table03_1
+{
+	width:500px;
+	height:500px;
+	border-collapse:collapse;
+	margin-left:15px;
+}
+.table04
+{
+	width:500px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:15px;
+}
+.table04_1
+{
+	width:500px;
+	height:700px;
+	border-collapse:collapse;
+	margin-top:15px;
+	margin-left:15px;
+}
+.table05
+{
+	border-collapse: collapse;
+	width:800px;
+	height:700px;
+	margin-top:15px;
+	margin: 0 auto;
+}
+.table05_1
+{
+	width:390px;
+	height:350px;
+	border-collapse:collapse;
+	margin: 0 auto;
+}
+#span1
+{	
+	padding: 7px 30px;
+	background-color : red;
+	border-radius: 5px;
+	text-align: center;
+	display:inline-block;
+	width:100px;
+	padding: 0px 0px;
+}
+#span2
+{
+	padding: 7px 30px;
+	background-color : #2ecc71;
+	border-radius: 5px;
+	text-align: center;
+	display:inline-block;
+	width:100px;
+	padding: 0px 0px;
+}
