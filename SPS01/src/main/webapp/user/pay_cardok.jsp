@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%
+String cmno = request.getParameter("cmno");
+if( cmno == null || cmno.equals("") )
+{
+	response.sendRedirect("main.jsp");
+	return;
+}
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +39,7 @@
 		<div align="center"><h1>영수증이 출력됩니다.</h1></div>
 		<div align="center"><img src="../image/receipt.png" style="width:400px; height:300px;"></div>
 		<div align="center"><h2>결제가 완료되었습니다.<br><br>이용해주셔서 감사합니다.</h2></div>
-		<div class="popup_close" align="center"><h3>결제 화면은 <span id="countdown">10</span>초 후에 자동으로 닫힙니다.</h3></div>
+		<div class="popup_close" align="center"><h3>결제 화면은 <span id="countdown" style="color:red">10</span>초 후에 자동으로 닫힙니다.</h3></div>
 <script>
 // 카운트다운 시작
 var timeleft = 10;
@@ -41,6 +49,7 @@ var countdownTimer = setInterval(function(){
     if(timeleft < 0){
         clearInterval(countdownTimer);
         window.close(); // 5초 후에 팝업 창이 닫히도록 설정
+        window.opener.location.href="../main.jsp?cmno=<%=cmno%>";
     }
 }, 1000); // 1초마다 갱신
 </script>

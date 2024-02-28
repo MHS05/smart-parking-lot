@@ -181,3 +181,42 @@ td
 	width:100px;
 	padding: 0px 0px;
 }
+.fee_table
+{
+	width:1000px;
+	height:800px;
+	background-color:white;
+	opacity:0.9;
+	border-radius:15px;
+	margin: 0 auto;
+	margin-top:30px;
+	text-align:center;
+}
+.fee_table01
+{
+	width:400px;
+	height:350px;
+	border-collapse:collapse;
+	margin: 0 auto;
+}
+.pay_btn
+{
+	width:150px;
+	height:80px;
+	font-size:1.3em;
+	font-weight:bold;
+	border-radius: 15px;
+	border: none;
+	cursor:pointer;
+	background-color:#fff2a5;
+}
+.marquee
+{	
+	height:50px;
+	font-size:1.4em;
+	font-weight:bold;
+}
+font
+{
+	text-align:center;
+}

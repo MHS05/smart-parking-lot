@@ -1,11 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
+<%@ page import="java.text.DecimalFormat" %>
+<%
+String cmno = request.getParameter("cmno");
+
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
+
+int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+int timecal = exit_enter / 30;
+timecal = timecal * 600;
+
+//숫자 세자리 수 마다 ,
+DecimalFormat formatter = new DecimalFormat("#,###");
+String payamount = formatter.format(timecal);
+%>
 <table class="table04" border="1" align="center">
 	<tr>
 		<th class="th4" colspan="4">결제 내역 총계</th>
 	<tr>
 	</tr>
-		<td class="td4">현금</td>
+		<td class="td4">구분</td>
 		<td class="td4">건수</td>
 		<td class="td4" colspan="2">금액</td>
 	</tr>
@@ -44,10 +61,10 @@
 			{
 			%>
 			<tr>
-				<td height="40px">02:00</td>
-				<td>61아 1234</td>
+				<td height="40px"><%= vo.getExittime() %></td>
+				<td><%= vo.getCarnum() %></td>
 				<td>현금</td>
-				<td>15,000원</td>
+				<td><%= payamount %></td>
 			</tr>
 			<%
 			}

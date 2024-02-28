@@ -5,19 +5,9 @@
 <%@ page import = "java.util.*" %>
 <%
 String cmno = request.getParameter("cmno");
-if( cmno == null || cmno.equals("") )
-{
-	response.sendRedirect("main.jsp");
-	return;
-}
 
 CarinfoDTO dto = new CarinfoDTO();
 CarinfoVO vo  = dto.Read(cmno);
-if( vo == null )
-{
-	response.sendRedirect("main.jsp");
-	return;	
-}
 %>
 <style>
 #datepicker
@@ -44,9 +34,9 @@ if( vo == null )
 		<table border="0" width="1500px" height="75px" align="center" style="background-color:#e0e0e0">
 			<tr>
 				<td width="80px" height="65px">
-					<a href="main.jsp"><img style="width:80px; height:60px;" src="image/logo.png"></a>
+					<a href="main.jsp?cmno=<%=cmno%>"><img style="width:80px; height:60px;" src="image/logo.png"></a>
 				</td>
-				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp">스마트 주차장 관리 시스템</a></b></font></td>
+				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp?cmno=<%=cmno%>">스마트 주차장 관리 시스템</a></b></font></td>
 				<td width="200px"></td>
 				<td colspan="6" align="right" style="text-align:right">
 				<button class=btn_logout onclick="document.location.href='./login/login.jsp'">로그아웃</button></td>
@@ -132,13 +122,13 @@ if( vo == null )
 							{
 							%>
 							<tr>
-								<td height="40px">61아 1234</td>
-								<td>2019-01-01 00:00</td>
+								<td height="40px"><%= vo.getCarnum() %></td>
+								<td><%= vo.getEntertime() %></td>
 								<td colspan="2">입차</td>
 							</tr>
 							<tr>
-								<td height="40px">61아 1234</td>
-								<td>2019-01-01 00:00</td>
+								<td height="40px"><%= vo.getCarnum() %></td>
+								<td><%= vo.getExittime() %></td>
 								<td colspan="2">출차</td>
 							</tr>
 							<%
@@ -173,8 +163,8 @@ if( vo == null )
 				</td>
 			</tr>
 		</table>
-<script src="js/jquery-3.7.1.js"></script>
-<script src="js/jquery-ui.js"></script>
+<script src="./js/jquery-3.7.1.js"></script>
+<script src="./js/jquery-ui.js"></script>
 <script>
 window.onload = function()
 {
@@ -226,7 +216,7 @@ function EnterList()
 {
 	$.ajax({
 		type : "get",
-		url: "enterlist.jsp",
+		url: "enterlist.jsp?cmno=<%=cmno%>",
 		dataType: "html",
 		success : function(data) 
 		{	
@@ -248,7 +238,7 @@ function ExitList()
 {
 	$.ajax({
 		type : "get",
-		url: "exitlist.jsp",
+		url: "exitlist.jsp?cmno=<%=cmno%>",
 		dataType: "html",
 		success : function(data) 
 		{	
@@ -270,7 +260,7 @@ function PayList()
 {
 	$.ajax({
 		type : "get",
-		url: "paylist.jsp",
+		url: "paylist.jsp?cmno=<%=cmno%>",
 		dataType: "html",
 		success : function(data) 
 		{	
@@ -345,6 +335,7 @@ function openinfo()
 	
 	window.open('info.jsp?cmno=<%= cmno %>', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
 }
+
 </script>
 	</body>
 </html>
