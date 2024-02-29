@@ -3,20 +3,21 @@
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
+<%@ page import = "java.text.*" %>
 <%
-/*
-CarinfoVO vo = new CarinfoVO();
-vo.setEntertime(vo.getEntertime());
-String date = vo.EntertimeAsDate();
-*/
+//현재 날짜 받아오기
+Date d = new Date();
+SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+String today = simpleDate.format(d);
 
-String date = "2024-02-28";
+String date = request.getParameter("date");
+if(date == null) date = today;
 
 ListDTO dto = new ListDTO();
 
 ArrayList<CarinfoVO> list = new ArrayList<CarinfoVO>();
 
-list = dto.getCarInfoList("2024-02-28");
+list = dto.getCarInfoList(date);
 
 %>
 <style>
@@ -121,23 +122,52 @@ list = dto.getCarInfoList("2024-02-28");
 						<table class="table01_1" border="1">
 							<tr>
 								<th class="th1_1" colspan="4">입출차 리스트</th>
-							</tr>
-				
+							</tr>					
 							<tr>
 								<td class="td1_1" width="70px">차량번호</td>
 								<td class="td1_1" width="300px">시각</td>
 								<td class="td1_1" width="70px" colspan="2">차량구분</td>
 							</tr>
-							<tr>
-								<td height="40px">입차시간</td>
-								<td>입차시간</td>
-								<td colspan="2">입차</td>
-							</tr>
-							<tr>
-								<td height="40px">차번호</td>
-								<td>출차시간</td>
-								<td colspan="2">출차</td>
-							</tr>
+							<% 
+							if(!list.isEmpty())
+							{
+								for(CarinfoVO cvo : list)
+								{
+									if( !cvo.getEntertime().equals(cvo.getExittime()))
+									{
+										
+										%>
+										<tr>
+											<td height="40px"><%= cvo.getCarnum() %></td>
+											<td><%= cvo.getEntertime() %></td>
+											<td colspan="2">입차</td>
+										</tr>
+										<tr>
+											<td height="40px"><%= cvo.getCarnum() %></td>
+											<td><%= cvo.getExittime() %></td>
+											<td colspan="2">출차</td>
+										</tr>
+										<%
+									} else 
+									{
+										%>
+											<tr>
+												<td height="40px"><%= cvo.getCarnum() %></td>
+												<td><%= cvo.getEntertime() %></td>
+												<td colspan="2">입차</td>
+											</tr>
+										<% 
+									}
+								}
+							} else
+							{
+								%>
+									<tr>
+										<td height="40px" colspan="3">입.출차한 차량이 없습니다.</td>
+									</tr>	
+								<%
+							}
+							%>
 						</table>
 					</div>
 				</td>
@@ -322,11 +352,12 @@ $(function() {
         maxDate: "+today",
         onSelect: function(dateText, inst) {
         	// 선택한 날짜를 URL 파라미터로 추가하여 페이지를 새로고침하지 않고 업데이트
-            history.replaceState(null, null, "?date=" + dateText);
+            //history.replaceState(null, null, "?date=" + dateText);
+            window.location.href = "main.jsp?date=" + dateText;
         }
     });    
     // 초기값을 오늘 날짜로 설정
-    $('#datepicker').datepicker('setDate', 'today');
+    $('#datepicker').datepicker('setDate', '<%= date %>');
 });
 
 

@@ -53,7 +53,7 @@ font
 				<tr>
 					<%
 					//출차 X 안했을 경우
-					if( vo.getExitpic() == null )
+					if( vo.getEntertime().equals(vo.getExittime()))
 					{
 					%>
 						<td colspan="2">
@@ -77,7 +77,7 @@ font
 					//출차 X 안했을 경우(Now_Enter) '현재시간 - 입차시간 = 주차시간' 
 					int now_enter = Integer.parseInt(dto.Now_Enter(cmno));
 					
-					if( vo.getExitpic() == null )
+					if( vo.getEntertime().equals(vo.getExittime()) )
 					{	//60분 미만일 경우
 						if(now_enter < 60)
 						{
@@ -96,7 +96,7 @@ font
 					%>
 					<%
 					//출차 O 했을 경우 '출차시간 - 입차시간 = 주차시간'
-					if( vo.getExitpic() != null )
+					if( !vo.getEntertime().equals(vo.getExittime()) )
 					{	//60분 미만일 경우 분만 표현
 						if(exit_enter < 60)
 						{
@@ -125,7 +125,7 @@ font
 					<span id="span2"><font size="4"><b>주차요금</b></font></span>
 					<% 
 					//출차 X 안했을때 요금
-					if( vo.getExitpic() == null )
+					if( vo.getEntertime().equals(vo.getExittime()) )
 					{ 	//주차시간 10분 미만일 경우
 						if(now_enter < 10)
 						{
@@ -140,7 +140,7 @@ font
 						<%
 						}
 						//주차시간 30분 미만일 경우
-						if(now_enter < 30)	
+						else if(now_enter < 30)	
 						{
 						%>
 							<font size="6" color="#2ecc71"><b>600원</b></font>
@@ -169,7 +169,7 @@ font
 					%>
 					<%
 					//출차 O 했을때 요금
-					if(vo.getExitpic() != null)
+					if( !vo.getEntertime().equals(vo.getExittime()) )
 					{ 	//주차시간 10분 미만일 경우
 						if(exit_enter < 10)
 						{
@@ -235,7 +235,7 @@ font
 					else
 					{
 					%>
-						<div>출차 사진 X</div>
+						<div>입차 사진 X</div>
 					<%
 					}
 					%>
@@ -252,7 +252,7 @@ font
 				<tr>
 					<td colspan="2" align="center" id="imgList">
 					<%
-					if( vo.getExitpic() != null)
+					if( !vo.getEntertime().equals(vo.getExittime()))
 					{
 					%>
 						<img style="width:400px; height:240px;" src="exit_imagedown.jsp?cmno=<%= cmno %>"><br>
