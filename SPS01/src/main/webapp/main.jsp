@@ -70,9 +70,9 @@ list = dto.getCarInfoList("2024-02-28");
 			</tr>
 		</table>
 		<!-- 헤더 영역 끝 -->
-		<table border="0" align="center" style="width:1400px; height:600px;">
+		<table border="1" align="center" style="width:1400px; height:600px;">
 			<tr>
-				<td width="550px" height="700px;" align="center" id="leftside">
+				<td width="550px" height="200px;" align="center" id="leftside">
 					<table class="table01" border="1">
 						<tr>
 							<th class="th1" colspan="3">출차</th>
@@ -117,7 +117,7 @@ list = dto.getCarInfoList("2024-02-28");
 							<td colspan="4" style="height:20px"></td>
 						</tr>
 					</table>
-					<div style="height:220px; overflow: scroll;">
+					<div style="height:440px; overflow: scroll;">
 						<table class="table01_1" border="1">
 							<tr>
 								<th class="th1_1" colspan="4">입출차 리스트</th>
@@ -128,6 +128,8 @@ list = dto.getCarInfoList("2024-02-28");
 								<td class="td1_1" width="300px">시각</td>
 								<td class="td1_1" width="70px" colspan="2">차량구분</td>
 							</tr>
+							<%for(int i=0; i<10; i++)
+							{%>
 							<tr>
 								<td height="40px">입차시간</td>
 								<td>입차시간</td>
@@ -138,6 +140,7 @@ list = dto.getCarInfoList("2024-02-28");
 								<td>출차시간</td>
 								<td colspan="2">출차</td>
 							</tr>
+							<%}%>
 						</table>
 					</div>
 				</td>
