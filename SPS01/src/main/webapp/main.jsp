@@ -4,9 +4,20 @@
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
 <%
+/*
 CarinfoVO vo = new CarinfoVO();
 vo.setEntertime(vo.getEntertime());
 String date = vo.EntertimeAsDate();
+*/
+
+String date = "2024-02-28";
+
+ListDTO dto = new ListDTO();
+
+ArrayList<CarinfoVO> list = new ArrayList<CarinfoVO>();
+
+list = dto.getCarInfoList("2024-02-28");
+
 %>
 <style>
 #datepicker
@@ -33,7 +44,7 @@ String date = vo.EntertimeAsDate();
 		<table border="0" width="1500px" height="75px" align="center" style="background-color:#e0e0e0">
 			<tr>
 				<td width="80px" height="65px">
-					<a href="main.jsp?date=<%= date %>"><img style="width:80px; height:60px;" src="image/logo.png"></a>
+					<a href="main.jsp"><img style="width:80px; height:60px;" src="image/logo.png"></a>
 				</td>
 				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp">스마트 주차장 관리 시스템</a></b></font></td>
 				<td width="200px"></td>
@@ -117,22 +128,16 @@ String date = vo.EntertimeAsDate();
 								<td class="td1_1" width="300px">시각</td>
 								<td class="td1_1" width="70px" colspan="2">차량구분</td>
 							</tr>
-							<%for(int i=1; i<10; i++)
-							{
-							%>
 							<tr>
-								<td height="40px">차량번호</td>
+								<td height="40px">입차시간</td>
 								<td>입차시간</td>
 								<td colspan="2">입차</td>
 							</tr>
 							<tr>
-								<td height="40px">차량번호</td>
-								<td>입차시간</td>
+								<td height="40px">차번호</td>
+								<td>출차시간</td>
 								<td colspan="2">출차</td>
 							</tr>
-							<%
-							}
-							%>
 						</table>
 					</div>
 				</td>
