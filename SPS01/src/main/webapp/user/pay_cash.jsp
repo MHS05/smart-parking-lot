@@ -21,24 +21,24 @@ if( vo == null )
 
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 int timecal = exit_enter / 30;
-timecal = timecal * 600;
+int payamount = timecal * 600;
 
 //숫자 세자리 수 마다 ,
 DecimalFormat formatter = new DecimalFormat("#,###");
-String payamount = formatter.format(timecal);
+String comma = formatter.format(timecal);
 
-/*주차금액에 따른 지불금액 
+//주차금액에 따른 지불 금액 
 int insert_money = 0;
 
-if(timecal == 0){
+if(payamount == 0){
 	insert_money = 0;
-}else if(timecal > 0 && timecal <= 1000){
+}else if(payamount > 0 && payamount <= 1000){
 	insert_money += 1000;
-}else if(timecal > 1000 && timecal <= 5000){
+}else if(payamount > 1000 && payamount <= 5000){
 	insert_money += 5000;
-}else if(timecal > 5000 && timecal <= 10000){
+}else if(payamount > 5000 && payamount <= 10000){
 	insert_money += 10000;
-}*/
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -65,7 +65,32 @@ if(timecal == 0){
 		<div align="center"><h1>정산하실 금액을 넣어주세요</h1></div>
 		<div align="center"><img src="../image/cashinsert.png" style="width:400px; height:300px;"></div>
 		<div align="center"><hr style="width:300px"></div><br>
-		<div align="center"><h2>주차 요금 : <%= payamount %>원<br><br>투입한 금액 : 10,000원</h2></div>
+		<%
+		//출차 했을때 요금
+		if(!vo.getEntertime().equals(vo.getExittime()))
+		{ 	//주차시간 10분 미만일 경우
+			if(exit_enter < 10)
+			{
+			%>
+				<div align="center"><h2>주차 요금 : 0원<br><br>투입한 금액 : 0원</h2></div>
+			<%
+			}
+			//주차시간 10분 이상 30분 미만일 경우
+			else if(10 <= exit_enter && exit_enter < 30)
+			{
+			%>
+				<div align="center"><h2>주차 요금 : 600원<br><br>투입한 금액 : <%= insert_money %>원</h2></div>
+			<%
+			}
+			//주차시간 30분 이상일 경우
+			else
+			{
+			%>
+				<div align="center"><h2>주차 요금 : <%= payamount %>원<br><br>투입한 금액 : <%= insert_money %>원</h2></div>
+			<%
+			}
+		} 
+		%>
 		<div align="center"><a href="pay_cashok.jsp?cmno=<%=cmno%>"><input type="button" value="다음" class="next_btn"></a></div>
 	</body>
 </html>
