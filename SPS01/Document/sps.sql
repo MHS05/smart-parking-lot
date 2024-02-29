@@ -30,7 +30,9 @@ create table exitpic
 	exitpic varchar(100) default 'N' comment '임시출차사진'
 ) comment '출차사진';
 
-create table cardetect
+create table parkingcardetect
 (
-	
-)comment '자동차탐지'
+	cctv varchar(100) primary key comment '주차장cctv',
+	totalspace int comment '총자리수',
+	totalcar int comment '현재차량수'
+)comment '주차장차탐지';
