@@ -5,7 +5,7 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.text.*" %>
 <%
-//í˜„ì¬ ë‚ ì§œ ë°›ì•„ì˜¤ê¸°
+//ÇöÀç ³¯Â¥ ¹Ş¾Æ¿À±â
 Date d = new Date();
 SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 String today = simpleDate.format(d);
@@ -36,21 +36,21 @@ list = dto.getCarInfoList(date);
 <html>
 <head>
 	<meta charset="EUC-KR">
-	<title>ìŠ¤ë§ˆíŠ¸ ì£¼ì°¨ì¥ ê´€ë¦¬ ì‹œìŠ¤í…œ</title>
+	<title>½º¸¶Æ® ÁÖÂ÷Àå °ü¸® ½Ã½ºÅÛ</title>
 	<link rel="stylesheet" type="text/css" href="css/sps.css">
 	<link rel="stylesheet" href="css/jquery-ui.css">
 </head>
 	<body>
-		<!-- í—¤ë” ì˜ì—­ ì‹œì‘ -->
+		<!-- Çì´õ ¿µ¿ª ½ÃÀÛ -->
 		<table border="0" width="1500px" height="75px" align="center" style="background-color:#e0e0e0">
 			<tr>
 				<td width="80px" height="65px">
 					<a href="main.jsp"><img style="width:80px; height:60px;" src="image/logo.png"></a>
 				</td>
-				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp">ìŠ¤ë§ˆíŠ¸ ì£¼ì°¨ì¥ ê´€ë¦¬ ì‹œìŠ¤í…œ</a></b></font></td>
+				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp">½º¸¶Æ® ÁÖÂ÷Àå °ü¸® ½Ã½ºÅÛ</a></b></font></td>
 				<td width="200px"></td>
 				<td colspan="6" align="right" style="text-align:right">
-				<button class=btn_logout onclick="document.location.href='./login/login.jsp'">ë¡œê·¸ì•„ì›ƒ</button></td>
+				<button class=btn_logout onclick="document.location.href='./login/login.jsp'">·Î±×¾Æ¿ô</button></td>
 			</tr>
 		</table>
 		<table border="0" width="1500px" height="75px" align="center" style="background-color:3498db">
@@ -58,30 +58,30 @@ list = dto.getCarInfoList(date);
 				<td align="center"><img src="image/calender.png" style="width:60px; height:60px"></td>
 				<td><input type="text" id="datepicker"></td>
 				<td width="200px"></td>
-				<td align="center"><a href="camera.jsp"><button class=btn>ì…ì¶œì°¨ ì¹´ë©”ë¼</button></a></td>
-				<td align="center"><a href="javascript:EnterList();"><button class=btn>ì…ì°¨ í˜„í™©</button></a></td>
-				<td align="center"><a href="javascript:ExitList();"><button class=btn>ì¶œì°¨ í˜„í™©</button></a></td>
-				<td align="center"><a href="javascript:PayList();"><button class=btn>ê²°ì œ ë‚´ì—­</button></a></td>
-				<td align="center"><a href="javascript:ParkingMap();"><button class=btn>ì£¼ì°¨ì¥ ë§µ</button></a></td>
-				<td align="center"><button class="btn" id="carsearch" onclick="carSearch();">ì°¨ëŸ‰ ê²€ìƒ‰</button>
+				<td align="center"><a href="camera.jsp"><button class=btn>ÀÔÃâÂ÷ Ä«¸Ş¶ó</button></a></td>
+				<td align="center"><a href="javascript:EnterList();"><button class=btn>ÀÔÂ÷ ÇöÈ²</button></a></td>
+				<td align="center"><a href="javascript:ExitList();"><button class=btn>ÃâÂ÷ ÇöÈ²</button></a></td>
+				<td align="center"><a href="javascript:PayList();"><button class=btn>°áÁ¦ ³»¿ª</button></a></td>
+				<td align="center"><a href="javascript:ParkingMap();"><button class=btn>ÁÖÂ÷Àå ¸Ê</button></a></td>
+				<td align="center"><button class="btn" id="carsearch" onclick="carSearch();">Â÷·® °Ë»ö</button>
 				<div id="searchinput" align="right" style="position:absolute; margin-top:20px;">
-		        	<input type="text" id="carnumber" name="carnumber" value="" placeholder="ì°¨ëŸ‰ ë²ˆí˜¸ ì…ë ¥">
-			        <button onclick="SearchCar()"><font size="3">ê²€ìƒ‰</font></button></a>
+		        	<input type="text" id="carnumber" name="carnumber" value="" placeholder="Â÷·® ¹øÈ£ ÀÔ·Â">
+			        <button onclick="SearchCar()"><font size="3">°Ë»ö</font></button></a>
 	     		</div>
 			</tr>
 		</table>
-		<!-- í—¤ë” ì˜ì—­ ë -->
-		<table border="1" align="center" style="width:1400px; height:600px;">
+		<!-- Çì´õ ¿µ¿ª ³¡ -->
+		<table border="0" align="center" style="width:1400px; height:600px;">
 			<tr>
 				<td width="550px" height="200px;" align="center" id="leftside">
 					<table class="table01" border="1">
 						<tr>
-							<th class="th1" colspan="3">ì¶œì°¨</th>
+							<th class="th1" colspan="3">ÃâÂ÷</th>
 						</tr>
 						<tr>
-							<td class="td1">ì¼ë°˜</td>
-							<td class="td1">íšŒì°¨</td>
-							<td class="td1">í•©ê³„</td>
+							<td class="td1">ÀÏ¹İ</td>
+							<td class="td1">È¸Â÷</td>
+							<td class="td1">ÇÕ°è</td>
 						</tr>
 						<tr>
 							<td height="30px">10</td>
@@ -92,27 +92,27 @@ list = dto.getCarInfoList(date);
 							<td colspan="4" style="height:20px"></td>
 						</tr>
 						<tr>
-							<th class="th1" colspan="4">ê²°ì œë‚´ì—­</th>
+							<th class="th1" colspan="4">°áÁ¦³»¿ª</th>
 						</tr>
 						<tr>
-							<td class="td1">í˜„ê¸ˆ</td>
-							<td class="td1">ê±´ìˆ˜</td>
-							<td class="td1" colspan="2">ê¸ˆì•¡</td>
+							<td class="td1">Çö±İ</td>
+							<td class="td1">°Ç¼ö</td>
+							<td class="td1" colspan="2">±İ¾×</td>
 						</tr>
 						<tr>
-							<td height="30px">í˜„ê¸ˆ</td>
+							<td height="30px">Çö±İ</td>
 							<td>9</td>
-							<td colspan="2">1,150,000 ì›</td>
+							<td colspan="2">1,150,000 ¿ø</td>
 						</tr>
 						<tr>
-							<td height="30px">ì¹´ë“œ</td>
+							<td height="30px">Ä«µå</td>
 							<td>15</td>
-							<td colspan="2">2,800,000 ì›</td>
+							<td colspan="2">2,800,000 ¿ø</td>
 						</tr>
 						<tr>
-							<td height="30px">í•©ê³„</td>
+							<td height="30px">ÇÕ°è</td>
 							<td>24</td>
-							<td colspan="2">3,950,000 ì›</td>
+							<td colspan="2">3,950,000 ¿ø</td>
 						</tr>
 						<tr style="border:none">
 							<td colspan="4" style="height:20px"></td>
@@ -121,53 +121,53 @@ list = dto.getCarInfoList(date);
 					<div style="height:440px; overflow: scroll;">
 						<table class="table01_1" border="1">
 							<tr>
-								<th class="th1_1" colspan="4">ì…ì¶œì°¨ ë¦¬ìŠ¤íŠ¸</th>
-							</tr>					
-							<tr>
-								<td class="td1_1" width="70px">ì°¨ëŸ‰ë²ˆí˜¸</td>
-								<td class="td1_1" width="300px">ì‹œê°</td>
-								<td class="td1_1" width="70px" colspan="2">ì°¨ëŸ‰êµ¬ë¶„</td>
+								<th class="th1_1" colspan="4">ÀÔÃâÂ÷ ¸®½ºÆ®</th>
 							</tr>
-
+				
+							<tr>
+								<td class="td1_1" width="70px">Â÷·®¹øÈ£</td>
+								<td class="td1_1" width="300px">½Ã°¢</td>
+								<td class="td1_1" width="70px" colspan="2">Â÷·®±¸ºĞ</td>
+							</tr>
 							<% 
-							if(!list.isEmpty())
-							{
-								for(CarinfoVO cvo : list)
+								if(!list.isEmpty())
 								{
-									if( !cvo.getEntertime().equals(cvo.getExittime()))
+									for(CarinfoVO cvo : list)
 									{
-										
-										%>
-										<tr>
-											<td height="40px"><%= cvo.getCarnum() %></td>
-											<td><%= cvo.getEntertime() %></td>
-											<td colspan="2">ì…ì°¨</td>
-										</tr>
-										<tr>
-											<td height="40px"><%= cvo.getCarnum() %></td>
-											<td><%= cvo.getExittime() %></td>
-											<td colspan="2">ì¶œì°¨</td>
-										</tr>
-										<%
-									} else 
-									{
-										%>
+										if( !cvo.getEntertime().equals(cvo.getExittime()))
+										{
+											
+											%>
 											<tr>
 												<td height="40px"><%= cvo.getCarnum() %></td>
 												<td><%= cvo.getEntertime() %></td>
-												<td colspan="2">ì…ì°¨</td>
+												<td colspan="2">ÀÔÂ÷</td>
 											</tr>
-										<% 
+											<tr>
+												<td height="40px"><%= cvo.getCarnum() %></td>
+												<td><%= cvo.getExittime() %></td>
+												<td colspan="2">ÃâÂ÷</td>
+											</tr>
+											<%
+										} else 
+										{
+											%>
+												<tr>
+													<td height="40px"><%= cvo.getCarnum() %></td>
+													<td><%= cvo.getEntertime() %></td>
+													<td colspan="2">ÀÔÂ÷</td>
+												</tr>
+											<% 
+										}
 									}
+								} else
+								{
+									%>
+										<tr>
+											<td height="40px" colspan="3">ÀÔ.ÃâÂ÷ÇÑ Â÷·®ÀÌ ¾ø½À´Ï´Ù.</td>
+										</tr>	
+									<%
 								}
-							} else
-							{
-								%>
-									<tr>
-										<td height="40px" colspan="3">ì….ì¶œì°¨í•œ ì°¨ëŸ‰ì´ ì—†ìŠµë‹ˆë‹¤.</td>
-									</tr>	
-								<%
-							}
 							%>
 						</table>
 					</div>
@@ -175,24 +175,24 @@ list = dto.getCarInfoList(date);
 				<td width="800px" align="center" id="rightside">
 					<table border="0" align="center" width=800px;>
 						<tr>
-							<td width="100px" height="30px"><font size="4"><b>ì´ ì£¼ì°¨ ìë¦¬ ìˆ˜</b></font></td>
+							<td width="100px" height="30px"><font size="4"><b>ÃÑ ÁÖÂ÷ ÀÚ¸® ¼ö</b></font></td>
 							<td width="20px"></td>
-							<td width="100px" height="30px"><font size="4"><b>í˜„ì¬ ì£¼ì°¨ ì¤‘ì¸ ì°¨ëŸ‰ ìˆ˜</b></font></td>
+							<td width="100px" height="30px"><font size="4"><b>ÇöÀç ÁÖÂ÷ ÁßÀÎ Â÷·® ¼ö</b></font></td>
 							<td width="20px"></td>
-							<td width="100px" height="30px"><font size="4"><b>ì£¼ì°¨ ê°€ëŠ¥í•œ ìë¦¬ ìˆ˜</b></font></td>
+							<td width="100px" height="30px"><font size="4"><b>ÁÖÂ÷ °¡´ÉÇÑ ÀÚ¸® ¼ö</b></font></td>
 						</tr>
 						<tr>
-							<td height="80px" style="background-color:#e0e0e0"><font size="5"><b>30ëŒ€</b></font></td>
+							<td height="80px" style="background-color:#e0e0e0"><font size="5"><b>30´ë</b></font></td>
 							<td></td>
-							<td height="80px" style="background-color:#e0e0e0"><font size="5" color="red"><b>10ëŒ€</b></font></td>
+							<td height="80px" style="background-color:#e0e0e0"><font size="5" color="red"><b>10´ë</b></font></td>
 							<td></td>
-							<td height="80px" style="background-color:#e0e0e0"><font size="5" color="green"><b>20ìë¦¬</b></font></td>
+							<td height="80px" style="background-color:#e0e0e0"><font size="5" color="green"><b>20ÀÚ¸®</b></font></td>
 						</tr>
 						<tr>
 							<td height="10px"></td>
 						</tr>
 						<tr>
-							<td colspan="5" height="550px" style="background-color:#e0e0e0">ì£¼ì°¨ì¥ CCTV</td>
+							<td colspan="5" height="550px" style="background-color:#e0e0e0">ÁÖÂ÷Àå CCTV</td>
 						</tr>
 					</table>
 				</td>
@@ -232,17 +232,17 @@ function SearchCar()
 		dataType: "html",
 		success : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì¡Œì„ë•Œ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁ³À»¶§ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 			$("#rightside").html(data);
 			$("#searchinput").css('display','none');
 		},
 		complete : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µí•˜ê±°ë‚˜ ì‹¤íŒ¨í–ˆì–´ë„ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÇÏ°Å³ª ½ÇÆĞÇß¾îµµ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 		},
 		error : function(xhr, status, error) 
 		{
-			// í†µì‹  ì˜¤ë¥˜ ë°œìƒì‹œ	
+			// Åë½Å ¿À·ù ¹ß»ı½Ã	
 		}
 	});			
 }
@@ -251,20 +251,20 @@ function EnterList()
 {
 	$.ajax({
 		type : "get",
-		url: "enterlist.jsp",
+		url: "enterlist.jsp?date=<%= date %>",
 		dataType: "html",
 		success : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì¡Œì„ë•Œ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁ³À»¶§ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 			$("#leftside").html(data);
 		},
 		complete : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µí•˜ê±°ë‚˜ ì‹¤íŒ¨í–ˆì–´ë„ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÇÏ°Å³ª ½ÇÆĞÇß¾îµµ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 		},
 		error : function(xhr, status, error) 
 		{
-			// í†µì‹  ì˜¤ë¥˜ ë°œìƒì‹œ	
+			// Åë½Å ¿À·ù ¹ß»ı½Ã	
 		}
 	});			
 }
@@ -273,20 +273,20 @@ function ExitList()
 {
 	$.ajax({
 		type : "get",
-		url: "exitlist.jsp",
+		url: "exitlist.jsp?date=<%= date %>",
 		dataType: "html",
 		success : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì¡Œì„ë•Œ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁ³À»¶§ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 			$("#leftside").html(data);
 		},
 		complete : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µí•˜ê±°ë‚˜ ì‹¤íŒ¨í–ˆì–´ë„ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÇÏ°Å³ª ½ÇÆĞÇß¾îµµ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 		},
 		error : function(xhr, status, error) 
 		{
-			// í†µì‹  ì˜¤ë¥˜ ë°œìƒì‹œ	
+			// Åë½Å ¿À·ù ¹ß»ı½Ã	
 		}
 	});			
 }
@@ -299,16 +299,16 @@ function PayList()
 		dataType: "html",
 		success : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì¡Œì„ë•Œ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁ³À»¶§ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 			$("#leftside").html(data);
 		},
 		complete : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µí•˜ê±°ë‚˜ ì‹¤íŒ¨í–ˆì–´ë„ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÇÏ°Å³ª ½ÇÆĞÇß¾îµµ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 		},
 		error : function(xhr, status, error) 
 		{
-			// í†µì‹  ì˜¤ë¥˜ ë°œìƒì‹œ	
+			// Åë½Å ¿À·ù ¹ß»ı½Ã	
 		}
 	});			
 }
@@ -321,16 +321,16 @@ function ParkingMap()
 		dataType: "html",
 		success : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì¡Œì„ë•Œ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁ³À»¶§ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 			$("#rightside").html(data);
 		},
 		complete : function(data) 
 		{	
-			// í†µì‹ ì´ ì„±ê³µí•˜ê±°ë‚˜ ì‹¤íŒ¨í–ˆì–´ë„ ì´ í•¨ìˆ˜ë¥¼ íƒ€ê²Œëœë‹¤.
+			// Åë½ÅÀÌ ¼º°øÇÏ°Å³ª ½ÇÆĞÇß¾îµµ ÀÌ ÇÔ¼ö¸¦ Å¸°ÔµÈ´Ù.
 		},
 		error : function(xhr, status, error) 
 		{
-			// í†µì‹  ì˜¤ë¥˜ ë°œìƒì‹œ	
+			// Åë½Å ¿À·ù ¹ß»ı½Ã	
 		}
 	});			
 }
@@ -345,19 +345,19 @@ $(function() {
         showOn: "both",
         buttonImageOnly: true,
         buttonText: "",
-        monthNamesShort: ['1ì›”','2ì›”','3ì›”','4ì›”','5ì›”','6ì›”','7ì›”','8ì›”','9ì›”','10ì›”','11ì›”','12ì›”'],
-        monthNames: ['1ì›”','2ì›”','3ì›”','4ì›”','5ì›”','6ì›”','7ì›”','8ì›”','9ì›”','10ì›”','11ì›”','12ì›”'],
-        dayNamesMin: ['ì¼','ì›”','í™”','ìˆ˜','ëª©','ê¸ˆ','í† '],
-        dayNames: ['ì¼ìš”ì¼','ì›”ìš”ì¼','í™”ìš”ì¼','ìˆ˜ìš”ì¼','ëª©ìš”ì¼','ê¸ˆìš”ì¼','í† ìš”ì¼'],
+        monthNamesShort: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'],
+        monthNames: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'],
+        dayNamesMin: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'],
+        dayNames: ['ÀÏ¿äÀÏ','¿ù¿äÀÏ','È­¿äÀÏ','¼ö¿äÀÏ','¸ñ¿äÀÏ','±İ¿äÀÏ','Åä¿äÀÏ'],
         minDate: "-5Y",
         maxDate: "+today",
         onSelect: function(dateText, inst) {
-        	// ì„ íƒí•œ ë‚ ì§œë¥¼ URL íŒŒë¼ë¯¸í„°ë¡œ ì¶”ê°€í•˜ì—¬ í˜ì´ì§€ë¥¼ ìƒˆë¡œê³ ì¹¨í•˜ì§€ ì•Šê³  ì—…ë°ì´íŠ¸
+        	// ¼±ÅÃÇÑ ³¯Â¥¸¦ URL ÆÄ¶ó¹ÌÅÍ·Î Ãß°¡ÇÏ¿© ÆäÀÌÁö¸¦ »õ·Î°íÄ§ÇÏÁö ¾Ê°í ¾÷µ¥ÀÌÆ®
             //history.replaceState(null, null, "?date=" + dateText);
             window.location.href = "main.jsp?date=" + dateText;
         }
     });    
-    // ì´ˆê¸°ê°’ì„ ì˜¤ëŠ˜ ë‚ ì§œë¡œ ì„¤ì •
+    // ÃÊ±â°ªÀ» ¿À´Ã ³¯Â¥·Î ¼³Á¤
     $('#datepicker').datepicker('setDate', '<%= date %>');
 });
 

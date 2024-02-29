@@ -1,12 +1,15 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
 <%
-String cmno = request.getParameter("cmno");
+String date = request.getParameter("date");
 
-CarinfoDTO dto = new CarinfoDTO();
-CarinfoVO vo  = dto.Read(cmno);
+ListDTO dto = new ListDTO();
+
+ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
+
 %>
 <table class="table03" border="1" align="center">
 	<tr>
@@ -43,8 +46,8 @@ CarinfoVO vo  = dto.Read(cmno);
 			{
 			%>
 			<tr>
-				<td height="40px"><%= vo.getCarnum() %></td>
-				<td><%= vo.getEntertime() %></td>
+				<td height="40px"></td>
+				<td></td>
 				<td colspan="2">입차</td>
 			</tr>
 			<%
@@ -53,8 +56,8 @@ CarinfoVO vo  = dto.Read(cmno);
 			{
 			%>
 			<tr>
-				<td height="40px"><%= vo.getCarnum() %></td>
-				<td><%= vo.getExittime() %></td>
+				<td height="40px"></td>
+				<td></td>
 				<td colspan="2">출차</td>
 			</tr>
 			<%
