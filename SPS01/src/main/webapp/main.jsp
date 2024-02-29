@@ -4,10 +4,9 @@
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
 <%
-String cmno = request.getParameter("cmno");
-
-CarinfoDTO dto = new CarinfoDTO();
-CarinfoVO vo  = dto.Read(cmno);
+CarinfoVO vo = new CarinfoVO();
+vo.setEntertime(vo.getEntertime());
+String date = vo.EntertimeAsDate();
 %>
 <style>
 #datepicker
@@ -34,9 +33,9 @@ CarinfoVO vo  = dto.Read(cmno);
 		<table border="0" width="1500px" height="75px" align="center" style="background-color:#e0e0e0">
 			<tr>
 				<td width="80px" height="65px">
-					<a href="main.jsp?cmno=<%=cmno%>"><img style="width:80px; height:60px;" src="image/logo.png"></a>
+					<a href="main.jsp?date=<%= date %>"><img style="width:80px; height:60px;" src="image/logo.png"></a>
 				</td>
-				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp?cmno=<%=cmno%>">스마트 주차장 관리 시스템</a></b></font></td>
+				<td width="400px" style="text-align:left"><font size="5"><b><a href="main.jsp">스마트 주차장 관리 시스템</a></b></font></td>
 				<td width="200px"></td>
 				<td colspan="6" align="right" style="text-align:right">
 				<button class=btn_logout onclick="document.location.href='./login/login.jsp'">로그아웃</button></td>
@@ -122,13 +121,13 @@ CarinfoVO vo  = dto.Read(cmno);
 							{
 							%>
 							<tr>
-								<td height="40px"><%= vo.getCarnum() %></td>
-								<td><%= vo.getEntertime() %></td>
+								<td height="40px">차량번호</td>
+								<td>입차시간</td>
 								<td colspan="2">입차</td>
 							</tr>
 							<tr>
-								<td height="40px"><%= vo.getCarnum() %></td>
-								<td><%= vo.getExittime() %></td>
+								<td height="40px">차량번호</td>
+								<td>입차시간</td>
 								<td colspan="2">출차</td>
 							</tr>
 							<%
@@ -216,7 +215,7 @@ function EnterList()
 {
 	$.ajax({
 		type : "get",
-		url: "enterlist.jsp?cmno=<%=cmno%>",
+		url: "enterlist.jsp",
 		dataType: "html",
 		success : function(data) 
 		{	
@@ -238,7 +237,7 @@ function ExitList()
 {
 	$.ajax({
 		type : "get",
-		url: "exitlist.jsp?cmno=<%=cmno%>",
+		url: "exitlist.jsp",
 		dataType: "html",
 		success : function(data) 
 		{	
@@ -260,7 +259,7 @@ function PayList()
 {
 	$.ajax({
 		type : "get",
-		url: "paylist.jsp?cmno=<%=cmno%>",
+		url: "paylist.jsp",
 		dataType: "html",
 		success : function(data) 
 		{	
@@ -317,7 +316,8 @@ $(function() {
         minDate: "-5Y",
         maxDate: "+today",
         onSelect: function(dateText, inst) {
-            alert("선택하신 날짜는 " +dateText+ " 입니다.");
+        	// 선택한 날짜를 URL 파라미터로 추가하여 페이지를 새로고침
+            window.location.href = "main.jsp?date=" + dateText;
         }
     });    
     // 초기값을 오늘 날짜로 설정
@@ -333,7 +333,7 @@ function openinfo()
 	var _left = Math.ceil((window.screen.width - _width )/2);
 	var _top = '400';
 	
-	window.open('info.jsp?cmno=<%= cmno %>', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
+	window.open('info.jsp', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
 }
 
 </script>

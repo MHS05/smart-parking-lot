@@ -4,6 +4,9 @@
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
 <%
+CarinfoVO vo = new CarinfoVO();
+vo.setEntertime(vo.getEntertime());
+String date = vo.EntertimeAsDate();
 String cmno = request.getParameter("cmno");
 %>
 <!DOCTYPE html>
@@ -18,7 +21,7 @@ String cmno = request.getParameter("cmno");
 	</head>
 	<body>
 		<div class="admin" align="right">
-			<a href="main.jsp?cmno=<%=cmno%>"><img src="image/admin.png" id="admin_img"><br><font color="white">관리자 페이지</font></a>
+			<a href="main.jsp?date=<%= date %>"><img src="image/admin.png" id="admin_img"><br><font color="white">관리자 페이지</font></a>
 		</div>
 		<span class="money">
 			<a href="user/parkingfee01.jsp?cmno=<%= cmno %>"><img src="image/money.png" style="width:100px; height:80px;"><br><font color="white">&emsp;정산하기</font></a>
