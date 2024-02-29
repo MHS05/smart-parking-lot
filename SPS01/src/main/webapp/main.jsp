@@ -31,6 +31,49 @@ list = dto.getCarInfoList(date);
 	background:transparent;
 	cursor:pointer;
 }
+.btn_upload 
+{	
+	width: 130px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid rgb(77,77,77);
+	border-radius: 10px;
+	font-size:17px;
+	font-weight: 400;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color:#gray;
+	border: none;
+	margin: 0 auto;
+}
+#cctv_image
+{
+  	display: none;
+}
+#cctv_imageok
+{	
+	align:center;
+}
+.btn_cctvok
+{	
+	width: 130px;
+	height: 40px;
+	background: #fff;
+	border: 1px solid rgb(77,77,77);
+	border-radius: 10px;
+	font-size:17px;
+	font-weight: 400;
+	cursor: pointer;
+	background-color:#gray;
+	border: none;
+}	
+.btn_upload:hover 
+{
+	background: rgb(77,77,77);
+	color: #fff;
+}
 </style>
 <!DOCTYPE html>
 <html>
@@ -192,7 +235,16 @@ list = dto.getCarInfoList(date);
 							<td height="10px"></td>
 						</tr>
 						<tr>
-							<td colspan="5" height="550px" style="background-color:#e0e0e0">주차장 CCTV</td>
+							<td colspan="5" height="600px" style="background-color:#e0e0e0">
+							<div id="cctv_image_preview">
+							</div>
+								<form id="cctv" name="cctv" method="post" action="cctv_uploadok.jsp" enctype="multipart/form-data">
+									<label for="cctv_image">
+										<span class="btn_upload" id="btn_enterupload" style="padding: 0px 0px">업로드</span>
+									</label>
+									<input type="file" name="cctv_image" id="cctv_image" accept="image/*">
+								</form>
+							</td>
 						</tr>
 					</table>
 				</td>
@@ -201,6 +253,18 @@ list = dto.getCarInfoList(date);
 <script src="./js/jquery-3.7.1.js"></script>
 <script src="./js/jquery-ui.js"></script>
 <script>
+$(document).ready(function() {
+	$('#cctv_image').on('change', function(e) {
+		var file = e.target.files[0];
+		var reader = new FileReader();
+		reader.onload = function() {
+			$('#cctv_image_preview').html('<img src="' + reader.result + '" style="width:800px; height:600px">');
+		}
+		reader.readAsDataURL(file);
+		$('#btn_enterupload').css('display','none')
+		$('#cctv_imageok').css('display','')
+	});
+});
 window.onload = function()
 {
 	$("#carnumber").keyup(function (event)
