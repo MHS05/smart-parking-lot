@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%
 String cmno = request.getParameter("cmno");
 if( cmno == null || cmno.equals("") )
@@ -17,6 +18,18 @@ if( vo == null )
 	response.sendRedirect("main.jsp");
 	return;	
 }
+//출차시간 - 입차시간 = 주차시간 
+int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+int timecal = exit_enter / 30;
+timecal = timecal * 600;
+
+//숫자 세자리 수 마다 , 찍고 payamount로 이름 변경
+DecimalFormat formatter = new DecimalFormat("#,###");
+String payamount = formatter.format(timecal);
+
+int hour = exit_enter / 60;
+int min  = exit_enter - (hour * 60);
+int day  = hour / 24;
 %>
 <!DOCTYPE html>
 <html>
@@ -62,9 +75,8 @@ if( vo == null )
 							출차시간 : <%= vo.getExittime() %></font><br><br>
 							<% 
 							//출차 O 했을 경우 '출차시간 - 입차시간 = 주차시간'
-							int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 								
-							if( vo.getExittime() != null )
+							if( !vo.getEntertime().equals(vo.getExittime()) )
 							{	//60분 미만일 경우 분만 표현 
 								if(exit_enter < 60)
 								{
@@ -75,9 +87,6 @@ if( vo == null )
 								//60분 이상일 경우 날짜, 시간, 분 표현
 								else
 								{
-									int hour = exit_enter / 60;
-									int min  = exit_enter - (hour * 60);
-									int day  = hour / 24;
 								%>
 									<font size="6"><%= day %>일 <%= hour %>시간 <%= min %>분</font>
 								<%
@@ -96,7 +105,7 @@ if( vo == null )
 							<span id="span2"><font size="4"><b>주차요금</b></font></span>
 							<%
 							//출차 O 했을때 요금
-							if(vo.getExittime() != null)
+							if(!vo.getEntertime().equals(vo.getExittime()))
 							{ 	//주차시간 10분 미만일 경우
 								if(exit_enter < 10)
 								{
@@ -126,8 +135,6 @@ if( vo == null )
 								//주차시간 30분 이상일 경우
 								else
 								{
-								 	int timecal = exit_enter / 30;
-									timecal = timecal * 600;
 								%>
 									<font size="6" color="#2ecc71"><b><%= timecal %>원</b></font>
 									</td>

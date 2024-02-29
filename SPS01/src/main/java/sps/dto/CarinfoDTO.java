@@ -153,7 +153,7 @@ public class CarinfoDTO extends DBManager
 		
 		this.DBOpen();
 		
-		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), (select exittime from carinfo where cmno =" + cmno + ")) AS exit_enter;";
+		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), (select exittime from carinfo where cmno =" + cmno + ")) AS timecal;";
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
@@ -166,25 +166,22 @@ public class CarinfoDTO extends DBManager
 		return exit_enter;
 	}
 	
-	
-	// 날짜 
-	public String Date_Format(String entertime)
+	// 출차시간 - 입차시간 = 주차시간(분) 
+	// Exit_Enter
+	public boolean UpdateTimecal(CarinfoVO cmno, CarinfoVO vo)
 	{
-		String sql = "";
-		
 		this.DBOpen();
 		
-		sql  = "SELECT DATE_FORMAT(CREATE_DATE, '%Y-%m-%d) AS CREATE_DATE;";
-		this.RunSelect(sql);
-		if( this.GetNext() == false)
-		{
-			this.DBClose();
-			return null;
-		}
-		String date = this.GetValue("entertime");
+		String sql = "";
+		
+		sql  = "update carinfo set ";
+		sql += "timecal=" + vo.getTimecal() + "' ";
+		sql += "where cmno = "  + cmno;
+		this.RunCommand(sql);
 		
 		this.DBClose();
-		return date;
-	}	
+		return true;
+	}
+	
 	
 }
