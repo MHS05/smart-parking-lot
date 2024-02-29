@@ -321,8 +321,8 @@ $(function() {
         minDate: "-5Y",
         maxDate: "+today",
         onSelect: function(dateText, inst) {
-        	// 선택한 날짜를 URL 파라미터로 추가하여 페이지를 새로고침
-            window.location.href = "main.jsp?date=" + dateText;
+        	// 선택한 날짜를 URL 파라미터로 추가하여 페이지를 새로고침하지 않고 업데이트
+            history.replaceState(null, null, "?date=" + dateText);
         }
     });    
     // 초기값을 오늘 날짜로 설정
