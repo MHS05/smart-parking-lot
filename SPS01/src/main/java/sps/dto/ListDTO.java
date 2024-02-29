@@ -125,4 +125,129 @@ public class ListDTO extends DBManager
 		
 		return list;		
 	}
+	
+	//회차차량수 구하는 함수
+		public int getTruning(String date) 
+		{
+			this.DBOpen();
+			
+			String t = "";
+			String sql = "";
+			
+			sql  = "select count(payclassifi = '회차') as turning from carinfo ";
+			sql += "where entertime != exittime ";
+			sql += "and entertime like '%" + date + "%' ";
+			this.RunSelect(sql);
+			
+			
+			while( this.GetNext() == true)
+			{
+				t = this.GetValue("turning");
+				
+			}
+			
+			int turning = Integer.parseInt(t);
+			
+			return turning;
+		}
+		
+		//일반차량수 구하는 함수
+		public int getGeneral(String date) 
+		{
+			this.DBOpen();
+			
+			String g = "";
+			String sql = "";
+			
+			sql  = "select count(payclassifi = '일반') as general from carinfo ";
+			sql += "where entertime != exittime ";
+			sql += "and entertime like '%" + date + "%' ";
+			this.RunSelect(sql);
+			
+			while( this.GetNext() == true)
+			{
+				g = this.GetValue("general");
+				
+			}
+			
+			int general = Integer.parseInt(g);
+			
+			return general;
+		}
+		
+		//현금 결제 금액 구하는 함수
+		public int getCash(String date) 
+		{
+			this.DBOpen();
+			
+			String c = "";
+			String sql = "";
+			
+			sql  = "select sum(payamount) as cash from carinfo ";
+			sql += "where entertime like '%" + date + "%' ";
+			sql += "and paymethod = '현금'";
+			this.RunSelect(sql);
+			
+			
+			while( this.GetNext() == true)
+			{
+				c = this.GetValue("cash");
+				
+			}
+			
+			int cash = Integer.parseInt(c);
+			
+			return cash;
+		}
+		
+		//카드 결제 금액 구하는 함수
+		public int getCard(String date) 
+		{
+			this.DBOpen();
+			
+			String c = "";
+			String sql = "";
+			
+			sql  = "select sum(payamount) as card from carinfo ";
+			sql += "where entertime like '%" + date + "%' ";
+			sql += "and paymethod = '카드'";
+			this.RunSelect(sql);
+			
+			
+			while( this.GetNext() == true)
+			{
+				c = this.GetValue("card");
+				
+			}
+			
+			int card = Integer.parseInt(c);
+			
+			return card;
+		}
+		
+		//회차차량수 구하는 함수
+		public int getTruning2(String date) 
+		{
+			this.DBOpen();
+			
+			String t = "";
+			String sql = "";
+			
+			sql  = "select count(*) as turning from carinfo ";
+			sql += "where entertime != exittime ";
+			sql += "and timecal < 10 ";
+			sql += "and entertime like '%" + date + "%' ";
+			this.RunSelect(sql);
+			
+			
+			while( this.GetNext() == true)
+			{
+				t = this.GetValue("turning");
+				
+			}
+			
+			int turning = Integer.parseInt(t);
+			
+			return turning;
+		}
 }
