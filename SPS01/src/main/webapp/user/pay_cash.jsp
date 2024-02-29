@@ -26,6 +26,19 @@ timecal = timecal * 600;
 //숫자 세자리 수 마다 ,
 DecimalFormat formatter = new DecimalFormat("#,###");
 String payamount = formatter.format(timecal);
+
+/*주차금액에 따른 지불금액 
+int insert_money = 0;
+
+if(timecal == 0){
+	insert_money = 0;
+}else if(timecal > 0 && timecal <= 1000){
+	insert_money += 1000;
+}else if(timecal > 1000 && timecal <= 5000){
+	insert_money += 5000;
+}else if(timecal > 5000 && timecal <= 10000){
+	insert_money += 10000;
+}*/
 %>
 <!DOCTYPE html>
 <html>
