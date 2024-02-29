@@ -21,11 +21,12 @@ if( vo == null )
 //출차시간 - 입차시간 = 주차시간 
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 int timecal = exit_enter / 30;
-timecal = timecal * 600;
+int payamount = timecal * 600;
 
-//숫자 세자리 수 마다 , 찍고 payamount로 이름 변경
+/*숫자 세자리 수 마다 , 찍고 payamount로 이름 변경
 DecimalFormat formatter = new DecimalFormat("#,###");
 String payamount = formatter.format(timecal);
+*/
 
 int hour = exit_enter / 60;
 int min  = exit_enter - (hour * 60);
