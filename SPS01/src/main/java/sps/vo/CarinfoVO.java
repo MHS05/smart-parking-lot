@@ -1,4 +1,6 @@
 package sps.vo;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CarinfoVO 
 {
@@ -53,4 +55,20 @@ public class CarinfoVO
 	public void setPayamount(String payamount) 		{	this.payamount = payamount;			}
 	public void setPayclassifi(String payclassifi)  {	this.payclassifi = payclassifi;		}
 	
+
+
+    // 입차시간을 %Y-%m-%d 형식으로 반환하는 메서드
+    public String EntertimeAsDate() {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date parsedDate = inputFormat.parse(this.entertime);
+            return outputFormat.format(parsedDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 예외가 발생하면 오늘 날짜를 반환
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return dateFormat.format(new Date());
+        }
+    }
 }

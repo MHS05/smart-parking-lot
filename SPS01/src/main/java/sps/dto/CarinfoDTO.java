@@ -125,6 +125,7 @@ public class CarinfoDTO extends DBManager
 		this.DBClose();
 		return vo;
 	}	
+	
 	//현재시간 - 입차시간 ( 분으로 출력 )
 	public String Now_Enter(String cmno)
 	{
@@ -163,6 +164,27 @@ public class CarinfoDTO extends DBManager
 		
 		this.DBClose();
 		return exit_enter;
+	}
+	
+	
+	// 날짜 
+	public String Date_Format(String entertime)
+	{
+		String sql = "";
+		
+		this.DBOpen();
+		
+		sql  = "SELECT DATE_FORMAT(CREATE_DATE, '%Y-%m-%d) AS CREATE_DATE;";
+		this.RunSelect(sql);
+		if( this.GetNext() == false)
+		{
+			this.DBClose();
+			return null;
+		}
+		String date = this.GetValue("entertime");
+		
+		this.DBClose();
+		return date;
 	}	
 	
 }

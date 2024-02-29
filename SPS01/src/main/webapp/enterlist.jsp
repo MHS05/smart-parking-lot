@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ page import = "sps.vo.*" %>
-<%@ page import = "sps.dto.*" %>
-<%
-String cmno = request.getParameter("cmno");
-
-CarinfoDTO dto = new CarinfoDTO();
-CarinfoVO vo  = dto.Read(cmno);
-%>
 <div style="height:735px; overflow: scroll;">
 <table class="table02" border="1" align="center">
 	<tr>
@@ -23,8 +15,8 @@ CarinfoVO vo  = dto.Read(cmno);
 	{
 	%>
 	<tr>
-		<td height="40px"><%= vo.getCarnum() %></td>
-		<td><%= vo.getEntertime() %></td>
+		<td height="40px"></td>
+		<td></td>
 		<td colspan="2">ютбВ</td>
 	</tr>
 	<%

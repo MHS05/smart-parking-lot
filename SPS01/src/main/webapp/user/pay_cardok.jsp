@@ -49,7 +49,7 @@ var countdownTimer = setInterval(function(){
     if(timeleft < 0){
         clearInterval(countdownTimer);
         window.close(); // 5초 후에 팝업 창이 닫히도록 설정
-        window.opener.location.href="../main.jsp?cmno=<%=cmno%>";
+        window.opener.location.href="../main.jsp";
     }
 }, 1000); // 1초마다 갱신
 </script>
