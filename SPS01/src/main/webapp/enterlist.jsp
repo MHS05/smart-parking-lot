@@ -35,19 +35,25 @@ ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
 			</tr>
 			<%
 		}
+			%>
+			<tr>
+				<td></td>
+				<td colspan="2"></td>
+				<td></td>
+			</tr>
+			<%
 	} else 
 	{
 		%>
 		<tr>
-			<td colspan="4" >해당 날짜에 입차한 차량이 없습니다.</td>
+			<td height="40px" colspan="4" >해당 날짜에 입차한 차량이 없습니다.</td>
 		</tr>
+		<tr>
+			<td colspan="4"></td>
+		</tr>
+
 		<%
 	}
 	%>
-	<tr>
-		<td></td>
-		<td colspan="2"></td>
-		<td></td>
-	</tr>
 </table>
 </div>

@@ -10,6 +10,11 @@ ListDTO dto = new ListDTO();
 
 ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
 
+list = dto.getExitInfoList(date);
+int allCar  = list.size();
+int turning = dto.getTruning(date);
+int general = dto.getGeneral(date);
+
 %>
 <table class="table03" border="1" align="center">
 	<tr>
@@ -21,9 +26,9 @@ ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
 		<td class="td3">합계</td>
 	</tr>
 	<tr>
-		<td height="40px">10</td>
-		<td>10</td>
-		<td>25</td>
+		<td height="40px"><%= general %></td>
+		<td><%= turning %></td>
+		<td><%= allCar %></td>
 	</tr>
 	<tr style="border:none">
 		<td colspan="4" style="height:20px"></td>
@@ -40,29 +45,36 @@ ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
 			<td class="td3" colspan="2">차량구분</td>
 		</tr>
 		<%
-		for(int i=1; i<20; i++)
-		{
-			if(i%2==1)
+			if(!list.isEmpty())
 			{
-			%>
-			<tr>
-				<td height="40px"></td>
-				<td></td>
-				<td colspan="2">입차</td>
-			</tr>
-			<%
-			}
-			else
+				for(CarinfoVO vo : list)
+				{
+					%>
+					<tr>
+						<td height="40px"><%= vo.getCarnum() %></td>
+						<td height="40px" colspan="2"><%= vo.getExittime() %></td>
+						<td height="40px">출차</td>
+					</tr>
+					<%
+				}
+					%>
+					<tr>
+						<td></td>
+						<td colspan="2"></td>
+						<td></td>
+					</tr>
+					<%
+			} else 
 			{
-			%>
-			<tr>
-				<td height="40px"></td>
-				<td></td>
-				<td colspan="2">출차</td>
-			</tr>
-			<%
+				%>
+				<tr>
+					<td height="40px" colspan="4" >해당 날짜에 출차한 차량이 없습니다.</td>
+				</tr>
+				<tr>
+					<td colspan="4"></td>
+				</tr>
+				<%
 			}
-		}
 		%>
 	</table>
 </div>

@@ -15,6 +15,7 @@ if(date == null) date = today;
 
 ListDTO dto = new ListDTO();
 
+
 //해당날짜 모든 차량 정보
 ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
 
