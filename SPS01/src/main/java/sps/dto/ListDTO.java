@@ -16,6 +16,7 @@ public class ListDTO extends DBManager
 		
 		sql  = "select cmno,carnum,entertime,exittime from carinfo ";
 		sql += "where entertime like '%" + date + "%'";
+		this.RunSelect(sql);
 		while( this.GetNext() == true)
 		{
 			CarinfoVO vo = new CarinfoVO();

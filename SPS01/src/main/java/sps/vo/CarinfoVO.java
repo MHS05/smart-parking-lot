@@ -56,8 +56,7 @@ public class CarinfoVO
 	public void setPayclassifi(String payclassifi)  {	this.payclassifi = payclassifi;		}
 	
 
-	/*
-    // 입차시간을 %Y-%m-%d 형식으로 반환하는 메서드
+	
     public String EntertimeAsDate() {
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -71,5 +70,5 @@ public class CarinfoVO
             return dateFormat.format(new Date());
         }
     }
-    */
+    
 }

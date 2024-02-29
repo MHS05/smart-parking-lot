@@ -29,3 +29,8 @@ create table exitpic
 	carnum varchar(10) default 'N' comment '차량번호',
 	exitpic varchar(100) default 'N' comment '임시출차사진'
 ) comment '출차사진';
+
+create table cardetect
+(
+	
+)comment '자동차탐지'
