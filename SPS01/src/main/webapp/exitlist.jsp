@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
+<%
+String cmno = request.getParameter("cmno");
+
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
+%>
 <table class="table03" border="1" align="center">
 	<tr>
 		<th class="th3" colspan="3">출차</th>
@@ -35,8 +43,8 @@
 			{
 			%>
 			<tr>
-				<td height="40px">61아 1234</td>
-				<td>2019-01-01 00:00</td>
+				<td height="40px"><%= vo.getCarnum() %></td>
+				<td><%= vo.getEntertime() %></td>
 				<td colspan="2">입차</td>
 			</tr>
 			<%
@@ -45,8 +53,8 @@
 			{
 			%>
 			<tr>
-				<td height="40px">61아 1234</td>
-				<td>2019-01-01 00:00</td>
+				<td height="40px"><%= vo.getCarnum() %></td>
+				<td><%= vo.getExittime() %></td>
 				<td colspan="2">출차</td>
 			</tr>
 			<%

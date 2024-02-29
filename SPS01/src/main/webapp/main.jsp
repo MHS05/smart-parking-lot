@@ -4,20 +4,20 @@
 <%@ page import = "sps.dto.*" %>
 <%@ page import = "java.util.*" %>
 <%
-String cmno = request.getParameter("cmno");
-if( cmno == null || cmno.equals("") )
-{
-	response.sendRedirect("main.jsp");
-	return;
-}
+/*
+CarinfoVO vo = new CarinfoVO();
+vo.setEntertime(vo.getEntertime());
+String date = vo.EntertimeAsDate();
+*/
 
-CarinfoDTO dto = new CarinfoDTO();
-CarinfoVO vo  = dto.Read(cmno);
-if( vo == null )
-{
-	response.sendRedirect("main.jsp");
-	return;	
-}
+String date = "2024-02-28";
+
+ListDTO dto = new ListDTO();
+
+ArrayList<CarinfoVO> list = new ArrayList<CarinfoVO>();
+
+list = dto.getCarInfoList("2024-02-28");
+
 %>
 <style>
 #datepicker
@@ -128,22 +128,16 @@ if( vo == null )
 								<td class="td1_1" width="300px">시각</td>
 								<td class="td1_1" width="70px" colspan="2">차량구분</td>
 							</tr>
-							<%for(int i=1; i<10; i++)
-							{
-							%>
 							<tr>
-								<td height="40px">61아 1234</td>
-								<td>2019-01-01 00:00</td>
+								<td height="40px">입차시간</td>
+								<td>입차시간</td>
 								<td colspan="2">입차</td>
 							</tr>
 							<tr>
-								<td height="40px">61아 1234</td>
-								<td>2019-01-01 00:00</td>
+								<td height="40px">차번호</td>
+								<td>출차시간</td>
 								<td colspan="2">출차</td>
 							</tr>
-							<%
-							}
-							%>
 						</table>
 					</div>
 				</td>
@@ -173,8 +167,8 @@ if( vo == null )
 				</td>
 			</tr>
 		</table>
-<script src="js/jquery-3.7.1.js"></script>
-<script src="js/jquery-ui.js"></script>
+<script src="./js/jquery-3.7.1.js"></script>
+<script src="./js/jquery-ui.js"></script>
 <script>
 window.onload = function()
 {
@@ -327,7 +321,8 @@ $(function() {
         minDate: "-5Y",
         maxDate: "+today",
         onSelect: function(dateText, inst) {
-            alert("선택하신 날짜는 " +dateText+ " 입니다.");
+        	// 선택한 날짜를 URL 파라미터로 추가하여 페이지를 새로고침하지 않고 업데이트
+            history.replaceState(null, null, "?date=" + dateText);
         }
     });    
     // 초기값을 오늘 날짜로 설정
@@ -343,8 +338,9 @@ function openinfo()
 	var _left = Math.ceil((window.screen.width - _width )/2);
 	var _top = '400';
 	
-	window.open('info.jsp?cmno=<%= cmno %>', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
+	window.open('info.jsp', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
 }
+
 </script>
 	</body>
 </html>

@@ -1,5 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
+<%@ page import="java.text.DecimalFormat" %>
+<%
+String cmno = request.getParameter("cmno");
+if( cmno == null || cmno.equals("") )
+{
+	response.sendRedirect("main.jsp");
+	return;
+}
+
+CarinfoDTO dto = new CarinfoDTO();
+CarinfoVO vo  = dto.Read(cmno);
+if( vo == null )
+{
+	response.sendRedirect("main.jsp");
+	return;	
+}
+
+int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+int timecal = exit_enter / 30;
+timecal = timecal * 600;
+
+//숫자 세자리 수 마다 ,
+DecimalFormat formatter = new DecimalFormat("#,###");
+String payamount = formatter.format(timecal);
+
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,17 +59,18 @@
 		<div align="center"><h2>거스름 돈이 반환되고 있습니다.<br>잠시만 기다려 주세요.</h2></div>
 		<div align="center"><img src="../image/cashback.png" style="width:400px; height:200px;"></div>
 		<div align="center"><hr style="width:300px"></div><br>
-		<div align="center"><h2>결제금액 : 14,000원<br><br>투입한 금액 : 20,000원<br><br>거스름 돈 : 6,000원</h2></div>
-		<div class="popup_close" align="center"><h3>결제 화면은 <span id="countdown">10</span>초 후에 자동으로 닫힙니다.</h3></div>
+		<div align="center"><h2>결제금액 : <%= payamount %>원<br><br>투입한 금액 : 10,000원<br><br>거스름 돈 : 8,800원</h2></div>
+		<div class="popup_close" align="center"><h3>결제 화면은 <span id="countdown" style="color:red">10</span>초 후에 자동으로 닫힙니다.</h3></div>
 <script>
 // 카운트다운 시작
-var timeleft = 10;
+var timeleft = 10; 
 var countdownTimer = setInterval(function(){
     document.getElementById('countdown').innerHTML = timeleft;
     timeleft -= 1;
     if(timeleft < 0){
         clearInterval(countdownTimer);
-        window.close(); // 5초 후에 팝업 창이 닫히도록 설정
+    	window.close(); // 10초 후에 팝업 창이 닫히도록 설정
+    	window.opener.location.href="parkingfee02.jsp?cmno=<%=cmno%>";
     }
 }, 1000); // 1초마다 갱신
 </script>
