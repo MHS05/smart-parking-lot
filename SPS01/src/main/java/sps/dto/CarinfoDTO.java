@@ -153,7 +153,7 @@ public class CarinfoDTO extends DBManager
 		
 		this.DBOpen();
 		
-		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), (select exittime from carinfo where cmno =" + cmno + ")) AS timecal;";
+		sql  = "SELECT TIMESTAMPDIFF(minute, (select entertime from carinfo where cmno =" + cmno + "), (select exittime from carinfo where cmno =" + cmno + ")) AS exit_enter;";
 		this.RunSelect(sql);
 		if( this.GetNext() == false)
 		{
@@ -167,7 +167,6 @@ public class CarinfoDTO extends DBManager
 	}
 	
 	// 출차시간 - 입차시간 = 주차시간(분) 
-	// Exit_Enter
 	public boolean UpdateTimecal(CarinfoVO cmno, CarinfoVO vo)
 	{
 		this.DBOpen();
@@ -175,7 +174,7 @@ public class CarinfoDTO extends DBManager
 		String sql = "";
 		
 		sql  = "update carinfo set ";
-		sql += "timecal=" + vo.getTimecal() + "' ";
+		sql += "timecal=" + vo.getTimecal() + "' "; 
 		sql += "where cmno = "  + cmno;
 		this.RunCommand(sql);
 		
@@ -183,5 +182,20 @@ public class CarinfoDTO extends DBManager
 		return true;
 	}
 	
+	// 주차시간(분)/30 -> * 600 = 주차요금 
+	public boolean UpdatePayamount(CarinfoVO cmno, CarinfoVO vo)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "update carinfo set ";
+		sql += "payamount=" + vo.getPayamount() + "' ";
+		sql += "where cmno = "  + cmno;
+		this.RunCommand(sql);
+		
+		this.DBClose();
+		return true;
+	}
 	
 }
