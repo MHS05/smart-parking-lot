@@ -53,7 +53,7 @@ font
 				<tr>
 					<%
 					//출차 X 안했을 경우
-					if( vo.getExittime() == null )
+					if( vo.getExitpic() == null )
 					{
 					%>
 						<td colspan="2">
@@ -77,7 +77,7 @@ font
 					//출차 X 안했을 경우(Now_Enter) '현재시간 - 입차시간 = 주차시간' 
 					int now_enter = Integer.parseInt(dto.Now_Enter(cmno));
 					
-					if( vo.getExittime() == null )
+					if( vo.getExitpic() == null )
 					{	//60분 미만일 경우
 						if(now_enter < 60)
 						{
@@ -96,7 +96,7 @@ font
 					%>
 					<%
 					//출차 O 했을 경우 '출차시간 - 입차시간 = 주차시간'
-					if( vo.getExittime() != null )
+					if( vo.getExitpic() != null )
 					{	//60분 미만일 경우 분만 표현
 						if(exit_enter < 60)
 						{
@@ -125,7 +125,7 @@ font
 					<span id="span2"><font size="4"><b>주차요금</b></font></span>
 					<% 
 					//출차 X 안했을때 요금
-					if( vo.getExittime() == null )
+					if( vo.getExitpic() == null )
 					{ 	//주차시간 10분 미만일 경우
 						if(now_enter < 10)
 						{
@@ -169,7 +169,7 @@ font
 					%>
 					<%
 					//출차 O 했을때 요금
-					if(vo.getExittime() != null)
+					if(vo.getExitpic() != null)
 					{ 	//주차시간 10분 미만일 경우
 						if(exit_enter < 10)
 						{
