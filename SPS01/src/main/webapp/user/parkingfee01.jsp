@@ -11,6 +11,8 @@ CarinfoVO vo  = dto.Read(cmno);
 //결제요금
 dto.UpdatePayamount(vo);
 
+dto.UpdatePaymethod(cmno, vo);
+
 int payamountInt = Integer.parseInt(vo.getPayamount());
 
 //출차시간 - 입차시간 = 주차시간 
