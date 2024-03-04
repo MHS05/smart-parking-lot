@@ -13,6 +13,8 @@ dto.UpdateTimecal(vo);
 
 dto.UpdatePayamount(vo);
 
+dto.UpdatePaymethod(cmno, vo);
+
 int payamountInt = Integer.parseInt(vo.getPayamount());
 
 //출차시간 - 입차시간 = 주차시간 
