@@ -2,36 +2,39 @@
     pageEncoding="EUC-KR"%>
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
-<%@ page import="java.text.DecimalFormat" %>
 <%
 String cmno = request.getParameter("cmno");
-if( cmno == null || cmno.equals("") )
-{
-	response.sendRedirect("main.jsp");
-	return;
-}
 
 CarinfoDTO dto = new CarinfoDTO();
 CarinfoVO vo  = dto.Read(cmno);
-if( vo == null )
-{
-	response.sendRedirect("main.jsp");
-	return;	
-}
+
+int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 
 //결제방법
 String paymethod = request.getParameter("paymethod");
 vo.setPaymethod(paymethod);
 dto.UpdatePaymethod(cmno, vo);
 
-int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
-int timecal = exit_enter / 30;
-timecal = timecal * 600;
+//결제요금
+dto.UpdatePayamount(vo);
 
-//숫자 세자리 수 마다 ,
-DecimalFormat formatter = new DecimalFormat("#,###");
-String payamount = formatter.format(timecal);
+int payamountInt = Integer.parseInt(vo.getPayamount());
 
+//주차금액에 따른 지불 금액 
+int insert_money = 0;
+
+if(payamountInt == 0){
+	insert_money = 0;
+}else if(payamountInt > 0 && payamountInt <= 1000){
+	insert_money += 1000;
+}else if(payamountInt > 1000 && payamountInt <= 5000){
+	insert_money += 5000;
+}else if(payamountInt > 5000 && payamountInt <= 10000){
+	insert_money += 10000;
+}
+
+//거스름 돈
+int change = insert_money - payamountInt;
 %>
 <!DOCTYPE html>
 <html>
@@ -64,7 +67,7 @@ String payamount = formatter.format(timecal);
 		<div align="center"><h2>거스름 돈이 반환되고 있습니다.<br>잠시만 기다려 주세요.</h2></div>
 		<div align="center"><img src="../image/cashback.png" style="width:400px; height:200px;"></div>
 		<div align="center"><hr style="width:300px"></div><br>
-		<div align="center"><h2>결제금액 : <%= payamount %>원<br><br>투입한 금액 : 10,000원<br><br>거스름 돈 : 8,800원</h2></div>
+		<div align="center"><h2>결제금액 : <%= payamountInt %>원<br><br>투입한 금액 : <%= insert_money %>원<br><br>거스름 돈 : <%= change %>원</h2></div>
 		<div class="popup_close" align="center"><h3>결제 화면은 <span id="countdown" style="color:red">10</span>초 후에 자동으로 닫힙니다.</h3></div>
 <script>
 // 카운트다운 시작
