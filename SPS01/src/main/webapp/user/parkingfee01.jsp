@@ -6,18 +6,25 @@
 String cmno = request.getParameter("cmno");
 
 CarinfoDTO dto = new CarinfoDTO();
-CarinfoVO vo  = dto.Read(cmno);
+CarinfoVO vo   = dto.Read(cmno);
 
 //결제요금
 dto.UpdateTimecal(vo);
 
 dto.UpdatePayamount(vo);
 
-int payamountInt = Integer.parseInt(vo.getPayamount());
+int payamountInt = 0;
+try
+{
+	payamountInt = Integer.parseInt(vo.getPayamount());
+} catch(Exception e){}
 
-//출차시간 - 입차시간 = 주차시간 
-int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
-
+//출차시간 - 입차시간 = 주차시간
+int exit_enter = 0;
+try
+{
+exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+} catch(Exception e){}
 int hour = exit_enter / 60;
 int min  = exit_enter - (hour * 60);
 int day  = hour / 24;

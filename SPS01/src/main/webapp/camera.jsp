@@ -24,7 +24,7 @@ String cmno = request.getParameter("cmno");
 			<a href="main.jsp?date=<%= date %>"><img src="image/admin.png" id="admin_img"><br><font color="white">관리자 페이지</font></a>
 		</div>
 		<span class="money">
-			<a href="user/parkingfee01.jsp?cmno=<%= cmno %>"><img src="image/money.png" style="width:100px; height:80px;"><br><font color="white">&emsp;정산하기</font></a>
+			<a href="user/parkingfee01.jsp?cmno=<%=cmno%>"><img src="image/money.png" style="width:100px; height:80px;"><br><font color="white">&emsp;정산하기</font></a>
 		</span>
 		<table border="0" align="center" style="opacity: 0.93;">
 			<tr>
