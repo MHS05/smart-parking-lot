@@ -9,9 +9,9 @@ CarinfoDTO dto = new CarinfoDTO();
 CarinfoVO vo  = dto.Read(cmno);
 
 //결제요금
-dto.UpdatePayamount(vo);
+dto.UpdateTimecal(vo);
 
-dto.UpdatePaymethod(cmno, vo);
+dto.UpdatePayamount(vo);
 
 int payamountInt = Integer.parseInt(vo.getPayamount());
 
