@@ -75,7 +75,7 @@ public class ListDTO extends DBManager
 		
 		String sql = "";
 		
-		sql  = "select cmno,carnum,entertime,exittime from carinfo ";
+		sql  = "select cmno,carnum,entertime,exittime,paymethod,payamount,payclassifi from carinfo ";
 		sql += "where entertime like '%" + date + "%'";
 		this.RunSelect(sql);
 		while( this.GetNext() == true)
@@ -85,19 +85,9 @@ public class ListDTO extends DBManager
 			vo.setCarnum(this.GetValue("carnum"));
 			vo.setEntertime(this.GetValue("entertime"));
 			vo.setExittime(this.GetValue("exittime"));
-			
-			/*
-			if(this.GetValue("timecal")==null)
-			{
-				vo.setTimecal("");
-			}else
-			{
-				vo.setTimecal(this.GetValue("timecal"));
-			}
-			
 			if(this.GetValue("paymethod")==null)
 			{
-				vo.setPaymethod("");
+				vo.setPaymethod("?");
 			}else
 			{
 				vo.setPaymethod(this.GetValue("paymethod"));
@@ -105,7 +95,7 @@ public class ListDTO extends DBManager
 			
 			if(this.GetValue("payamount")==null)
 			{
-				vo.setPayamount("");
+				vo.setPayamount("?");
 			}else
 			{
 				vo.setPayamount(this.GetValue("payamount"));
@@ -113,12 +103,11 @@ public class ListDTO extends DBManager
 			
 			if(this.GetValue("payclassifi")==null)
 			{
-				vo.setPayclassifi("");
+				vo.setPayclassifi("?");
 			}else
 			{
 				vo.setPayclassifi(this.GetValue("payclassifi"));
 			}
-			 */
 			list.add(vo);
 		}		
 		this.DBClose();
@@ -175,79 +164,76 @@ public class ListDTO extends DBManager
 			return general;
 		}
 		
-		//현금 결제 금액 구하는 함수
-		public int getCash(String date) 
+		//현금 결제 총 금액, 건수 구하는 함수
+		public ArrayList<Integer> getCash(String date) 
 		{
 			this.DBOpen();
 			
-			String c = "";
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			
 			String sql = "";
 			
-			sql  = "select sum(payamount) as cash from carinfo ";
+			sql  = "select sum(payamount) as cash, count(*) as count from carinfo ";
 			sql += "where entertime like '%" + date + "%' ";
-			sql += "and paymethod = '현금'";
+			sql += "and paymethod = 'cash'";
 			this.RunSelect(sql);
 			
 			
 			while( this.GetNext() == true)
 			{
-				c = this.GetValue("cash");
+				int cash = 0;
+				
+				if(this.GetValue("cash") != null)
+				{
+					String c = this.GetValue("cash");
+					cash = Integer.parseInt(c);
+				}
+				
+				String co = this.GetValue("count");
+				int count = Integer.parseInt(co);
+				
+				list.add(count);
+				list.add(cash);
 				
 			}
 			
-			int cash = Integer.parseInt(c);
-			
-			return cash;
+			return list;
 		}
 		
-		//카드 결제 금액 구하는 함수
-		public int getCard(String date) 
+		//카드 결제 총 금액, 건수 구하는 함수
+		public ArrayList<Integer> getCard(String date) 
 		{
 			this.DBOpen();
 			
-			String c = "";
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			
 			String sql = "";
 			
-			sql  = "select sum(payamount) as card from carinfo ";
+			sql  = "select sum(payamount) as card, count(*) as count from carinfo ";
 			sql += "where entertime like '%" + date + "%' ";
-			sql += "and paymethod = '카드'";
+			sql += "and paymethod = 'card'";
 			this.RunSelect(sql);
 			
 			
 			while( this.GetNext() == true)
 			{
-				c = this.GetValue("card");
+				int card = 0;
+				
+				if(this.GetValue("card") != null)
+				{
+					String c = this.GetValue("card");
+					card = Integer.parseInt(c);
+				}
+				
+				String co = this.GetValue("count");
+				int count = Integer.parseInt(co);
+				
+				list.add(count);
+				list.add(card);
 				
 			}
 			
-			int card = Integer.parseInt(c);
 			
-			return card;
-		}
-		
-		//회차차량수 구하는 함수
-		public int getTruning2(String date) 
-		{
-			this.DBOpen();
-			
-			String t = "";
-			String sql = "";
-			
-			sql  = "select count(*) as turning from carinfo ";
-			sql += "where entertime != exittime ";
-			sql += "and timecal < 10 ";
-			sql += "and entertime like '%" + date + "%' ";
-			this.RunSelect(sql);
-			
-			
-			while( this.GetNext() == true)
-			{
-				t = this.GetValue("turning");
-				
-			}
-			
-			int turning = Integer.parseInt(t);
-			
-			return turning;
+			return list;
 		}
 }
