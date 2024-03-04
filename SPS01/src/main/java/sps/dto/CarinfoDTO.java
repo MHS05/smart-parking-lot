@@ -166,15 +166,30 @@ public class CarinfoDTO extends DBManager
 		return exit_enter;
 	}
 	
-	// 출차시간 - 입차시간 = 주차시간(분) 
-	public boolean UpdateTimecal(CarinfoVO cmno, CarinfoVO vo)
+	// 전체 timecal 계산 > 출차시간 - 입차시간 = 주차시간(분) 
+	public boolean UpdateTimecal(CarinfoVO vo)
 	{
 		this.DBOpen();
 		
 		String sql = "";
 		
 		sql  = "update carinfo set ";
-		sql += "timecal=" + vo.getTimecal() + "' "; 
+		sql += "timecal= TIMESTAMPDIFF(minute, entertime, exittime) "; 
+		this.RunCommand(sql);
+		
+		this.DBClose();
+		return true;
+	}
+	
+	// 결제수단(현금 cash ,카드 card)
+	public boolean UpdatePaymethod(String cmno, CarinfoVO vo)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "update carinfo set ";
+		sql += "paymethod='" + vo.getPaymethod() + "' ";
 		sql += "where cmno = "  + cmno;
 		this.RunCommand(sql);
 		
@@ -182,16 +197,21 @@ public class CarinfoDTO extends DBManager
 		return true;
 	}
 	
-	// 주차시간(분)/30 -> * 600 = 주차요금 
-	public boolean UpdatePayamount(CarinfoVO cmno, CarinfoVO vo)
+	
+	// 주차요금 계산 / ceil는 올림 함수(소수점 이하를 올림하여 가장 가까운 정수를 반환)
+	public boolean UpdatePayamount(CarinfoVO vo)
 	{
 		this.DBOpen();
 		
 		String sql = "";
 		
 		sql  = "update carinfo set ";
-		sql += "payamount=" + vo.getPayamount() + "' ";
-		sql += "where cmno = "  + cmno;
+		sql += "payamount= ";
+		sql += "case ";
+		sql += "when timecal < 10 then 0 ";
+		sql += "when timecal >= 10 and timecal < 30 then 600 ";
+		sql += "else 600 * ceil(timecal/30) ";
+		sql += "END";
 		this.RunCommand(sql);
 		
 		this.DBClose();

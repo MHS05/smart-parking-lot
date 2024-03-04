@@ -32,6 +32,6 @@ if( cmno == null || cmno.equals("") )
 		<div align="center"><h1>&lt;카드 결제&gt;</h1></div>
 		<div align="center"><h1>카드를 투입구 끝까지 넣어주세요.</h1></div>
 		<div align="center"><img src="../image/cardinsert.png" style="width:350px; height:450px;"></div>
-		<div align="center"><a href="pay_cardok.jsp?cmno=<%=cmno%>"><input type="button" value="다음" class="next_btn"></a></div>
+		<div align="center"><a href="pay_cardok.jsp?cmno=<%=cmno%>&paymethod=card"><input type="button" value="다음" class="next_btn"></a></div>
 	</body>
 </html>

@@ -19,6 +19,11 @@ if( vo == null )
 	return;	
 }
 
+//결제방법
+String paymethod = request.getParameter("paymethod");
+vo.setPaymethod(paymethod);
+dto.UpdatePaymethod(cmno, vo);
+
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 int timecal = exit_enter / 30;
 timecal = timecal * 600;
