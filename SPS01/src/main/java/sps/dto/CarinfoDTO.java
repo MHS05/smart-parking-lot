@@ -184,21 +184,25 @@ public class CarinfoDTO extends DBManager
 	// 결제수단(현금 cash ,카드 card)
 	public boolean UpdatePaymethod(String cmno, CarinfoVO vo)
 	{
-		this.DBOpen();
-		
-		String sql = "";
-		
-		sql  = "update carinfo set ";
-		sql += "paymethod='" + vo.getPaymethod() + "' ";
-		sql += "where cmno = "  + cmno;
-		this.RunCommand(sql);
-		
-		this.DBClose();
-		return true;
+	    this.DBOpen();
+	    
+	    String sql = "";
+	    
+	    sql  = "update carinfo set ";
+	    sql += "paymethod = ";
+	    sql += "case ";
+	    sql += "when payamount = 0 then 'free' ";
+	    sql += "else '" + vo.getPaymethod() + "' ";
+	    sql += "end ";
+	    sql += "where cmno = " + cmno;
+	    this.RunCommand(sql);
+	    
+	    this.DBClose();
+	    return true;
 	}
 	
 	
-	// 주차요금 계산 / ceil는 올림 함수(소수점 이하를 올림하여 가장 가까운 정수를 반환)
+	// 주차요금 계산 + 결제 구분(일반,회차)
 	public boolean UpdatePayamount(CarinfoVO vo)
 	{
 		this.DBOpen();
@@ -211,7 +215,11 @@ public class CarinfoDTO extends DBManager
 		sql += "when timecal < 10 then 0 ";
 		sql += "when timecal >= 10 and timecal < 30 then 600 ";
 		sql += "else 600 * ceil(timecal/30) ";
-		sql += "END";
+		sql += "END, ";
+	    sql += "payclassifi = case ";
+	    sql += "when timecal < 10 then '회차' ";
+	    sql += "else '일반' ";
+	    sql += "end";
 		this.RunCommand(sql);
 		
 		this.DBClose();
