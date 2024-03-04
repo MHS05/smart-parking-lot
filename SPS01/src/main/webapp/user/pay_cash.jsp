@@ -91,6 +91,6 @@ if(payamount == 0){
 			}
 		} 
 		%>
-		<div align="center"><a href="pay_cashok.jsp?cmno=<%=cmno%>"><input type="button" value="다음" class="next_btn"></a></div>
+		<div align="center"><a href="pay_cashok.jsp?cmno=<%=cmno%>&paymethod=cash"><input type="button" value="다음" class="next_btn"></a></div>
 	</body>
 </html>
