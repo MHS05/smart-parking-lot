@@ -34,17 +34,17 @@ DecimalFormat formatter = new DecimalFormat("#,###");
 	<tr>
 		<td height="30px">현금</td>
 		<td><%= cashlist.get(0) %></td>
-		<td colspan="2"><%= cashlist.get(1) %></td>
+		<td colspan="2"><%= formatter.format(cashlist.get(1)) %></td>
 	</tr>
 	<tr>
 		<td height="30px">카드</td>
 		<td><%= cardlist.get(0) %></td>
-		<td colspan="2"><%= cardlist.get(1) %></td>
+		<td colspan="2"><%= formatter.format(cardlist.get(1)) %></td>
 	</tr>
 	<tr>
 		<td height="30px">합계</td>
 		<td><%= cardlist.get(0) + cashlist.get(0) %></td>
-		<td colspan="2"><%= cardlist.get(1) + cashlist.get(1) %></td>
+		<td colspan="2"><%= formatter.format(cardlist.get(1) + cashlist.get(1)) %></td>
 	</tr>
 	<tr style="border:none">
 		<td colspan="4" style="height:20px"></td>
@@ -69,7 +69,8 @@ DecimalFormat formatter = new DecimalFormat("#,###");
 				<td height="40px"><%= vo.getExittime() %></td>
 				<td><%= vo.getCarnum() %></td>
 				<td><%= vo.getPayclassifi() %></td>
-				<td><%= vo.getPayamount() %></td>
+				<% int amount = Integer.parseInt(vo.getPayamount()); %>
+				<td><%= formatter.format(amount) %></td>
 			</tr>
 			<%
 			}
