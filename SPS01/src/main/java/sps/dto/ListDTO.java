@@ -123,8 +123,8 @@ public class ListDTO extends DBManager
 			String t = "";
 			String sql = "";
 			
-			sql  = "select count(payclassifi = '회차') as turning from carinfo ";
-			sql += "where entertime != exittime ";
+			sql  = "select count(*) as turning from carinfo ";
+			sql += "where payclassifi = '회차' ";
 			sql += "and entertime like '%" + date + "%' ";
 			this.RunSelect(sql);
 			
@@ -135,7 +135,12 @@ public class ListDTO extends DBManager
 				
 			}
 			
-			int turning = Integer.parseInt(t);
+			int turning = 0;
+			
+			try 
+			{
+				turning = Integer.parseInt(t);
+			} catch (Exception e) {}
 			
 			return turning;
 		}
@@ -148,8 +153,8 @@ public class ListDTO extends DBManager
 			String g = "";
 			String sql = "";
 			
-			sql  = "select count(payclassifi = '일반') as general from carinfo ";
-			sql += "where entertime != exittime ";
+			sql  = "select count(*) as general from carinfo ";
+			sql += "where payclassifi = '일반' ";
 			sql += "and entertime like '%" + date + "%' ";
 			this.RunSelect(sql);
 			
@@ -159,7 +164,12 @@ public class ListDTO extends DBManager
 				
 			}
 			
-			int general = Integer.parseInt(g);
+			int general = 0;
+			
+			try
+			{
+			general = Integer.parseInt(g);
+			}catch (Exception e) {}
 			
 			return general;
 		}
