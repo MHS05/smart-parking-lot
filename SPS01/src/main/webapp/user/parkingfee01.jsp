@@ -8,7 +8,7 @@ String cmno = request.getParameter("cmno");
 CarinfoDTO dto = new CarinfoDTO();
 CarinfoVO vo   = dto.Read(cmno);
 
-//ê²°ì œìš”ê¸ˆ
+//°áÁ¦¿ä±Ý
 dto.UpdateTimecal(vo);
 
 dto.UpdatePayamount(vo);
@@ -21,7 +21,7 @@ try
 } catch(Exception e){}
 
 
-//ì¶œì°¨ì‹œê°„ - ìž…ì°¨ì‹œê°„ = ì£¼ì°¨ì‹œê°„
+//ÃâÂ÷½Ã°£ - ÀÔÂ÷½Ã°£ = ÁÖÂ÷½Ã°£
 int exit_enter = 0;
 try
 {
@@ -35,7 +35,7 @@ int day  = hour / 24;
 <html>
 	<head>
 		<meta charset="EUC-KR">
-		<title>ìŠ¤ë§ˆíŠ¸ ì£¼ì°¨ìž¥ ê´€ë¦¬ ì‹œìŠ¤í…œ</title>
+		<title>½º¸¶Æ® ÁÖÂ÷Àå °ü¸® ½Ã½ºÅÛ</title>
 		<link rel="stylesheet" type="text/css" href="../css/sps.css">
 		<link rel="stylesheet" type="text/css" href="../css/background.css">
 	</head>
@@ -50,14 +50,14 @@ int day  = hour / 24;
 			<tr height="20px"></tr>
 			<tr>
 				<td colspan="3" height="100px">
-					<font size="7"><b>ë¬´ì¸ ì •ì‚°ê¸°</b></font>
+					<font size="7"><b>¹«ÀÎ Á¤»ê±â</b></font>
 					<a href="tel:010-1234-5678">
-					<img id="call" src="../image/call.png" title="ê´€ë¦¬ìž ë¬¸ì˜í•˜ê¸°" style="width:100px; height:100px" onclick="document.location.href='tel:010-1234-5678'">
+					<img id="call" src="../image/call.png" title="°ü¸®ÀÚ ¹®ÀÇÇÏ±â" style="width:100px; height:100px" onclick="document.location.href='tel:010-1234-5678'">
 					</a>
 				</td>
 			<tr>
 				<td class="marquee" colspan="3">
-					<MARQUEE><%= vo.getCarnum() %> ê³ ê°ë‹˜, ì €í¬ ì£¼ì°¨ìž¥ì„ ì´ìš©í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤. ì•ˆë…•ížˆ ê°€ì‹­ì‹œì˜¤.</MARQUEE>
+					<MARQUEE><%= vo.getCarnum() %> °í°´´Ô, ÀúÈñ ÁÖÂ÷ÀåÀ» ÀÌ¿ëÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù. ¾È³çÈ÷ °¡½Ê½Ã¿À.</MARQUEE>
 				</td>
 			</tr>
 			<tr>
@@ -65,30 +65,30 @@ int day  = hour / 24;
 					<table class="fee_table01" border="1">
 						<tr style="background-color:#fff2a5">
 							<td align="center" height="100px">
-								<span id="span2"><font size="4"><b>ì°¨ëŸ‰ì •ë³´</b></font></span>
+								<span id="span2"><font size="4"><b>Â÷·®Á¤º¸</b></font></span>
 								<font size="6" color="#2ecc71"><b><%= vo.getCarnum() %></b></font>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-							<font size="5">ìž…ì°¨ì‹œê°„ : <%= vo.getEntertime() %><br><br>
-							ì¶œì°¨ì‹œê°„ : <%= vo.getExittime() %></font><br><br>
+							<font size="5">ÀÔÂ÷½Ã°£ : <%= vo.getEntertime() %><br><br>
+							ÃâÂ÷½Ã°£ : <%= vo.getExittime() %></font><br><br>
 							<% 
-							//ì¶œì°¨ O í–ˆì„ ê²½ìš° 'ì¶œì°¨ì‹œê°„ - ìž…ì°¨ì‹œê°„ = ì£¼ì°¨ì‹œê°„'
+							//ÃâÂ÷ O ÇßÀ» °æ¿ì 'ÃâÂ÷½Ã°£ - ÀÔÂ÷½Ã°£ = ÁÖÂ÷½Ã°£'
 								
 							if( !vo.getEntertime().equals(vo.getExittime()) )
-							{	//60ë¶„ ë¯¸ë§Œì¼ ê²½ìš° ë¶„ë§Œ í‘œí˜„ 
+							{	//60ºÐ ¹Ì¸¸ÀÏ °æ¿ì ºÐ¸¸ Ç¥Çö 
 								if(exit_enter < 60)
 								{
 								%>
-									<font size="6">0ì¼ 0ì‹œê°„ <%= dto.Exit_Enter(cmno) %>ë¶„</font>
+									<font size="6">0ÀÏ 0½Ã°£ <%= dto.Exit_Enter(cmno) %>ºÐ</font>
 								<%
 								}
-								//60ë¶„ ì´ìƒì¼ ê²½ìš° ë‚ ì§œ, ì‹œê°„, ë¶„ í‘œí˜„
+								//60ºÐ ÀÌ»óÀÏ °æ¿ì ³¯Â¥, ½Ã°£, ºÐ Ç¥Çö
 								else
 								{
 								%>
-									<font size="6"><%= day %>ì¼ <%= hour %>ì‹œê°„ <%= min %>ë¶„</font>
+									<font size="6"><%= day %>ÀÏ <%= hour %>½Ã°£ <%= min %>ºÐ</font>
 								<%
 								}
 							}
@@ -102,92 +102,92 @@ int day  = hour / 24;
 					<table class="fee_table01" border="1">
 						<tr style="background-color:#fff2a5">
 							<td align="center" height="100px">
-							<span id="span2"><font size="4"><b>ì£¼ì°¨ìš”ê¸ˆ</b></font></span>
+							<span id="span2"><font size="4"><b>ÁÖÂ÷¿ä±Ý</b></font></span>
 							<%
-							//ì¶œì°¨ O í–ˆì„ë•Œ ìš”ê¸ˆ
+							//ÃâÂ÷ O ÇßÀ»¶§ ¿ä±Ý
 							if(!vo.getEntertime().equals(vo.getExittime()))
-							{ 	//ì£¼ì°¨ì‹œê°„ 10ë¶„ ë¯¸ë§Œì¼ ê²½ìš°
+							{ 	//ÁÖÂ÷½Ã°£ 10ºÐ ¹Ì¸¸ÀÏ °æ¿ì
 								if(exit_enter < 10)
 								{
 								%>
-									<font size="6" color="#2ecc71"><b>0ì›(íšŒì°¨)</b></font>
+									<font size="6" color="#2ecc71"><b>0¿ø(È¸Â÷)</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">ì£¼ì°¨ìš”ê¸ˆ : 0ì›<br><br>ê²°ì œìš”ê¸ˆ : 0ì›</font></td>
+									<font size="5">ÁÖÂ÷¿ä±Ý : 0¿ø<br><br>°áÁ¦¿ä±Ý : 0¿ø</font></td>
 								</tr>
 								<%
 								}
-								//ì£¼ì°¨ì‹œê°„ 10ë¶„ ì´ìƒ 30ë¶„ ë¯¸ë§Œì¼ ê²½ìš°
+								//ÁÖÂ÷½Ã°£ 10ºÐ ÀÌ»ó 30ºÐ ¹Ì¸¸ÀÏ °æ¿ì
 								else if(10 <= exit_enter && exit_enter < 30)
 								{
 								%>
-									<font size="6" color="#2ecc71"><b>600ì›</b></font>
+									<font size="6" color="#2ecc71"><b>600¿ø</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">ì£¼ì°¨ìš”ê¸ˆ : 600ì›<br><br>ê²°ì œìš”ê¸ˆ : 600ì›</font></td>
+									<font size="5">ÁÖÂ÷¿ä±Ý : 600¿ø<br><br>°áÁ¦¿ä±Ý : 600¿ø</font></td>
 								</tr>
 								<%
 								}
-								//ì£¼ì°¨ì‹œê°„ 30ë¶„ ì´ìƒì¼ ê²½ìš°
+								//ÁÖÂ÷½Ã°£ 30ºÐ ÀÌ»óÀÏ °æ¿ì
 								else
 								{
 								%>
-									<font size="6" color="#2ecc71"><b><%= payamountInt %>ì›</b></font>
+									<font size="6" color="#2ecc71"><b><%= payamountInt %>¿ø</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">ì£¼ì°¨ìš”ê¸ˆ : <%= payamountInt %>ì›<br><br>ê²°ì œìš”ê¸ˆ : <%= payamountInt %>ì›</font></td>
+									<font size="5">ÁÖÂ÷¿ä±Ý : <%= payamountInt %>¿ø<br><br>°áÁ¦¿ä±Ý : <%= payamountInt %>¿ø</font></td>
 								</tr>
 								<%
 								}
 							} 
 							%>
 							<% 
-							//ì¶œì°¨ X ì•ˆí–ˆì„ë•Œ ìš”ê¸ˆ
+							//ÃâÂ÷ X ¾ÈÇßÀ»¶§ ¿ä±Ý
 							int now_enter = Integer.parseInt(dto.Now_Enter(cmno));
 							
 							if( vo.getEntertime().equals(vo.getExittime()) )
-							{ 	//ì£¼ì°¨ì‹œê°„ 10ë¶„ ë¯¸ë§Œì¼ ê²½ìš°
+							{ 	//ÁÖÂ÷½Ã°£ 10ºÐ ¹Ì¸¸ÀÏ °æ¿ì
 								if(now_enter < 10)
 								{
 								%>
-									<font size="6" color="#2ecc71"><b>0ì›</b></font>
+									<font size="6" color="#2ecc71"><b>0¿ø</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">ì£¼ì°¨ìš”ê¸ˆ : 0ì›<br><br>ê²°ì œìš”ê¸ˆ : </font></td>
+									<font size="5">ÁÖÂ÷¿ä±Ý : 0¿ø<br><br>°áÁ¦¿ä±Ý : </font></td>
 								</tr>
 								<%
 								}
-								//ì£¼ì°¨ì‹œê°„ 30ë¶„ ë¯¸ë§Œì¼ ê²½ìš°
+								//ÁÖÂ÷½Ã°£ 30ºÐ ¹Ì¸¸ÀÏ °æ¿ì
 								else if(now_enter < 30)	
 								{
 								%>
-									<font size="6" color="#2ecc71"><b>600ì›</b></font>
+									<font size="6" color="#2ecc71"><b>600¿ø</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">ì£¼ì°¨ìš”ê¸ˆ : 600ì›<br><br>ê²°ì œìš”ê¸ˆ : </font></td>
+									<font size="5">ÁÖÂ÷¿ä±Ý : 600¿ø<br><br>°áÁ¦¿ä±Ý : </font></td>
 								</tr>
 								<%
 								}
-								//ì£¼ì°¨ì‹œê°„ 30ë¶„ ì´ìƒì¼ ê²½ìš°
+								//ÁÖÂ÷½Ã°£ 30ºÐ ÀÌ»óÀÏ °æ¿ì
 								else 
 								{
 									%>
-									<font size="6" color="#2ecc71"><b><%= payamountInt %>ì›</b></font>
+									<font size="6" color="#2ecc71"><b><%= payamountInt %>¿ø</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">ì£¼ì°¨ìš”ê¸ˆ : <%= payamountInt %>ì›<br><br>ê²°ì œìš”ê¸ˆ : </font></td>
+									<font size="5">ÁÖÂ÷¿ä±Ý : <%= payamountInt %>¿ø<br><br>°áÁ¦¿ä±Ý : </font></td>
 								</tr>
 								<%
 								}
@@ -198,12 +198,12 @@ int day  = hour / 24;
 			</tr>
 			<tr>
 			<% 
-			//ì£¼ì°¨ì‹œê°„ 10ë¶„ ì´ìƒì¼ ê²½ìš°ì—ë§Œ ê²°ì œí•˜ê¸° ë²„íŠ¼ í‘œì‹œ
+			//ÁÖÂ÷½Ã°£ 10ºÐ ÀÌ»óÀÏ °æ¿ì¿¡¸¸ °áÁ¦ÇÏ±â ¹öÆ° Ç¥½Ã
 			if(exit_enter > 10)
 			{ 
 			%>
 				<td colspan="3">
-					<a href="parkingfee02.jsp?cmno=<%= cmno %>"><input type="button" value="ê²°ì œí•˜ê¸°" class="pay_btn"></a>
+					<a href="parkingfee02.jsp?cmno=<%= cmno %>"><input type="button" value="°áÁ¦ÇÏ±â" class="pay_btn"></a>
 				</td>
 			<%
 			}
