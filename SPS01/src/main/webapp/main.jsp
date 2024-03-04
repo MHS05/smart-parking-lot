@@ -32,6 +32,14 @@ String managecctv = request.getParameter("managecctv");
 CctvDTO dto2 = new CctvDTO();
 CctvVO vo = dto2.read(managecctv);
 
+//리스트로 현금결제 건수,총 금액 가져옴(첫번째 원소가 건수, 두번째가 금액)
+ArrayList<Integer> cashlist = dto.getCash(date);
+
+//리스트로 카드결제 건수,총 금액 가져옴(첫번째 원소가 건수, 두번째가 금액)
+ArrayList<Integer> cardlist = dto.getCard(date);
+
+//숫자 세자리 수 마다 ,
+DecimalFormat formatter = new DecimalFormat("#,###");
 
 %>
 <script>
@@ -164,18 +172,18 @@ CctvVO vo = dto2.read(managecctv);
 						</tr>
 						<tr>
 							<td height="30px">현금</td>
-							<td>9</td>
-							<td colspan="2">1,150,000 원</td>
+							<td><%= cashlist.get(0) %></td>
+							<td colspan="2"><%= formatter.format(cashlist.get(1)) %> 원</td>
 						</tr>
 						<tr>
 							<td height="30px">카드</td>
-							<td>15</td>
-							<td colspan="2">2,800,000 원</td>
+							<td><%= cardlist.get(0) %></td>
+							<td colspan="2"><%= formatter.format(cardlist.get(1)) %> 원</td>
 						</tr>
 						<tr>
 							<td height="30px">합계</td>
-							<td>24</td>
-							<td colspan="2">3,950,000 원</td>
+							<td><%= cardlist.get(0) + cashlist.get(0) %></td>
+							<td colspan="2"><%= formatter.format(cardlist.get(1) + cashlist.get(1)) %> 원</td>
 						</tr>
 						<tr style="border:none">
 							<td colspan="4" style="height:20px"></td>
@@ -369,7 +377,7 @@ function PayList()
 {
 	$.ajax({
 		type : "get",
-		url: "paylist.jsp",
+		url: "paylist.jsp?date=<%= date %>",
 		dataType: "html",
 		success : function(data) 
 		{	

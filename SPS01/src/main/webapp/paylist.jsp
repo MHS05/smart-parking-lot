@@ -7,7 +7,6 @@
 <%
 
 String date = request.getParameter("date");
-date = "2024-02-28";
 ListDTO dto = new ListDTO();
 
 //리스트로 현금결제 건수,총 금액 가져옴(첫번째 원소가 건수, 두번째가 금액)
@@ -34,17 +33,17 @@ DecimalFormat formatter = new DecimalFormat("#,###");
 	<tr>
 		<td height="30px">현금</td>
 		<td><%= cashlist.get(0) %></td>
-		<td colspan="2"><%= formatter.format(cashlist.get(1)) %></td>
+		<td colspan="2"><%= formatter.format(cashlist.get(1)) %> 원</td>
 	</tr>
 	<tr>
 		<td height="30px">카드</td>
 		<td><%= cardlist.get(0) %></td>
-		<td colspan="2"><%= formatter.format(cardlist.get(1)) %></td>
+		<td colspan="2"><%= formatter.format(cardlist.get(1)) %> 원</td>
 	</tr>
 	<tr>
 		<td height="30px">합계</td>
 		<td><%= cardlist.get(0) + cashlist.get(0) %></td>
-		<td colspan="2"><%= formatter.format(cardlist.get(1) + cashlist.get(1)) %></td>
+		<td colspan="2"><%= formatter.format(cardlist.get(1) + cashlist.get(1)) %> 원</td>
 	</tr>
 	<tr style="border:none">
 		<td colspan="4" style="height:20px"></td>
