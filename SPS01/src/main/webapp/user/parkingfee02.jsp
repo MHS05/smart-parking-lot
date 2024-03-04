@@ -12,7 +12,6 @@ if( cmno == null || cmno.equals("") )
 CarinfoDTO dto = new CarinfoDTO();
 CarinfoVO vo  = dto.Read(cmno);
 
-dto.UpdatePaymethod(cmno, vo);
 %>
 <!DOCTYPE html>
 <html>
