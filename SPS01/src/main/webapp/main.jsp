@@ -445,6 +445,7 @@ function openinfo()
 	window.open('info.jsp', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
 }
 
+
 </script>
 	</body>
 </html>

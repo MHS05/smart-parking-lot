@@ -1,21 +1,26 @@
-	<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%
-String cmno = request.getParameter("cmno");
 
-CarinfoDTO dto = new CarinfoDTO();
-CarinfoVO vo  = dto.Read(cmno);
+String date = request.getParameter("date");
+date = "2024-02-28";
+ListDTO dto = new ListDTO();
 
-int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
-int timecal = exit_enter / 30;
-timecal = timecal * 600;
+//리스트로 현금결제 건수,총 금액 가져옴(첫번째 원소가 건수, 두번째가 금액)
+ArrayList<Integer> cashlist = dto.getCash(date);
+
+//리스트로 카드결제 건수,총 금액 가져옴(첫번째 원소가 건수, 두번째가 금액)
+ArrayList<Integer> cardlist = dto.getCard(date);
+
+//출차정보 가져오기
+ArrayList<CarinfoVO> list = dto.getExitInfoList(date);
 
 //숫자 세자리 수 마다 ,
 DecimalFormat formatter = new DecimalFormat("#,###");
-String payamount = formatter.format(timecal);
 %>
 <table class="table04" border="1" align="center">
 	<tr>
@@ -28,18 +33,18 @@ String payamount = formatter.format(timecal);
 	</tr>
 	<tr>
 		<td height="30px">현금</td>
-		<td>9</td>
-		<td colspan="2">1,150,000 원</td>
+		<td><%= cashlist.get(0) %></td>
+		<td colspan="2"><%= cashlist.get(1) %></td>
 	</tr>
 	<tr>
 		<td height="30px">카드</td>
-		<td>15</td>
-		<td colspan="2">2,800,000 원</td>
+		<td><%= cardlist.get(0) %></td>
+		<td colspan="2"><%= cardlist.get(1) %></td>
 	</tr>
 	<tr>
 		<td height="30px">합계</td>
-		<td>24</td>
-		<td colspan="2">3,950,000 원</td>
+		<td><%= cardlist.get(0) + cashlist.get(0) %></td>
+		<td colspan="2"><%= cardlist.get(1) + cashlist.get(1) %></td>
 	</tr>
 	<tr style="border:none">
 		<td colspan="4" style="height:20px"></td>
@@ -57,18 +62,21 @@ String payamount = formatter.format(timecal);
 				<td class="td4">금액</td>
 			</tr>
 			<%
-			for(int i=1; i<20; i++)
+			for(CarinfoVO vo : list)
 			{
 			%>
 			<tr>
 				<td height="40px"><%= vo.getExittime() %></td>
 				<td><%= vo.getCarnum() %></td>
-				<td>현금</td>
-				<td><%= payamount %></td>
+				<td><%= vo.getPayclassifi() %></td>
+				<td><%= vo.getPayamount() %></td>
 			</tr>
 			<%
 			}
 			%>
+			<tr>
+				<td colspan="4"></td>
+			</tr>
 		</table>
 	</div>
 </table>
