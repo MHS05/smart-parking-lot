@@ -32,7 +32,8 @@ create table exitpic
 
 create table parkingcardetect
 (
-	cctv varchar(100) primary key comment '주차장cctv',
-	totalspace int comment '총자리수',
-	totalcar int comment '현재차량수'
+	managecctv int auto_increment primary key comment 'cctv관리번호',
+	cctv varchar(100) comment '주차장cctv',
+	totalspace varchar(100) comment '총자리수',
+	totalcar varchar(100) comment '현재차량수'
 )comment '주차장차탐지';

@@ -16,6 +16,7 @@ MultipartRequest multi = new MultipartRequest(request,uploadPath,size,
 
 String cctv_image = (String)multi.getFilesystemName("cctv_image");
 
+
 if (cctv_image != null)
 {
 	//논리명을 물리명 이름으로 변경한다.
@@ -30,11 +31,12 @@ if (cctv_image != null)
 
 CctvVO vo = new CctvVO();
 vo.setCctv(cctv_image);
-/* CctvDTO 필요
-CarinfoDTO dto = new CarinfoDTO();
+vo.setTotalcar("30");
+vo.setTotalspace("29");
+CctvDTO dto = new CctvDTO();
 dto.Insert(vo);
-*/
 
-response.sendRedirect("main.jsp");
+
+response.sendRedirect("main.jsp?managecctv=" + vo.getManagecctv());
 
 %>
