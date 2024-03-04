@@ -2,31 +2,19 @@
     pageEncoding="EUC-KR"%>
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
-<%@ page import="java.text.DecimalFormat" %>
 <%
 String cmno = request.getParameter("cmno");
-if( cmno == null || cmno.equals("") )
-{
-	response.sendRedirect("main.jsp");
-	return;
-}
 
 CarinfoDTO dto = new CarinfoDTO();
 CarinfoVO vo  = dto.Read(cmno);
-if( vo == null )
-{
-	response.sendRedirect("main.jsp");
-	return;	
-}
+
+//결제요금
+dto.UpdatePayamount(vo);
+
+int payamountInt = Integer.parseInt(vo.getPayamount());
+
 //출차시간 - 입차시간 = 주차시간 
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
-int timecal = exit_enter / 30;
-int payamount = timecal * 600;
-
-/*숫자 세자리 수 마다 , 찍고 payamount로 이름 변경
-DecimalFormat formatter = new DecimalFormat("#,###");
-String payamount = formatter.format(timecal);
-*/
 
 int hour = exit_enter / 60;
 int min  = exit_enter - (hour * 60);
@@ -137,16 +125,62 @@ int day  = hour / 24;
 								else
 								{
 								%>
-									<font size="6" color="#2ecc71"><b><%= timecal %>원</b></font>
+									<font size="6" color="#2ecc71"><b><%= payamountInt %>원</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">주차요금 : <%= timecal %>원<br><br>결제요금 : <%= timecal %>원</font></td>
+									<font size="5">주차요금 : <%= payamountInt %>원<br><br>결제요금 : <%= payamountInt %>원</font></td>
 								</tr>
 								<%
 								}
 							} 
+							%>
+							<% 
+							//출차 X 안했을때 요금
+							int now_enter = Integer.parseInt(dto.Now_Enter(cmno));
+							
+							if( vo.getEntertime().equals(vo.getExittime()) )
+							{ 	//주차시간 10분 미만일 경우
+								if(now_enter < 10)
+								{
+								%>
+									<font size="6" color="#2ecc71"><b>0원</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+									<font size="5">주차요금 : 0원<br><br>결제요금 : </font></td>
+								</tr>
+								<%
+								}
+								//주차시간 30분 미만일 경우
+								else if(now_enter < 30)	
+								{
+								%>
+									<font size="6" color="#2ecc71"><b>600원</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+									<font size="5">주차요금 : 600원<br><br>결제요금 : </font></td>
+								</tr>
+								<%
+								}
+								//주차시간 30분 이상일 경우
+								else 
+								{
+									%>
+									<font size="6" color="#2ecc71"><b><%= payamountInt %>원</b></font>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+									<font size="5">주차요금 : <%= payamountInt %>원<br><br>결제요금 : </font></td>
+								</tr>
+								<%
+								}
+							}
 							%>
 					</table>
 				</td>
