@@ -31,12 +31,12 @@ if (cctv_image != null)
 
 CctvVO vo = new CctvVO();
 vo.setCctv(cctv_image);
-vo.setTotalcar("30");
 vo.setTotalspace("29");
 CctvDTO dto = new CctvDTO();
 dto.Insert(vo);
+Thread.sleep(10000);
 
 
-response.sendRedirect("main.jsp?managecctv=" + vo.getManagecctv());
+response.sendRedirect("parkingmap.jsp?managecctv=" + vo.getManagecctv());
 
 %>

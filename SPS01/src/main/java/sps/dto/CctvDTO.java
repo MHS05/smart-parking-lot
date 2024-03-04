@@ -12,11 +12,10 @@ public class CctvDTO extends DBManager
 		this.DBOpen();
 		
 		String sql = "";
-		sql += "insert into parkingcardetect (cctv, totalspace, totalcar) ";
+		sql += "insert into parkingcardetect (cctv, totalspace) ";
 		sql += "values (";
 		sql += "'" + vo.getCctv() + "', ";
-		sql += "'" + vo.getTotalspace() + "', ";
-		sql += "'" + vo.getTotalcar() + "'";
+		sql += "'" + vo.getTotalspace() + "'";
 		sql += ")";
 		this.RunCommand(sql);
 		
@@ -29,36 +28,6 @@ public class CctvDTO extends DBManager
 		return true;
 	}
 	
-	public CarinfoVO Read(String cmno)
-	{
-		String sql = "";
-		
-		this.DBOpen();
-
-		sql  = "select carnum,entertime,exittime,timecal, ";
-		sql	+= "enterpic,exitpic,paymethod,payamount,payclassifi from carinfo ";
-		sql += "where cmno = " + cmno;
-		this.RunSelect(sql);
-		if( this.GetNext() == false)
-		{
-			this.DBClose();
-			return null;
-		}
-		CarinfoVO vo = new CarinfoVO();
-		vo.setCmno(cmno);
-		vo.setCarnum(this.GetValue("carnum"));
-		vo.setEntertime(this.GetValue("entertime"));
-		vo.setExittime(this.GetValue("exittime"));
-		vo.setTimecal(this.GetValue("timecal"));
-		vo.setEnterpic(this.GetValue("enterpic"));
-		vo.setExitpic(this.GetValue("exitpic"));
-		vo.setPaymethod(this.GetValue("paymethod"));
-		vo.setPayamount(this.GetValue("payamount"));
-		vo.setPayclassifi(this.GetValue("payclassifi"));
-	
-		this.DBClose();
-		return vo;
-	}	
 	public CctvVO read(String managecctv)
 	{
 		String sql = "";
@@ -78,7 +47,6 @@ public class CctvDTO extends DBManager
 		vo.setManagecctv(managecctv);
 		vo.setCctv(this.GetValue("cctv"));
 		vo.setTotalspace(this.GetValue("totalspace"));
-		vo.setTotalcar(this.GetValue("totalcar"));
 		
 		this.DBClose();
 		return vo;
