@@ -77,3 +77,13 @@ a
 	width:100px;
 	height:80px;
 }
+.enter_complete_message
+{
+	font-size:35px;
+	font-weight:bold;
+}
+.exit_complete_message
+{
+	font-size:35px;
+	font-weight:bold;
+}
