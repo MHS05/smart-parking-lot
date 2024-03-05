@@ -27,11 +27,6 @@ int turning = dto.getTruning(date);
 //일반 차량수
 int general = dto.getGeneral(date);
 
-String managecctv = request.getParameter("managecctv");
-
-CctvDTO dto2 = new CctvDTO();
-CctvVO vo = dto2.read(managecctv);
-
 //리스트로 현금결제 건수,총 금액 가져옴(첫번째 원소가 건수, 두번째가 금액)
 ArrayList<Integer> cashlist = dto.getCash(date);
 
@@ -42,12 +37,6 @@ ArrayList<Integer> cardlist = dto.getCard(date);
 DecimalFormat formatter = new DecimalFormat("#,###");
 
 %>
-<script>
-	function DoWrite()
-	{
-		$("#cctv").submit();
-	}
-</script>
 <style>
 #datepicker
 {

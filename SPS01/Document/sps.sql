@@ -35,5 +35,5 @@ create table parkingcardetect
 	managecctv int auto_increment primary key comment 'cctv관리번호',
 	cctv varchar(100) comment '주차장cctv',
 	totalspace varchar(100) comment '총자리수',
-	totalcar varchar(100) comment '현재차량수'
+	totalcar varchar(100) default 'N' comment '현재차량수'
 )comment '주차장차탐지';
