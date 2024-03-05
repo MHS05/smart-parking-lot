@@ -13,6 +13,10 @@ dto.UpdateTimecal(vo);
 
 dto.UpdatePayamount(vo);
 
+//결제방법
+String paymethod = request.getParameter("paymethod");
+vo.setPaymethod(paymethod);
+dto.UpdatePaymethod(cmno, vo);
 
 int payamountInt = 0;
 try
