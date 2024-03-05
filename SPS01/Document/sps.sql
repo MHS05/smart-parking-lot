@@ -15,7 +15,7 @@ create table carinfo
 	carnum varchar(10) default 'N' comment '차량번호',
 	entertime datetime default now() comment '입차시간',
 	exittime datetime comment '출차시간',
-	timecal int comment '계산시간',
+	timecal int comment '시간계산',
 	enterpic varchar(100) comment '입차사진',
 	exitpic varchar(100) comment '출차사진',
 	paymethod varchar(10) comment '결제수단',
