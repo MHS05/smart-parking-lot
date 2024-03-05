@@ -84,7 +84,7 @@ td
 			<tr>
 				<td colspan="2" height="100px">
 					<a href="javascript:DoLogin();"><input type="button" value="로그인" class="login_btn"></a>&emsp;&emsp;
-					<input type="button" value="취소" class="btn" onclick="window.close()">
+					<a href="../camera.jsp"><input type="button" value="취소" class="btn"></a>
 				</td>
 			</tr>
 		</table>
