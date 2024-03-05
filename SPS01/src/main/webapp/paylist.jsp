@@ -75,7 +75,7 @@ DecimalFormat formatter = new DecimalFormat("#,###");
 			<tr>
 				<td height="40px"><%= vo.getExittime() %></td>
 				<td><%= vo.getCarnum() %></td>
-				<td><%= vo.getPayclassifi() %></td>
+				<td><%= vo.getPaymethod() %></td>
 					<% 
 						int amount = 0;
 						try
