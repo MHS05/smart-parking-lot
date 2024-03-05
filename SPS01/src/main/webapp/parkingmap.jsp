@@ -5,11 +5,7 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.text.*" %>
 <%
-
 String managecctv = request.getParameter("managecctv");
-
-CctvDTO dto = new CctvDTO();
-CctvVO vo = dto.read(managecctv);
 %>
 <style>
 .btn_upload 
@@ -87,8 +83,11 @@ function DoWrite()
 	</tr>
 	<tr>
 		<%
-		if(managecctv != null)
+		if( !managecctv.equals("a"))
 		{
+			CctvDTO dto = new CctvDTO();
+			CctvVO vo = dto.read(managecctv);
+			
 		%>
 			<td height="80px" style="background-color:#e0e0e0"><font size="5"><b><%= vo.getTotalspace() %></b></font></td>
 			<td></td>
@@ -146,7 +145,7 @@ function DoWrite()
 		%>
 	</table>
 	<%
-	if(managecctv == null)
+	if(managecctv.equals("a") )
 	{
 	%>
 	<input type="button" id="upload" onclick="DoWrite()" value="cctv µî·Ï">

@@ -36,6 +36,11 @@ ArrayList<Integer> cardlist = dto.getCard(date);
 //숫자 세자리 수 마다 ,
 DecimalFormat formatter = new DecimalFormat("#,###");
 
+String managecctv = request.getParameter("managecctv");
+if(managecctv == null) 
+{
+	managecctv = "a";
+};
 %>
 <style>
 #datepicker
@@ -258,7 +263,7 @@ window.onload = function()
 {
 	$.ajax({
 		type : "get",
-		url: "parkingmap.jsp",
+		url: "parkingmap.jsp?managecctv=<%= managecctv %>",
 		dataType: "html",
 		success : function(data) 
 		{	

@@ -47,6 +47,7 @@ public class CctvDTO extends DBManager
 		vo.setManagecctv(managecctv);
 		vo.setCctv(this.GetValue("cctv"));
 		vo.setTotalspace(this.GetValue("totalspace"));
+		vo.setTotalcar(this.GetValue("totalcar"));
 		
 		this.DBClose();
 		return vo;
