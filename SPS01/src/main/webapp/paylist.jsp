@@ -18,6 +18,14 @@ ArrayList<Integer> cardlist = dto.getCard(date);
 //출차정보 가져오기
 ArrayList<CarinfoVO> list = dto.getExitInfoList(date);
 
+if( list == null || list.size() == 0 )
+{
+	out.println("<script>alert('결제내역이 없습니다.'); location.href='main.jsp';</script>");
+	return;
+}
+
+
+
 //숫자 세자리 수 마다 ,
 DecimalFormat formatter = new DecimalFormat("#,###");
 %>
@@ -67,8 +75,14 @@ DecimalFormat formatter = new DecimalFormat("#,###");
 			<tr>
 				<td height="40px"><%= vo.getExittime() %></td>
 				<td><%= vo.getCarnum() %></td>
-				<td><%= vo.getPayclassifi() %></td>
-				<% int amount = Integer.parseInt(vo.getPayamount()); %>
+				<td><%= vo.getPaymethod() %></td>
+					<% 
+						int amount = 0;
+						try
+						{
+							amount = Integer.parseInt(vo.getPayamount());
+						}catch(Exception e){}
+					%>
 				<td><%= formatter.format(amount) %></td>
 			</tr>
 			<%

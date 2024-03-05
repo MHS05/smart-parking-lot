@@ -11,7 +11,6 @@ ListDTO dto = new ListDTO();
 ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
 
 list = dto.getExitInfoList(date);
-int allCar  = list.size();
 int turning = dto.getTruning(date);
 int general = dto.getGeneral(date);
 
@@ -28,7 +27,7 @@ int general = dto.getGeneral(date);
 	<tr>
 		<td height="40px"><%= general %></td>
 		<td><%= turning %></td>
-		<td><%= allCar %></td>
+		<td><%= turning + general %></td>
 	</tr>
 	<tr style="border:none">
 		<td colspan="4" style="height:20px"></td>
@@ -37,7 +36,7 @@ int general = dto.getGeneral(date);
 <div style="height:554px; overflow: scroll;">
 	<table class="table03_1" border="1" align="center">
 		<tr>
-			<th class="th3" colspan="4">입출차 리스트</th>
+			<th class="th3" colspan="4">출차 리스트</th>
 		</tr>
 		<tr>
 			<td class="td3">차량번호</td>

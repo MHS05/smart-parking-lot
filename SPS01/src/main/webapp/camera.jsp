@@ -6,7 +6,6 @@
 <%
 CarinfoVO vo = new CarinfoVO();
 vo.setEntertime(vo.getEntertime());
-String date = vo.EntertimeAsDate();
 String cmno = request.getParameter("cmno");
 %>
 <!DOCTYPE html>
@@ -21,7 +20,7 @@ String cmno = request.getParameter("cmno");
 	</head>
 	<body>
 		<div class="admin" align="right">
-			<a href="main.jsp?date=<%= date %>"><img src="image/admin.png" id="admin_img"><br><font color="white">관리자 페이지</font></a>
+			<a href="./login/login.jsp"><img src="image/admin.png" id="admin_img"><br><font color="white">관리자 페이지</font></a>
 		</div>
 		<span class="money">
 			<a href="user/parkingfee01.jsp?cmno=<%=cmno%>"><img src="image/money.png" style="width:100px; height:80px;"><br><font color="white">정산 페이지</font></a>
@@ -72,17 +71,19 @@ String cmno = request.getParameter("cmno");
 		</table>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
+	
 		function DoSubmitEnter()
 		{
-			if(confirm("진행하시겠습니까?"))
-			{
+			if(confirm("입차 하시겠습니까?"))
+			{	
 				return true;
 			}
 			return false;
 		}
+		
 		function DoSubmitExit()
 		{
-			if(confirm("진행하시겠습니까?"))
+			if(confirm("출차 하시겠습니까?"))
 			{
 				$.ajax({
 					type : "get",
@@ -109,28 +110,83 @@ String cmno = request.getParameter("cmno");
 			}
 			return false;
 		}
-		$(document).ready(function() {
-			$('#enter_image').on('change', function(e) {
-				var file = e.target.files[0];
-				var reader = new FileReader();
-				reader.onload = function() {
-					$('#enter_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
-				}
-				reader.readAsDataURL(file);
-				$('#btn_enterupload').css('display','none')
-				$('#enter_imageok').css('display','')
-			});
 		
-			$('#exit_image').on('change', function(e) {
-				var file = e.target.files[0];
-				var reader = new FileReader();
-				reader.onload = function() {
-					$('#exit_image_preview').html('<img src="' + reader.result + '" style="width:600px; height:600px">');
-				}
-				reader.readAsDataURL(file);
-				$('#btn_exitupload').css('display','none')
-				$('#exit_imageok').css('display','')
-			});
+		$(document).ready(function() {
+		    var imageSrc = ''; // 이미지 데이터를 저장할 변수 추가
+
+		    $('#enter_image').on('change', function(e) {
+		        var file = e.target.files[0];
+		        var reader = new FileReader();
+		        reader.onload = function() {
+		            imageSrc = reader.result; // 이미지 데이터를 변수에 저장
+		            $('#enter_image_preview').html('<img src="' + imageSrc + '" style="width:600px; height:600px">');
+		        }
+		        reader.readAsDataURL(file);
+		        $('#btn_enterupload').css('display', 'none');
+		        $('#enter_imageok').css('display', '');
+		    });
+
+		    // 입차 확인 버튼 이벤트 처리
+		    $('#enter').submit(function(e) {
+		        e.preventDefault(); // 기본 이벤트(페이지 전환) 방지
+		        var formData = new FormData(this);
+		        // 이미지 데이터 추가
+		        formData.append('imageSrc', imageSrc);
+		        $.ajax({
+		            type: "post",
+		            url: "enter_uploadok.jsp",
+		            data: formData,
+		            processData: false, // 이미지 데이터를 FormData로 전달할 때 false로 설정
+		            contentType: false, // 이미지 데이터의 형식을 지정하지 않음
+		            dataType: "html",
+		            success: function(data) {
+		                // 통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
+		                $('#enter_imageok').html('<span class="enter_complete_message">입차 완료</span>');
+		            },
+		            complete: function(data) {
+		                // 통신이 성공하거나 실패했어도 이 함수를 타게된다.
+		            },
+		            error: function(xhr, status, error) {
+		                // 통신 오류 발생시	
+		            }
+		        });
+		    });
+
+		    $('#exit_image').on('change', function(e) {
+		        var file = e.target.files[0];
+		        var reader = new FileReader();
+		        reader.onload = function() {
+		            imageSrc = reader.result; // 이미지 데이터를 변수에 저장
+		            $('#exit_image_preview').html('<img src="' + imageSrc + '" style="width:600px; height:600px">');
+		        }
+		        reader.readAsDataURL(file);
+		        $('#btn_exitupload').css('display', 'none');
+		        $('#exit_imageok').css('display', '');
+		    });
+
+		    // 출차 확인 버튼 이벤트 처리
+		    $('#exit').submit(function(e) {
+		        var formData = new FormData(this);
+		        // 이미지 데이터 추가
+		        formData.append('imageSrc', imageSrc);
+		        $.ajax({
+		            type: "post",
+		            url: "exit_uploadok.jsp",
+		            data: formData,
+		            processData: false, // 이미지 데이터를 FormData로 전달할 때 false로 설정
+		            contentType: false, // 이미지 데이터의 형식을 지정하지 않음
+		            dataType: "html",
+		            success: function(data) {
+		                // 통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
+		            },
+		            complete: function(data) {
+		                $('#exit_imageok').html('<span class="exit_complete_message">출차 완료</span>');
+		            },
+		            error: function(xhr, status, error) {
+		                // 통신 오류 발생시	
+		            }
+		        });
+		    });
 		});
 	</script>
 	</body>

@@ -20,8 +20,6 @@ ArrayList<CarinfoVO> list = dto.getCarInfoList(date);
 
 //출차 차량정보
 ArrayList<CarinfoVO> list2 = dto.getExitInfoList(date);
-//출고 차량수
-int allCar  = list2.size();
 //회차 차량수
 int turning = dto.getTruning(date);
 //일반 차량수
@@ -151,7 +149,7 @@ if(managecctv == null)
 						<tr>
 							<td height="30px"><%= general %></td><!-- 전체차량 - 회차차량 -->
 							<td><%= turning %></td><!--회차차량 -->
-							<td><%= allCar %></td><!-- 전체차량 -->
+							<td><%= turning + general %></td><!-- 전체차량 -->
 						</tr>
 						<tr style="border:none">
 							<td colspan="4" style="height:20px"></td>

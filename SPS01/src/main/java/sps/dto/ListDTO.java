@@ -76,7 +76,7 @@ public class ListDTO extends DBManager
 		String sql = "";
 		
 		sql  = "select cmno,carnum,entertime,exittime,paymethod,payamount,payclassifi from carinfo ";
-		sql += "where entertime like '%" + date + "%'";
+		sql += "where entertime != exittime and entertime like '%" + date + "%'";
 		this.RunSelect(sql);
 		while( this.GetNext() == true)
 		{
