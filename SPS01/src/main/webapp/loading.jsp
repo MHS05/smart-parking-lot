@@ -14,7 +14,7 @@
 var bar1 = new ldBar("#myItem1"); // 로딩 바 인스턴스 생성
 var bar2 = document.getElementById('myItem1').ldBar; // 요소에 저장된 로딩 바 인스턴스
 
-var totalTime = 40000; // 총 시간 (40초)
+var totalTime = 10000; // 총 시간 (10초)
 var totalFrames = 100; // 총 프레임 수
 
 var currentFrame = 0; // 현재 프레임
