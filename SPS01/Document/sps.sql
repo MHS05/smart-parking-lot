@@ -15,7 +15,7 @@ create table carinfo
 	carnum varchar(10) default 'N' comment '차량번호',
 	entertime datetime default now() comment '입차시간',
 	exittime datetime comment '출차시간',
-	timecal int comment '계산시간',
+	timecal int comment '시간계산',
 	enterpic varchar(100) comment '입차사진',
 	exitpic varchar(100) comment '출차사진',
 	paymethod varchar(10) comment '결제수단',
@@ -30,7 +30,10 @@ create table exitpic
 	exitpic varchar(100) default 'N' comment '임시출차사진'
 ) comment '출차사진';
 
-create table cardetect
+create table parkingcardetect
 (
-	
-)comment '자동차탐지'
+	managecctv int auto_increment primary key comment 'cctv관리번호',
+	cctv varchar(100) comment '주차장cctv',
+	totalspace varchar(100) comment '총자리수',
+	totalcar varchar(100) default 'N' comment '현재차량수'
+)comment '주차장차탐지';

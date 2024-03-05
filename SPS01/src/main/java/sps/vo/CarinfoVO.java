@@ -11,9 +11,9 @@ public class CarinfoVO
 	private String timecal;		//계산시간
 	private String enterpic; 	//입차사진
 	private String exitpic; 	//출차사진
-	private String paymethod; 	//결제수단
+	private String paymethod; 	//결제수단(현금,카드)
 	private String payamount; 	//결제금액
-	private String payclassifi;	//결제구분
+	private String payclassifi;	//결제구분(일반,회차)
 	
 	
 	public CarinfoVO()
@@ -65,7 +65,7 @@ public class CarinfoVO
             return outputFormat.format(parsedDate);
         } catch (Exception e) {
             e.printStackTrace();
-            // 예외가 발생하면 오늘 날짜를 반환
+            //예외가 발생하면 오늘 날짜를 반환
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             return dateFormat.format(new Date());
         }

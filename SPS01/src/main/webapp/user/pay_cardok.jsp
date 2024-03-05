@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page import = "sps.vo.*" %>
+<%@ page import = "sps.dto.*" %>
 <%
 String cmno = request.getParameter("cmno");
 if( cmno == null || cmno.equals("") )
@@ -7,6 +9,14 @@ if( cmno == null || cmno.equals("") )
 	response.sendRedirect("main.jsp");
 	return;
 }
+//결제방법
+String paymethod = request.getParameter("paymethod");
+
+CarinfoVO vo = new CarinfoVO();
+vo.setPaymethod(paymethod);
+
+CarinfoDTO dto = new CarinfoDTO();
+dto.UpdatePaymethod(cmno, vo);
 %>
 <!DOCTYPE html>
 <html>

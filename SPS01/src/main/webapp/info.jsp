@@ -4,18 +4,22 @@
 <%@ page import = "sps.dto.*" %>
 <%
 String cmno = request.getParameter("cmno");
-if( cmno == null || cmno.equals("") )
-{
-	response.sendRedirect("main.jsp");
-	return;
-}
 
 CarinfoDTO dto = new CarinfoDTO();
+
+cmno = dto.SearchCar(cmno);
+
+
 CarinfoVO vo  = dto.Read(cmno);
-if( vo == null )
-{
-	response.sendRedirect("main.jsp");
-	return;	
+
+//주차시간
+int now_enter=0;
+int exit_enter=0;
+try{
+	now_enter = Integer.parseInt(dto.Now_Enter(cmno));
+	exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+}catch(Exception e){
+	
 }
 %>
 <style>
@@ -52,19 +56,67 @@ th
 			<th>결제수단</th>
 			<th>구분</th>
 		</tr>
-		<% for(int i=0; i<20; i++)
-		{ 
-		%>
 		<tr>
 			<td class="td5"><%= vo.getEntertime() %></td>
 			<td class="td5"><%= vo.getExittime()  %></td>
-			<td class="td5">1000원</td>
-			<td class="td5">1000원</td>
-			<td class="td5">카드</td>
-			<td class="td5">일반</td>
+			<%
+			//출차 X 안했을때 요금
+			if( vo.getEntertime().equals(vo.getExittime()) )
+			{ 	//주차시간 10분 미만일 경우
+				if(now_enter < 10)
+				{
+				%>
+					<td class="td5">주차요금 : 0원(회차)</td>
+					<td class="td5">결제요금 : 0원</td>
+				<%
+				}
+				//주차시간 30분 미만일 경우
+				else if(now_enter < 30)	
+				{
+				%>
+					<td class="td5">주차요금 : 600원</td>
+					<td class="td5">결제요금 :    원</td>
+				<%
+				}
+				//주차시간 30분 이상일 경우
+				else 
+				{
+					%>
+					<td class="td5">주차요금 : <%= vo.getPayamount() %>원</td>
+					<td class="td5">결제요금 : <%= vo.getPayamount() %>원</td>
+				<%
+				}
+			}
+			//출차 O 했을때 요금
+			if( !vo.getEntertime().equals(vo.getExittime()) )
+			{ 	//주차시간 10분 미만일 경우
+				if(exit_enter < 10)
+				{
+				%>
+					<td class="td5">주차요금 : 0원(회차)</td>
+					<td class="td5">결제요금 : 0원</td>
+				<%
+				}
+				//주차시간 10분 이상 30분 미만일 경우
+				else if(10 <= exit_enter && exit_enter < 30)
+				{
+				%>
+					<td class="td5">주차요금 : 600원</td>
+					<td class="td5">결제요금 : 600원</td>
+				<%
+				}
+				//주차시간 30분 이상일 경우
+				else
+				{
+				%>
+					<td class="td5">주차요금 : <%= vo.getPayamount() %>원</td>
+					<td class="td5">결제요금 : <%= vo.getPayamount() %>원</td>
+				<%
+				}
+			} 
+			%>
+			<td class="td5"><%= vo.getPaymethod() %></td>
+			<td class="td5"><%= vo.getPayclassifi() %></td>
 		</tr>
-		<%
-		} 
-		%>
 	</table>	
 </div>	

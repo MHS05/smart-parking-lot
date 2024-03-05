@@ -95,6 +95,46 @@ public class CarinfoDTO extends DBManager
 		this.DBClose();
 		return vo;
 	}	
+	
+	public String exitcarcmno()
+	{
+		String sql = "";
+		
+		this.DBOpen();
+
+		sql  = "select cmno from carinfo order by exittime desc limit 1";
+		this.RunSelect(sql);
+		if( this.GetNext() == false)
+		{
+			this.DBClose();
+			return null;
+		}
+		String cmno = this.GetValue("cmno"); 
+	
+		this.DBClose();
+		return cmno;
+	}	
+	
+	public String SearchCar(String carnum)
+	{
+		String sql = "";
+		
+		this.DBOpen();
+		
+		sql  = "select cmno from carinfo where carnum like '%" + carnum + "%' order by entertime desc limit 1";
+		this.RunSelect(sql);
+		if( this.GetNext() == false)
+		{
+			this.DBClose();
+			return null;
+		}
+		String cmno = this.GetValue("cmno"); 
+		
+		this.DBClose();
+		return cmno;
+	}	
+	
+	
 	public CarinfoVO exitpicread(String exitpic)
 	{
 		String sql = "";
@@ -166,25 +206,64 @@ public class CarinfoDTO extends DBManager
 		return exit_enter;
 	}
 	
-	
-	// 날짜 
-	public String Date_Format(String entertime)
+	// 전체 timecal 계산 > 출차시간 - 입차시간 = 주차시간(분) 
+	public boolean UpdateTimecal(CarinfoVO vo)
 	{
-		String sql = "";
-		
 		this.DBOpen();
 		
-		sql  = "SELECT DATE_FORMAT(CREATE_DATE, '%Y-%m-%d) AS CREATE_DATE;";
-		this.RunSelect(sql);
-		if( this.GetNext() == false)
-		{
-			this.DBClose();
-			return null;
-		}
-		String date = this.GetValue("entertime");
+		String sql = "";
+		
+		sql  = "update carinfo set ";
+		sql += "timecal= TIMESTAMPDIFF(minute, entertime, exittime) "; 
+		this.RunCommand(sql);
 		
 		this.DBClose();
-		return date;
-	}	
+		return true;
+	}
+	
+	// 결제수단(현금 cash ,카드 card)
+	public boolean UpdatePaymethod(String cmno, CarinfoVO vo)
+	{
+	    this.DBOpen();
+	    
+	    String sql = "";
+	    
+	    sql  = "update carinfo set ";
+	    sql += "paymethod = ";
+	    sql += "case ";
+	    sql += "when payamount = 0 then 'free' ";
+	    sql += "else '" + vo.getPaymethod() + "' ";
+	    sql += "end ";
+	    sql += "where cmno = " + cmno;
+	    this.RunCommand(sql);
+	    
+	    this.DBClose();
+	    return true;
+	}
+	
+	
+	// 주차요금 계산 + 결제 구분(일반,회차)
+	public boolean UpdatePayamount(CarinfoVO vo)
+	{
+		this.DBOpen();
+		
+		String sql = "";
+		
+		sql  = "update carinfo set ";
+		sql += "payamount= ";
+		sql += "case ";
+		sql += "when timecal < 10 then 0 ";
+		sql += "when timecal >= 10 and timecal < 30 then 600 ";
+		sql += "else 600 * ceil(timecal/30) ";
+		sql += "END, ";
+	    sql += "payclassifi = case ";
+	    sql += "when timecal < 10 then '회차' ";
+	    sql += "else '일반' ";
+	    sql += "end";
+		this.RunCommand(sql);
+		
+		this.DBClose();
+		return true;
+	}
 	
 }
