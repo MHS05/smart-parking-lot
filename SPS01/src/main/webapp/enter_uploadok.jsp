@@ -34,6 +34,6 @@ vo.setEnterpic(enterpic);
 CarinfoDTO dto = new CarinfoDTO();
 dto.Insert(vo);
 
-response.sendRedirect("main.jsp");
+response.sendRedirect("camera.jsp");
 
 %>
