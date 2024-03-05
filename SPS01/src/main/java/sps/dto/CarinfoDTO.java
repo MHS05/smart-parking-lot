@@ -134,6 +134,7 @@ public class CarinfoDTO extends DBManager
 		return cmno;
 	}	
 	
+	
 	public CarinfoVO exitpicread(String exitpic)
 	{
 		String sql = "";
