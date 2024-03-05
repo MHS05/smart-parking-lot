@@ -8,22 +8,28 @@
 String cmno = request.getParameter("cmno");
 if( cmno == null || cmno.equals("") )
 {
-	response.sendRedirect("main.jsp");
+	out.println("<script>alert('존재하지 않는 차량번호 입니다.'); location.href='main.jsp';</script>");
 	return;
 }
-
-
 
 CarinfoDTO dto = new CarinfoDTO();
 
 cmno = dto.SearchCar(cmno);
 
+if( cmno == null)
+{
+	out.println("<script>alert('존재하지 않는 차량번호 입니다.'); location.href='main.jsp';</script>");
+	return;
+}
+
+
 CarinfoVO vo  = dto.Read(cmno);
 if( vo == null )
 {
-	response.sendRedirect("main.jsp");
-	return;	
+	out.println("<script>alert('존재하지 않는 차량번호 입니다.'); location.href='main.jsp';</script>");
+	return;
 }
+
 //출차시간 - 입차시간 = 주차시간 
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 int timecal = exit_enter / 30;
