@@ -115,6 +115,25 @@ public class CarinfoDTO extends DBManager
 		return cmno;
 	}	
 	
+	public String SearchCar(String carnum)
+	{
+		String sql = "";
+		
+		this.DBOpen();
+		
+		sql  = "select cmno from carinfo where carnum like '%" + carnum + "%' order by entertime desc limit 1";
+		this.RunSelect(sql);
+		if( this.GetNext() == false)
+		{
+			this.DBClose();
+			return null;
+		}
+		String cmno = this.GetValue("cmno"); 
+		
+		this.DBClose();
+		return cmno;
+	}	
+	
 	public CarinfoVO exitpicread(String exitpic)
 	{
 		String sql = "";

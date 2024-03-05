@@ -13,6 +13,9 @@ if( cmno == null || cmno.equals("") )
 }
 
 CarinfoDTO dto = new CarinfoDTO();
+
+cmno = dto.SearchCar(cmno);
+
 CarinfoVO vo  = dto.Read(cmno);
 if( vo == null )
 {
