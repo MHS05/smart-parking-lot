@@ -438,18 +438,15 @@ $(function() {
 });
 
 
-function openinfo() 
-{	
-	var _width = '1100';
-	var _height = '700';
-		
-	var _left = Math.ceil((window.screen.width - _width )/2);
-	var _top = '400';
-	
-	window.open('info.jsp', '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250)); return false;
+function openinfo() {
+    var cmno = $("#carnumber").val();
+    var _width = '1100';
+    var _height = '700';
+    var _left = Math.ceil((window.screen.width - _width )/2);
+    var _top = '400';
+    window.open('info.jsp?cmno=' + cmno, '', 'width=1100, height=700, left=' + _left +', top=' + (_top - 250));
+    return false;
 }
-
-
 </script>
 	</body>
 </html>
