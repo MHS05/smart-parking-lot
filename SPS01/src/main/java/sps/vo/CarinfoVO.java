@@ -65,7 +65,7 @@ public class CarinfoVO
             return outputFormat.format(parsedDate);
         } catch (Exception e) {
             e.printStackTrace();
-            // 예외가 발생하면 오늘 날짜를 반환
+            //예외가 발생하면 오늘 날짜를 반환
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             return dateFormat.format(new Date());
         }
