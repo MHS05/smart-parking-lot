@@ -12,7 +12,7 @@ CarinfoVO vo   = dto.Read(cmno);
 //搬力夸陛
 dto.UpdateTimecal(vo);
 
-dto.UpdatePayamount(vo);
+dto.UpdatePayamount(cmno, vo);
 
 //搬力规过
 String paymethod = request.getParameter("paymethod");
