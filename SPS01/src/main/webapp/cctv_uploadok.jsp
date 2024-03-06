@@ -34,7 +34,7 @@ vo.setCctv(cctv_image);
 vo.setTotalspace("29");
 CctvDTO dto = new CctvDTO();
 dto.Insert(vo);
-Thread.sleep(1000);
+Thread.sleep(5000);
 
 
 response.sendRedirect("main.jsp?managecctv=" + vo.getManagecctv());
