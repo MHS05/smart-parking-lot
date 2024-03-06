@@ -243,7 +243,7 @@ public class CarinfoDTO extends DBManager
 	
 	
 	// 주차요금 계산 + 결제 구분(일반,회차)
-	public boolean UpdatePayamount(CarinfoVO vo)
+	public boolean UpdatePayamount(String cmno, CarinfoVO vo)
 	{
 		this.DBOpen();
 		
@@ -259,7 +259,8 @@ public class CarinfoDTO extends DBManager
 	    sql += "payclassifi = case ";
 	    sql += "when timecal < 10 then '회차' ";
 	    sql += "else '일반' ";
-	    sql += "end";
+	    sql += "end ";
+	    sql += "where cmno = " + cmno;
 		this.RunCommand(sql);
 		
 		this.DBClose();

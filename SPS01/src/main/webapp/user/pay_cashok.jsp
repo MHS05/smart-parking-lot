@@ -16,7 +16,7 @@ vo.setPaymethod(paymethod);
 dto.UpdatePaymethod(cmno, vo);
 
 //결제요금
-dto.UpdatePayamount(vo);
+dto.UpdatePayamount(cmno, vo);
 
 int payamountInt = Integer.parseInt(vo.getPayamount());
 

@@ -11,7 +11,7 @@ CarinfoVO vo  = dto.Read(cmno);
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 
 //결제요금
-dto.UpdatePayamount(vo);
+dto.UpdatePayamount(cmno, vo);
 
 int payamountInt = Integer.parseInt(vo.getPayamount());
 
