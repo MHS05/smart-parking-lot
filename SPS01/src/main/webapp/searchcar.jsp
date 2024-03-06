@@ -30,14 +30,9 @@ if( vo == null )
 	return;
 }
 
+
 //출차시간 - 입차시간 = 주차시간 
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
-int timecal = exit_enter / 30;
-timecal = timecal * 600;
-
-//숫자 세자리 수 마다 , 찍고 payamount로 이름 변경
-DecimalFormat formatter = new DecimalFormat("#,###");
-String payamount = formatter.format(timecal);
 
 int hour = exit_enter / 60;
 int min  = exit_enter - (hour * 60);
@@ -87,6 +82,9 @@ font
 					}
 					//출차 X 안했을 경우(Now_Enter) '현재시간 - 입차시간 = 주차시간' 
 					int now_enter = Integer.parseInt(dto.Now_Enter(cmno));
+					int now_hour = now_enter / 60;
+					int now_min  = now_enter - (now_hour * 60);
+					int now_day  = now_hour / 24;
 					
 					if( vo.getEntertime().equals(vo.getExittime()) )
 					{	//60분 미만일 경우
@@ -100,14 +98,10 @@ font
 						else
 						{	
 						%>
-							<font size="6"><%= day %>일 <%= hour %>시간 <%= min %>분</font>
+							<font size="6"><%= now_day %>일 <%= now_hour %>시간 <%= now_min %>분</font>
 						<%
 						}
-					}
-					%>
-					<%
-					//출차 O 했을 경우 '출차시간 - 입차시간 = 주차시간'
-					if( !vo.getEntertime().equals(vo.getExittime()) )
+					}else
 					{	//60분 미만일 경우 분만 표현
 						if(exit_enter < 60)
 						{
@@ -167,20 +161,16 @@ font
 						else 
 						{
 							%>
-							<font size="6" color="#2ecc71"><b><%= payamount %>원</b></font>
+							<font size="6" color="#2ecc71"><b><%= (now_enter / 30) * 600  %>원</b></font>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-							<font size="5">주차요금 : <%= payamount %>원<br><br>결제요금 : </font></td>
+							<font size="5">주차요금 : <%= (now_enter / 30) * 600 %>원<br><br>결제요금 : </font></td>
 						</tr>
 						<%
 						}
-					}
-					%>
-					<%
-					//출차 O 했을때 요금
-					if( !vo.getEntertime().equals(vo.getExittime()) )
+					} else if( !vo.getEntertime().equals(vo.getExittime()) )
 					{ 	//주차시간 10분 미만일 경우
 						if(exit_enter < 10)
 						{
@@ -211,12 +201,12 @@ font
 						else
 						{
 						%>
-							<font size="6" color="#2ecc71"><b><%= payamount %>원</b></font>
+							<font size="6" color="#2ecc71"><b><%= vo.getPayamount() %>원</b></font>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-							<font size="5">주차요금 : <%= payamount %>원<br><br>결제요금 : <%= payamount %>원</font></td>
+							<font size="5">주차요금 : <%= vo.getPayamount() %>원<br><br>결제요금 : <%= vo.getPayamount() %>원</font></td>
 						</tr>
 						<%
 						}

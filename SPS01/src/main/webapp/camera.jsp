@@ -6,7 +6,7 @@
 <%
 CarinfoVO vo = new CarinfoVO();
 vo.setEntertime(vo.getEntertime());
-String cmno = request.getParameter("cmno");
+String cmno    = request.getParameter("cmno");
 %>
 <!DOCTYPE html>
 <html>
@@ -42,7 +42,18 @@ String cmno = request.getParameter("cmno");
 				</td>
 				<td align="center">
 					<div id="exit_image_preview">
-						<img src="image/icon_exit_car.png" style="width:600px; height:600px">
+						<% if(cmno == null || cmno.equals(""))
+						{
+							%>
+								<img src="image/icon_exit_car.png" style="width:600px; height:600px">
+							<%
+						} else
+						{
+							%>
+								<img src="exit_imagedown.jsp?cmno=<%= cmno %>" style="width:600px; height:600px">
+							<%
+						}
+						%>
 					</div>
 				</td>
 			</tr>
@@ -164,29 +175,6 @@ String cmno = request.getParameter("cmno");
 		        $('#exit_imageok').css('display', '');
 		    });
 
-		    // 출차 확인 버튼 이벤트 처리
-		    $('#exit').submit(function(e) {
-		        var formData = new FormData(this);
-		        // 이미지 데이터 추가
-		        formData.append('imageSrc', imageSrc);
-		        $.ajax({
-		            type: "post",
-		            url: "exit_uploadok.jsp",
-		            data: formData,
-		            processData: false, // 이미지 데이터를 FormData로 전달할 때 false로 설정
-		            contentType: false, // 이미지 데이터의 형식을 지정하지 않음
-		            dataType: "html",
-		            success: function(data) {
-		                // 통신이 성공적으로 이루어졌을때 이 함수를 타게된다.
-		            },
-		            complete: function(data) {
-		                $('#exit_imageok').html('<span class="exit_complete_message">출차 완료</span>');
-		            },
-		            error: function(xhr, status, error) {
-		                // 통신 오류 발생시	
-		            }
-		        });
-		    });
 		});
 	</script>
 	</body>
