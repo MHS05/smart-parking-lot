@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%
 String cmno = request.getParameter("cmno");
 
@@ -18,19 +19,9 @@ String paymethod = request.getParameter("paymethod");
 vo.setPaymethod(paymethod);
 dto.UpdatePaymethod(cmno, vo);
 
-int payamountInt = 0;
-try
-{
-	payamountInt = Integer.parseInt(vo.getPayamount());
-} catch(Exception e){}
+//출차시간 - 입차시간 = 주차시간 
+int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
 
-
-//출차시간 - 입차시간 = 주차시간
-int exit_enter = 0;
-try
-{
-exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
-} catch(Exception e){}
 int hour = exit_enter / 60;
 int min  = exit_enter - (hour * 60);
 int day  = hour / 24;
@@ -140,12 +131,12 @@ int day  = hour / 24;
 								else
 								{
 								%>
-									<font size="6" color="#2ecc71"><b><%= payamountInt %>원</b></font>
+									<font size="6" color="#2ecc71"><b><%= vo.getPayamount() %>원</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">주차요금 : <%= payamountInt %>원<br><br>결제요금 : <%= payamountInt %>원</font></td>
+									<font size="5">주차요금 : <%= vo.getPayamount() %>원<br><br>결제요금 : <%= vo.getPayamount() %>원</font></td>
 								</tr>
 								<%
 								}
@@ -186,12 +177,12 @@ int day  = hour / 24;
 								else 
 								{
 									%>
-									<font size="6" color="#2ecc71"><b><%= payamountInt %>원</b></font>
+									<font size="6" color="#2ecc71"><b><%= vo.getPayamount() %>원</b></font>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-									<font size="5">주차요금 : <%= payamountInt %>원<br><br>결제요금 : </font></td>
+									<font size="5">주차요금 : <%= vo.getPayamount() %>원<br><br>결제요금 : </font></td>
 								</tr>
 								<%
 								}
