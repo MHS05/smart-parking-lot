@@ -30,14 +30,13 @@ if( vo == null )
 	return;
 }
 
+//결제요금
+dto.UpdateTimecal(vo);
+dto.UpdatePayamount(cmno, vo);
+vo = dto.Read(cmno);
+
 //출차시간 - 입차시간 = 주차시간 
 int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
-int timecal = exit_enter / 30;
-timecal = timecal * 600;
-
-//숫자 세자리 수 마다 , 찍고 payamount로 이름 변경
-DecimalFormat formatter = new DecimalFormat("#,###");
-String payamount = formatter.format(timecal);
 
 int hour = exit_enter / 60;
 int min  = exit_enter - (hour * 60);
@@ -167,12 +166,12 @@ font
 						else 
 						{
 							%>
-							<font size="6" color="#2ecc71"><b><%= payamount %>원</b></font>
+							<font size="6" color="#2ecc71"><b><%= vo.getPayamount() %>원</b></font>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-							<font size="5">주차요금 : <%= payamount %>원<br><br>결제요금 : </font></td>
+							<font size="5">주차요금 : <%= vo.getPayamount() %>원<br><br>결제요금 : </font></td>
 						</tr>
 						<%
 						}
@@ -211,12 +210,12 @@ font
 						else
 						{
 						%>
-							<font size="6" color="#2ecc71"><b><%= payamount %>원</b></font>
+							<font size="6" color="#2ecc71"><b><%= vo.getPayamount() %>원</b></font>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-							<font size="5">주차요금 : <%= payamount %>원<br><br>결제요금 : <%= payamount %>원</font></td>
+							<font size="5">주차요금 : <%= vo.getPayamount() %>원<br><br>결제요금 : <%= vo.getPayamount() %>원</font></td>
 						</tr>
 						<%
 						}

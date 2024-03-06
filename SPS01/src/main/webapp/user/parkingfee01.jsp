@@ -2,7 +2,6 @@
     pageEncoding="EUC-KR"%>
 <%@ page import = "sps.vo.*" %>
 <%@ page import = "sps.dto.*" %>
-<%@ page import="java.text.DecimalFormat" %>
 <%
 String cmno = request.getParameter("cmno");
 
@@ -11,16 +10,22 @@ CarinfoVO vo   = dto.Read(cmno);
 
 //결제요금
 dto.UpdateTimecal(vo);
-
 dto.UpdatePayamount(cmno, vo);
-
+vo = dto.Read(cmno);
 //결제방법
 String paymethod = request.getParameter("paymethod");
-vo.setPaymethod(paymethod);
-dto.UpdatePaymethod(cmno, vo);
+if(paymethod != null && paymethod.equals(""))
+{
+	vo.setPaymethod(paymethod);
+	dto.UpdatePaymethod(cmno, vo);
+	vo = dto.Read(cmno);
+}
 
-//출차시간 - 입차시간 = 주차시간 
-int exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+//출차시간 - 입차시간 = 주차시간
+int exit_enter = 0;
+try{
+	exit_enter = Integer.parseInt(dto.Exit_Enter(cmno));
+}catch(Exception e){}
 
 int hour = exit_enter / 60;
 int min  = exit_enter - (hour * 60);
